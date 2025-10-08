@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Muhammad Waqas - AI Developer & Data Scientist">
+    <title>Contact - Muhammad Waqas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Contact Page Specific Styles */
+        .contact {
+            padding: 4rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-info h3 {
+            color: #007bff;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-details {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-details li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-details i {
+            width: 40px;
+            height: 40px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .contact-details a:hover {
+            color: #007bff;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h3 {
+            color: #007bff;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+
+        .social-connect {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .social-connect h3 {
+            color: #007bff;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .social-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .social-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #007bff;
+        }
+
+        .social-card h4 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .social-card a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .social-card a:hover {
+            color: #007bff;
+        }
+
+        .availability {
+            background: #e7f3ff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+            border-left: 4px solid #007bff;
+        }
+
+        .availability h4 {
+            color: #007bff;
+            margin-bottom: 0.5rem;
+        }
+
+        .availability p {
+            color: #666;
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info,
+            .contact-form,
+            .social-connect {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Update your header in index.html -->
+<header>
+    <nav>
+        <div class="nav-brand">
+            <div class="ai-indicator">
+                <div class="robot-head">
+                    <div class="robot-eye left-eye"></div>
+                    <div class="robot-eye right-eye"></div>
+                    <div class="robot-mouth"></div>
+                </div>
+            </div>
+            <h1><a href="index.html">Muhammad Waqas</a></h1>
+        </div>
+        <button class="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="assets/documents/waqas.pdf" download="Muhammad_Waqas_Resume.pdf">Resume</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<style>
+/* Header Robotic Head Styles */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ai-indicator {
+    position: relative;
+}
+
+.robot-head {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    position: relative;
+    animation: gentle-pulse 4s ease-in-out infinite;
+}
+
+.robot-eye {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    top: 10px;
+    animation: header-blink 6s infinite;
+}
+
+.left-eye { left: 8px; }
+.right-eye { right: 8px; }
+
+.robot-mouth {
+    position: absolute;
+    width: 12px;
+    height: 2px;
+    background: white;
+    border-radius: 1px;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: header-talk 4s infinite;
+}
+
+@keyframes gentle-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+@keyframes header-blink {
+    0%, 45%, 55%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.1); }
+}
+
+@keyframes header-talk {
+    0%, 40%, 60%, 100% { width: 12px; }
+    50% { width: 16px; }
+}
+
+/* Update existing header styles if needed */
+nav h1 a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+</style>
+
+    <main>
+        <section class="contact">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                
+                <div class="contact-container">
+                    <!-- Contact Information -->
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <ul class="contact-details">
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>Email</strong><br>
+                                    <a href="mailto:waqasai.consulting@gmail.com">waqasai.consulting@gmail.com</a>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <strong>Phone</strong><br>
+                                    <a href="tel:+923097829808">+92 309 7829808</a>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <strong>Location</strong><br>
+                                    Remote | Multan
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Response Time</strong><br>
+                                    Within 24 hours
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="availability">
+                            <h4>Available for Projects</h4>
+                            <p>I'm currently available for freelance work and full-time opportunities</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <h3>Send Me a Message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Social Media Connections -->
+                <div class="social-connect">
+                    <h3>Connect With Me</h3>
+                    <div class="social-grid">
+                        <div class="social-card">
+                            <i class="fab fa-linkedin"></i>
+                            <h4>LinkedIn</h4>
+                            <a href="https://www.linkedin.com/in/muhammad-waqas-liaqat/" target="_blank" rel="noopener noreferrer">
+                                Connect Professionally
+                            </a>
+                        </div>
+                        <div class="social-card">
+                            <i class="fab fa-github"></i>
+                            <h4>GitHub</h4>
+                            <a href="https://github.com/waqas-liaqat" target="_blank" rel="noopener noreferrer">
+                                View My Code
+                            </a>
+                        </div>
+                        <div class="social-card">
+                            <i class="fab fa-whatsapp"></i>
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/923097829808" target="_blank" rel="noopener noreferrer">
+                                Quick Chat
+                            </a>
+                        </div>
+                        <div class="social-card">
+                            <i class="fas fa-file-pdf"></i>
+                            <h4>Resume</h4>
+                            <a href="assets/documents/waqas.pdf" download="Muhammad_Waqas_Resume.pdf">
+                                Download CV
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Muhammad Waqas. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Contact Form Handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const subject = formData.get('subject');
+                    const message = formData.get('message');
+                    
+                    // In a real application, you would send this data to a server
+                    // For now, we'll just show a success message
+                    alert(`${name}, Send message currently not available. Please contact me directly at waqasai.consulting@gmail.com`);
+                    
+                    // Reset the form
+                    contactForm.reset();
+                });
+            }
+            
+            // Mobile menu functionality (if not already in your main script)
+            const mobileMenuBtn = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', !isExpanded);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Details - Muhammad Waqas">
+    <title>Project Details - Muhammad Waqas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Update your header in index.html -->
+<header>
+    <nav>
+        <div class="nav-brand">
+            <div class="ai-indicator">
+                <div class="robot-head">
+                    <div class="robot-eye left-eye"></div>
+                    <div class="robot-eye right-eye"></div>
+                    <div class="robot-mouth"></div>
+                </div>
+            </div>
+            <h1><a href="index.html">Muhammad Waqas</a></h1>
+        </div>
+        <button class="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="assets/documents/waqas.pdf" download="Muhammad_Waqas_Resume.pdf">Resume</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<style>
+/* Header Robotic Head Styles */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ai-indicator {
+    position: relative;
+}
+
+.robot-head {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    position: relative;
+    animation: gentle-pulse 4s ease-in-out infinite;
+}
+
+.robot-eye {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    top: 10px;
+    animation: header-blink 6s infinite;
+}
+
+.left-eye { left: 8px; }
+.right-eye { right: 8px; }
+
+.robot-mouth {
+    position: absolute;
+    width: 12px;
+    height: 2px;
+    background: white;
+    border-radius: 1px;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: header-talk 4s infinite;
+}
+
+@keyframes gentle-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+@keyframes header-blink {
+    0%, 45%, 55%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.1); }
+}
+
+@keyframes header-talk {
+    0%, 40%, 60%, 100% { width: 12px; }
+    50% { width: 16px; }
+}
+
+/* Update existing header styles if needed */
+nav h1 a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+</style>
+
+    <main>
+        <section class="project-detail">
+            <div class="container">
+                <a href="projects.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+                
+                <div id="project-content">
+                    <!-- Project content will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Muhammad Waqas. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/js/project-detail.js"></script>
+</body>
+</html>
