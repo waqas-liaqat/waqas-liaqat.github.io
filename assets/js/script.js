@@ -51,9 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
             media: [
                 {type: 'image', url: 'assets/images/Insurance Meeting Manager/InsuranceMeetingManager.png'},
                 {type: 'image', url: 'assets/images/AIPowered MultiPlatform Ads Performance Dashboard/workflow.png'},
-                {type: 'image', url: 'assets/images/AIPowered MultiPlatform Ads Performance Dashboard/demo1.png'},
-                {type: 'image', url: 'assets/images/AIPowered MultiPlatform Ads Performance Dashboard/demo2.png'},
-                {type: 'image', url: 'assets/images/AIPowered MultiPlatform Ads Performance Dashboard/demo3.png'},
             ],
             liveDemo: '#',
             github: '#'
