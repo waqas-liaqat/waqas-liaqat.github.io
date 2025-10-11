@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             media: [
                 {type: 'image', url: 'assets/images/Insurance Meeting Manager/InsuranceMeetingManager.png'},
-                {type: 'image', url: 'assets/images/AIPowered MultiPlatform Ads Performance Dashboard/workflow.png'},
+                {type: 'image', url: 'assets/images/InsuranceMeetingManager/workflow.png'},
             ],
             liveDemo: '#',
             github: '#'
