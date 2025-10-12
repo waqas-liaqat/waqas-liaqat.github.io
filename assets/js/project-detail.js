@@ -1,5 +1,12 @@
 // Project data
 const projects = {
+    'JoshOutreach': {
+        title: 'Intelligent Lead Engagement & Outreach System',
+        category: 'Agentic AI',
+        description: 'The Intelligent Lead Engagement & Outreach System automates every step of a company’s outbound prospecting process. From finding the right leads to initiating personalized conversations. Using clearly defined ICP criteria, the system fetches targeted prospects from Apollo.io, enriches their profiles, and crafts tailored cold emails, LinkedIn messages, and follow-ups designed to maximize response rates. Once personalized content is generated, leads are automatically added to Instantly for Gmail campaigns and logged in Google Sheets for centralized tracking. PhantomBuster uses this data to launch LinkedIn connection and messaging campaigns, while VAPI’s virtual assistant seamlessly handles follow-up calls for qualified leads. By eliminating manual effort and ensuring personalization at scale, this project helps marketing and sales teams build authentic engagement pipelines that convert faster and feel human. It bridges automation with personalization, bringing consistency, intelligence, and speed to the modern outreach process.',
+        technologies: ['n8n','Apollo API','OpenAI GPT-4o-mini','Instantly API','Google Sheets','PhantomBuster','VAPI','HTML/CSS'],
+        image: 'assets/images/JoshOutreach/JoshOutreach.png'
+    },
     'InsuranceMeetingManager': {
         title: 'AI-Powered Insurance Meeting Manager',
         category: 'Agentic AI',

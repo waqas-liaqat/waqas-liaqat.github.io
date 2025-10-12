@@ -43,6 +43,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Project data (in a real scenario, this might come from a database)
     const projectsData = {
+        'JoshOutreach': {
+            title: 'Intelligent Lead Engagement & Outreach System',
+            description: 'The Intelligent Lead Engagement & Outreach System automates every step of a company’s outbound prospecting process. From finding the right leads to initiating personalized conversations. Using clearly defined ICP criteria, the system fetches targeted prospects from Apollo.io, enriches their profiles, and crafts tailored cold emails, LinkedIn messages, and follow-ups designed to maximize response rates. Once personalized content is generated, leads are automatically added to Instantly for Gmail campaigns and logged in Google Sheets for centralized tracking. PhantomBuster uses this data to launch LinkedIn connection and messaging campaigns, while VAPI’s virtual assistant seamlessly handles follow-up calls for qualified leads. By eliminating manual effort and ensuring personalization at scale, this project helps marketing and sales teams build authentic engagement pipelines that convert faster and feel human. It bridges automation with personalization, bringing consistency, intelligence, and speed to the modern outreach process.',
+            technologies: ['n8n','Apollo API','OpenAI GPT-4o-mini','Instantly API','Google Sheets','PhantomBuster','VAPI','HTML/CSS'],
+
+            media: [
+                {type: 'image', url: 'assets/images/JoshOutreach/JoshOutreach.png'},
+                {type: 'image', url: 'assets/images/JoshOutreach/workflow1.png'},
+                {type: 'image', url: 'assets/images/JoshOutreach/workflow2.png'},
+            ],
+            liveDemo: '#',
+            github: '#'
+        },
         'InsuranceMeetingManager': {
             title: 'AI-Powered Insurance Meeting Manager',
             description: 'This intelligent automation system, built in n8n, processes Zoom meeting transcripts immediately after a session ends to create a structured, insurance-specific meeting summary. Once the Zoom call concludes, the workflow automatically retrieves the transcript and emails the meeting host, prompting them to upload any handwritten notes taken during the discussion. Using Mistral AI, these notes undergo OCR-based text extraction and are semantically analyzed alongside the transcript through OpenAI GPT-4 to identify whether critical insurance thresholds, like the 90% coverage rule, were discussed. If confirmed, the system generates a professionally formatted email confirmation using a pre-designed HTML template and sends it to the meeting participant, ensuring compliance documentation and follow-up communication are seamless and automated. This workflow eliminates manual post-meeting processing, reduces human error, and ensures timely client engagement, making it an invaluable AI assistant for financial advisors, insurance agents, and compliance teams.',
