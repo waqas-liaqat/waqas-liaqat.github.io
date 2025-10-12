@@ -1,5 +1,12 @@
 // Project data
 const projects = {
+    'WhatsNext': {
+        title: 'WhatsNext Automatic Tech News Agency',
+        category: 'Agentic AI',
+        description: 'WhatsNext is an intelligent, fully automated digital news agency that curates and publishes the latest technology news in real time. It connects to globally recognized tech sources through RSS feeds and uses advanced AI to evaluate, summarize, and visually enhance each story before distributing it across multiple social media platforms. Each post features a concise, human-like summary, smart tags, and a custom banner image designed to capture attention. The system ensures accuracy and credibility by filtering out low-quality content while maintaining an engaging storytelling tone. It transforms complex tech updates into simple, reader-friendly summaries and automatically shares them on X, LinkedIn, Facebook, Instagram, and Threads. This project demonstrates seamless AI-driven journalism, automation, and multi-platform publishing, making it a complete next-generation content distribution system.',
+        technologies: ['n8n','Google Gemini','Groq LLM','Flux Image Model (Together.xyz API)','Facebook Graph API','Threads API','LinkedIn API','Twitter (X) API','RSS Feeds','HTML & CSS Templates'],
+        image: 'assets/images/WhatNext/WhatsNext.png'
+    },
     'JoshOutreach': {
         title: 'Intelligent Lead Engagement & Outreach System',
         category: 'Agentic AI',

@@ -43,6 +43,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Project data (in a real scenario, this might come from a database)
     const projectsData = {
+        'WhatsNext': {
+            title: 'WhatsNext Automatic Tech News Agency',
+            description: 'WhatsNext is an intelligent, fully automated digital news agency that curates and publishes the latest technology news in real time. It connects to globally recognized tech sources through RSS feeds and uses advanced AI to evaluate, summarize, and visually enhance each story before distributing it across multiple social media platforms. Each post features a concise, human-like summary, smart tags, and a custom banner image designed to capture attention. The system ensures accuracy and credibility by filtering out low-quality content while maintaining an engaging storytelling tone. It transforms complex tech updates into simple, reader-friendly summaries and automatically shares them on X, LinkedIn, Facebook, Instagram, and Threads. This project demonstrates seamless AI-driven journalism, automation, and multi-platform publishing, making it a complete next-generation content distribution system.',
+            technologies: ['n8n','Google Gemini','Groq LLM','Flux Image Model (Together.xyz API)','Facebook Graph API','Threads API','LinkedIn API','Twitter (X) API','RSS Feeds','HTML & CSS Templates'],
+
+            media: [
+                {type: 'image', url: 'assets/images/WhatNext/WhatsNext.png'},
+                {type: 'image', url: 'assets/images/WhatNext/banner4.jpg'},
+                {type: 'image', url: 'assets/images/WhatNext/banner3.jpg'},
+                {type: 'image', url: 'assets/images/WhatNext/banner2.jpg'},
+                {type: 'image', url: 'assets/images/WhatNext/banner1.jpg'},
+            ],
+            liveDemo: '#',
+            github: '#'
+        },
         'JoshOutreach': {
             title: 'Intelligent Lead Engagement & Outreach System',
             description: 'The Intelligent Lead Engagement & Outreach System automates every step of a company’s outbound prospecting process. From finding the right leads to initiating personalized conversations. Using clearly defined ICP criteria, the system fetches targeted prospects from Apollo.io, enriches their profiles, and crafts tailored cold emails, LinkedIn messages, and follow-ups designed to maximize response rates. Once personalized content is generated, leads are automatically added to Instantly for Gmail campaigns and logged in Google Sheets for centralized tracking. PhantomBuster uses this data to launch LinkedIn connection and messaging campaigns, while VAPI’s virtual assistant seamlessly handles follow-up calls for qualified leads. By eliminating manual effort and ensuring personalization at scale, this project helps marketing and sales teams build authentic engagement pipelines that convert faster and feel human. It bridges automation with personalization, bringing consistency, intelligence, and speed to the modern outreach process.',
