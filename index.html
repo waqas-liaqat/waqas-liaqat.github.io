@@ -1,392 +1,801 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Muhammad Waqas - AI Developer & Machine Learning Engineer">
-    <title>Muhammad Waqas - Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Waqas — AI Automation Engineer</title>
+  <meta name="description" content="AI Automation Engineer — building intelligent, always-on systems for real businesses." />
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>html,body,#root{height:100%;margin:0;padding:0;}</style>
 </head>
 <body>
-    <!-- Update your header in index.html -->
-<header>
-    <nav>
-        <div class="nav-brand">
-            <div class="ai-indicator">
-                <div class="robot-head">
-                    <div class="robot-eye left-eye"></div>
-                    <div class="robot-eye right-eye"></div>
-                    <div class="robot-mouth"></div>
-                </div>
-            </div>
-            <h1><a href="index.html">Muhammad Waqas</a></h1>
-        </div>
-        <button class="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
-            <i class="fas fa-bars"></i>
-        </button>
-        <ul class="nav-links">
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="#">Blogs</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-</header>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
 
-<style>
-/* Header Robotic Head Styles */
-.nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
 
-.ai-indicator {
-    position: relative;
-}
+/* ─── DATA ─────────────────────────────────────────────────────── */
+const PROJECTS = [
+  {
+    id: 1,
+    title: "AI Lead Qualification Agent",
+    description: "Autonomous AI agent that qualifies inbound leads, scores them against ICP criteria, and routes hot leads to sales via Slack — zero human review needed.",
+    category: "AI Automation",
+    industry: "Sales",
+    builtOn: ["n8n", "OpenAI"],
+    integratedWith: ["HubSpot", "Slack", "Gmail"],
+    result: "15 hrs/week saved",
+    metric: "15h",
+    youtubeUrl: "",
+    blogContent: "This project involved building a fully autonomous lead qualification pipeline using n8n and OpenAI. The system monitors incoming leads from multiple sources, scores them against your Ideal Customer Profile, and automatically routes hot leads to your sales team via Slack — completely hands-free.",
+  },
+  {
+    id: 2,
+    title: "24/7 AI Voice Receptionist",
+    description: "Fully autonomous voice agent handling appointment booking, rescheduling, and FAQs for a dental clinic. Sends SMS confirmations automatically after every call.",
+    category: "AI Voice Calling",
+    industry: "Healthcare",
+    builtOn: ["Vapi", "n8n"],
+    integratedWith: ["Twilio", "Cal.com", "Google Calendar"],
+    result: "0 missed calls after hours",
+    metric: "0↓",
+    youtubeUrl: "",
+    blogContent: "Built for a dental clinic, this AI voice receptionist handles appointment booking, rescheduling, and FAQs around the clock. Patients call in, the AI picks up, books them into the calendar, and fires off an SMS confirmation — all without a human ever touching it.",
+  },
+  {
+    id: 3,
+    title: "GHL CRM Pipeline Automation",
+    description: "Full GoHighLevel build: sub-account setup, automated lead pipeline, AI-written follow-up sequences via SMS/email, and real-time deal stage updates triggered by client actions.",
+    category: "CRM Automation",
+    industry: "Real Estate",
+    builtOn: ["GHL", "OpenAI"],
+    integratedWith: ["Twilio", "Gmail", "Google Sheets"],
+    result: "40% more booked viewings",
+    metric: "40%",
+    youtubeUrl: "",
+    blogContent: "A full GoHighLevel deployment for a real estate agency. This covers sub-account setup, AI-written follow-up sequences over SMS and email, and deal stage automation that fires based on client actions — resulting in a 40% increase in booked property viewings.",
+  },
+  {
+    id: 4,
+    title: "E-commerce Post-Purchase Automation",
+    description: "End-to-end post-purchase flow — order confirmation, fulfillment updates, review requests, and return handling — across Shopify, email, and WhatsApp automatically.",
+    category: "AI Automation",
+    industry: "E-commerce",
+    builtOn: ["Make", "OpenAI"],
+    integratedWith: ["Shopify", "WhatsApp API", "Klaviyo"],
+    result: "60% fewer support tickets",
+    metric: "60%",
+    youtubeUrl: "",
+    blogContent: "This automation handles the entire post-purchase journey for a Shopify store — order confirmation, shipping updates, review requests, and return processing — delivered via email and WhatsApp. The result was a 60% drop in support tickets.",
+  },
+  {
+    id: 5,
+    title: "AI Cold Outreach Machine",
+    description: "Researches prospects with AI, writes fully personalized cold emails per contact, auto-sends via Gmail with smart follow-up sequences — no manual writing, ever.",
+    category: "AI Automation",
+    industry: "Sales",
+    builtOn: ["n8n", "OpenAI"],
+    integratedWith: ["Apollo", "Gmail", "Airtable"],
+    result: "3x reply rate vs manual",
+    metric: "3x",
+    youtubeUrl: "",
+    blogContent: "An end-to-end cold outreach system that researches each prospect using AI, writes a fully personalized email, and auto-sends via Gmail with smart follow-up sequences. No manual writing, ever. Reply rates tripled compared to manual outreach.",
+  },
+  {
+    id: 6,
+    title: "GHL White-Label Agency Setup",
+    description: "Fully white-labeled GHL environment for a digital agency — custom domain, branded UI, automated client onboarding snapshots, and sub-account provisioning in minutes.",
+    category: "CRM Automation",
+    industry: "Agency",
+    builtOn: ["GHL"],
+    integratedWith: ["Stripe", "Slack", "Zapier"],
+    result: "Client onboarding in under 10 min",
+    metric: "<10m",
+    youtubeUrl: "",
+    blogContent: "A full white-label GoHighLevel setup for a digital agency — custom domain, branded interface, automated client onboarding snapshots, and sub-account provisioning. New clients are fully onboarded in under 10 minutes with zero manual work.",
+  },
+  {
+    id: 7,
+    title: "AI Voice Follow-up Caller",
+    description: "Outbound AI voice caller that contacts leads 5 minutes after form submission, qualifies interest, and schedules a discovery call — fully hands-free.",
+    category: "AI Voice Calling",
+    industry: "E-commerce",
+    builtOn: ["Vapi", "Make"],
+    integratedWith: ["Calendly", "HubSpot", "Twilio"],
+    result: "100% leads contacted in 5 min",
+    metric: "100%",
+    youtubeUrl: "",
+    blogContent: "An outbound AI voice agent that fires exactly 5 minutes after a lead fills out a form. It calls the lead, qualifies their interest, and books a discovery call directly into Calendly — fully autonomous, zero human lag.",
+  },
+  {
+    id: 8,
+    title: "AI Chatbot for Real Estate Website",
+    description: "Embedded chatbot that qualifies buyers and sellers, books property viewings, and hands warm leads to agents with a full conversation summary in GHL.",
+    category: "AI Chatbot",
+    industry: "Real Estate",
+    builtOn: ["Voiceflow", "GHL"],
+    integratedWith: ["Google Calendar", "Gmail", "Twilio"],
+    result: "35% more qualified leads",
+    metric: "35%",
+    youtubeUrl: "",
+    blogContent: "A Voiceflow-powered chatbot embedded on a real estate website. It qualifies buyers and sellers through a conversational flow, books property viewings, and delivers a full conversation summary to GHL — so agents only ever talk to warm leads.",
+  },
+];
 
-.robot-head {
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 8px;
-    position: relative;
-    animation: gentle-pulse 4s ease-in-out infinite;
-}
+const CATEGORIES = [...new Set(PROJECTS.map(p => p.category))];
+const INDUSTRIES = [...new Set(PROJECTS.map(p => p.industry))];
+const BUILT_ONS = [...new Set(PROJECTS.flatMap(p => p.builtOn))].sort();
+const INTEGRATIONS = [...new Set(PROJECTS.flatMap(p => p.integratedWith))].sort();
 
-.robot-eye {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-    top: 10px;
-    animation: header-blink 6s infinite;
-}
+const CAT_COLOR = {
+  "AI Automation": "#2563eb",
+  "AI Voice Calling": "#1d4ed8",
+  "CRM Automation": "#3b82f6",
+  "AI Chatbot": "#60a5fa",
+};
 
-.left-eye { left: 8px; }
-.right-eye { right: 8px; }
+const TICKER_ITEMS = [
+  "CONNECTING AI TO REAL BUSINESSES",
+  "GHL · N8N · MAKE · VAPI · OPENAI · VOICEFLOW",
+  "500+ HOURS AUTOMATED FOR CLIENTS",
+  "AI VOICE AGENTS RUNNING 24/7",
+  "20+ AUTOMATIONS DELIVERED",
+  "SHOPIFY · HUBSPOT · TWILIO · SLACK · GMAIL",
+  "CRM PIPELINES · WHITE-LABEL AGENCY SETUPS",
+  "MODERNIZING BUSINESS OPERATIONS WITH AI",
+];
 
-.robot-mouth {
-    position: absolute;
-    width: 12px;
-    height: 2px;
-    background: white;
-    border-radius: 1px;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: header-talk 4s infinite;
-}
+/* ─── COMPONENTS ───────────────────────────────────────────────── */
 
-@keyframes gentle-pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.9; }
-}
-
-@keyframes header-blink {
-    0%, 45%, 55%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(0.1); }
-}
-
-@keyframes header-talk {
-    0%, 40%, 60%, 100% { width: 12px; }
-    50% { width: 16px; }
-}
-
-/* Update existing header styles if needed */
-nav h1 a {
-    color: #333;
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-</style>
-
-    <main>
-        <!-- Updated Hero Section for index.html -->
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-text">
-            <h1>Hi, I'm <span class="highlight">Muhammad Waqas</span></h1>
-            
-            <!-- Animated Title -->
-            <div class="animated-title">
-                <span class="title-part">AI</span>
-                <span class="title-part">Developer</span>
-                <span class="title-dot"></span>
-            </div>
-            
-            <p class="subtitle">Engineering Intelligent AI Solutions & Automation Systems</p>
-            
-            <!-- AI Capabilities Scroll -->
-            <div class="ai-capabilities">
-                <div class="capability">Generative AI </div>
-                <div class="capability">Agentic AI</div>
-                <div class="capability">Autonomous Agents</div>
-                <div class="capability">Reasoning & Planning</div>
-                <div class="capability">Self-Operating AI </div>
-            </div>
-        </div>
-        
-        <div class="hero-visual">
-            <div class="profile-container">
-                <img src="assets/images/waqas.png" alt="Muhammad Waqas portrait" class="profile-image">
-                <div class="tech-orbits">
-                    <div class="orbit orbit-1">
-                        <div class="tech-icon">🤖</div>
-                    </div>
-                    <div class="orbit orbit-2">
-                        <div class="tech-icon">🧠</div>
-                    </div>
-                    <div class="orbit orbit-3">
-                        <div class="tech-icon">⚡</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="cta-buttons">
-                <a href="projects.html" class="btn">
-                    <i class="fas fa-rocket"></i> View Projects
-                </a>
-                <a href="https://www.upwork.com/freelancers/~0167c0d4fc9fdc6c17" target="_blank" rel="noopener noreferrer" class="btn hire-me">
-                    <i class="fas fa-briefcase"></i> Hire Me
-                </a>
-            </div>
-        </div>
+function Ticker() {
+  const content = [...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS];
+  return (
+    <div style={{ overflow: "hidden", borderBottom: "1px solid #e2e8f0", backgroundColor: "#f8fafc", padding: "9px 0" }}>
+      <div style={{ display: "flex", animation: "ticker 35s linear infinite", whiteSpace: "nowrap", width: "max-content" }}>
+        {content.map((item, i) => (
+          <span key={i} style={{ marginRight: "0px", fontSize: "10px", fontFamily: "'Space Mono', monospace", color: "#94a3b8", letterSpacing: "0.1em" }}>
+            {item}<span style={{ margin: "0 28px", color: "#2563eb" }}>◆</span>
+          </span>
+        ))}
+      </div>
     </div>
-    
-    <!-- Animated Background Elements -->
-    <div class="floating-elements">
-        <div class="element element-1">{"AI"}</div>
-        <div class="element element-2">{"Gen"}</div>
-        <div class="element element-3">{"agent"}</div>
-        <div class="element element-4">{"🤖"}</div>
+  );
+}
+
+function NodeMap() {
+  const centerX = 155, centerY = 65;
+  return (
+    <svg viewBox="0 0 340 145" style={{ width: "100%", maxWidth: "340px", overflow: "visible" }}>
+      {[20, 50, 80, 110].map((y, i) => (
+        <line key={`l${i}`} x1="55" y1={y} x2={centerX - 22} y2={centerY}
+          stroke="#2563eb" strokeWidth="0.6" strokeDasharray="4,3" opacity="0.5">
+          <animate attributeName="stroke-dashoffset" from="0" to="-14" dur={`${1.5 + i * 0.3}s`} repeatCount="indefinite" />
+        </line>
+      ))}
+      {[15, 42, 69, 96, 123].map((y, i) => (
+        <line key={`r${i}`} x1={centerX + 22} y1={centerY} x2="268" y2={y}
+          stroke="#3b82f6" strokeWidth="0.6" strokeDasharray="4,3" opacity="0.4">
+          <animate attributeName="stroke-dashoffset" from="0" to="14" dur={`${1.2 + i * 0.25}s`} repeatCount="indefinite" />
+        </line>
+      ))}
+      {[["n8n","#2563eb",20],["Make","#1d4ed8",50],["GHL","#3b82f6",80],["Vapi","#60a5fa",110]].map(([label, color, y]) => (
+        <g key={label}>
+          <rect x="10" y={y - 9} width="45" height="18" rx="3" fill="#f1f5f9" stroke={color} strokeWidth="0.8" opacity="0.9" />
+          <text x="32.5" y={y + 4} textAnchor="middle" fill={color} fontSize="7" fontFamily="'Space Mono', monospace" fontWeight="bold">{label}</text>
+        </g>
+      ))}
+      <circle cx={centerX} cy={centerY} r="22" fill="#eff6ff" stroke="#2563eb" strokeWidth="1.5" />
+      <circle cx={centerX} cy={centerY} r="28" fill="none" stroke="#2563eb" strokeWidth="0.5" opacity="0.3">
+        <animate attributeName="r" values="26;33;26" dur="3s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite" />
+      </circle>
+      <text x={centerX} y={centerY - 3} textAnchor="middle" fill="#2563eb" fontSize="7" fontFamily="'Space Mono', monospace" fontWeight="bold">AI</text>
+      <text x={centerX} y={centerY + 7} textAnchor="middle" fill="#2563eb" fontSize="7" fontFamily="'Space Mono', monospace" fontWeight="bold">CORE</text>
+      {[["Shopify",15],["HubSpot",42],["Twilio",69],["Slack",96],["Gmail",123]].map(([label, y]) => (
+        <g key={label}>
+          <rect x="268" y={y - 9} width="52" height="18" rx="3" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="0.8" />
+          <text x="294" y={y + 4} textAnchor="middle" fill="#64748b" fontSize="7" fontFamily="'Space Mono', monospace">{label}</text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+function Dropdown({ label, options, selected, onChange }) {
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const ref = useRef(null);
+  useEffect(() => {
+    const h = e => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener("mousedown", h);
+    return () => document.removeEventListener("mousedown", h);
+  }, []);
+  const toggle = v => onChange(selected.includes(v) ? selected.filter(x => x !== v) : [...selected, v]);
+  const active = selected.length > 0;
+  const filtered = options.filter(o => o.toLowerCase().includes(search.toLowerCase()));
+
+  return (
+    <div ref={ref} style={{ position: "relative", minWidth: "155px" }}>
+      <button onClick={() => { setOpen(!open); setSearch(""); }} style={{
+        width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: "9px 13px", backgroundColor: active ? "#eff6ff" : "#f8fafc",
+        border: `1px solid ${active ? "#2563eb66" : "#e2e8f0"}`,
+        borderRadius: "5px", cursor: "pointer",
+        color: active ? "#2563eb" : "#64748b",
+        fontSize: "10px", fontFamily: "'Space Mono', monospace", letterSpacing: "0.06em", gap: "8px",
+        transition: "all 0.2s",
+      }}>
+        <span>{active ? `${label} (${selected.length})` : label}</span>
+        <span style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform 0.2s", fontSize: "8px" }}>▼</span>
+      </button>
+      {open && (
+        <div style={{
+          position: "fixed",
+          zIndex: 9999,
+          backgroundColor: "#fff",
+          border: "1px solid #e2e8f0",
+          borderRadius: "8px",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
+          width: "220px",
+          maxHeight: "280px",
+          display: "flex",
+          flexDirection: "column",
+          overflow: "hidden",
+        }}
+          ref={el => {
+            if (el && ref.current) {
+              const btn = ref.current.querySelector("button");
+              if (btn) {
+                const rect = btn.getBoundingClientRect();
+                el.style.top = (rect.bottom + 6) + "px";
+                el.style.left = rect.left + "px";
+              }
+            }
+          }}
+        >
+          {/* Search */}
+          <div style={{ padding: "8px 10px", borderBottom: "1px solid #f1f5f9" }}>
+            <input
+              autoFocus
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Search..."
+              onClick={e => e.stopPropagation()}
+              style={{
+                width: "100%", padding: "6px 10px", fontSize: "10px",
+                fontFamily: "'Space Mono', monospace", border: "1px solid #e2e8f0",
+                borderRadius: "4px", outline: "none", color: "#1e293b",
+                backgroundColor: "#f8fafc",
+              }}
+            />
+          </div>
+          {/* Options */}
+          <div style={{ overflowY: "auto", flex: 1 }}>
+            {filtered.length === 0 && (
+              <div style={{ padding: "14px", textAlign: "center", fontSize: "10px", fontFamily: "'Space Mono', monospace", color: "#94a3b8" }}>No results</div>
+            )}
+            {filtered.map(opt => {
+              const sel = selected.includes(opt);
+              return (
+                <div key={opt} onClick={() => toggle(opt)} style={{
+                  padding: "9px 13px", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px",
+                  backgroundColor: sel ? "#eff6ff" : "transparent",
+                  borderBottom: "1px solid #f8fafc", transition: "background 0.1s",
+                }}
+                  onMouseEnter={e => e.currentTarget.style.backgroundColor = sel ? "#eff6ff" : "#f8fafc"}
+                  onMouseLeave={e => e.currentTarget.style.backgroundColor = sel ? "#eff6ff" : "transparent"}
+                >
+                  <span style={{
+                    width: "13px", height: "13px", border: `1px solid ${sel ? "#2563eb" : "#cbd5e1"}`,
+                    borderRadius: "2px", display: "flex", alignItems: "center", justifyContent: "center",
+                    backgroundColor: sel ? "#2563eb" : "transparent", flexShrink: 0,
+                  }}>
+                    {sel && <span style={{ color: "#fff", fontSize: "8px", fontWeight: "bold", lineHeight: 1 }}>✓</span>}
+                  </span>
+                  <span style={{ fontSize: "10px", fontFamily: "'Space Mono', monospace", color: sel ? "#2563eb" : "#475569" }}>{opt}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
-</section>
-
-<style>
-/* Enhanced Hero Styles */
-.hero-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+  );
 }
 
-.animated-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 1rem 0;
-    font-size: 2.5rem;
-    font-weight: bold;
-}
+/* ─── PROJECT BLOG PAGE ─────────────────────────────────────────── */
+function ProjectBlog({ project, onBack }) {
+  const col = CAT_COLOR[project.category] || "#2563eb";
+  const hasVideo = project.youtubeUrl && project.youtubeUrl.trim() !== "";
 
-.title-part {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: titleGlow 3s ease-in-out infinite;
-}
-
-.title-part:nth-child(2) {
-    animation-delay: 1.5s;
-}
-
-.title-dot {
-    width: 8px;
-    height: 8px;
-    background: #00ff88;
-    border-radius: 50%;
-    animation: dotPulse 1s infinite;
-}
-
-@keyframes titleGlow {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
-
-@keyframes dotPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.5); }
-}
-
-.ai-capabilities {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 1.5rem 0;
-}
-
-.capability {
-    background: rgba(0, 123, 255, 0.1);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    border: 1px solid rgba(0, 123, 255, 0.2);
-    animation: fadeInUp 1s ease-out;
-}
-
-.capability:nth-child(2) { animation-delay: 0.2s; }
-.capability:nth-child(3) { animation-delay: 0.4s; }
-.capability:nth-child(4) { animation-delay: 0.6s; }
-.capability:nth-child(5) { animation-delay: 0.8s; }
-
-/* Profile with Orbiting Elements */
-.hero-visual {
-    position: relative;
-    text-align: center;
-}
-
-.profile-container {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 2rem;
-}
-
-.profile-image {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    position: relative;
-    z-index: 2;
-}
-
-.tech-orbits {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    height: 300px;
-}
-
-.orbit {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border: 1px dashed rgba(0, 123, 255, 0.3);
-    border-radius: 50%;
-    animation: orbit-rotate linear infinite;
-}
-
-.orbit-1 {
-    width: 280px;
-    height: 280px;
-    animation-duration: 20s;
-}
-
-.orbit-2 {
-    width: 320px;
-    height: 320px;
-    animation-duration: 25s;
-    animation-direction: reverse;
-}
-
-.orbit-3 {
-    width: 360px;
-    height: 360px;
-    animation-duration: 30s;
-}
-
-.tech-icon {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    font-size: 1.2rem;
-    animation: icon-bounce 2s ease-in-out infinite;
-}
-
-.orbit-1 .tech-icon { top: -20px; left: 50%; transform: translateX(-50%); }
-.orbit-2 .tech-icon { top: 50%; right: -20px; transform: translateY(-50%); animation-delay: 1s; }
-.orbit-3 .tech-icon { bottom: -20px; left: 50%; transform: translateX(-50%); animation-delay: 2s; }
-
-@keyframes orbit-rotate {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes icon-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-/* Floating Elements */
-.floating-elements {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-}
-
-.element {
-    position: absolute;
-    font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
-    color: rgba(0, 123, 255, 0.3);
-    animation: float-element 20s linear infinite;
-}
-
-.element-1 { top: 20%; left: 10%; animation-delay: 0s; }
-.element-2 { top: 60%; right: 15%; animation-delay: 5s; }
-.element-3 { bottom: 30%; left: 20%; animation-delay: 10s; }
-.element-4 { top: 40%; right: 25%; animation-delay: 15s; }
-
-@keyframes float-element {
-    0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
+  const getYoutubeEmbedUrl = (url) => {
+    if (!url) return "";
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    if (match && match[2].length === 11) {
+      return `https://www.youtube.com/embed/${match[2]}`;
     }
-    
-    .animated-title {
-        justify-content: center;
-        font-size: 2rem;
-    }
-    
-    .profile-image {
-        width: 200px;
-        height: 200px;
-    }
-    
-    .tech-orbits {
-        width: 250px;
-        height: 250px;
-    }
-    
-    .orbit-1 { width: 230px; height: 230px; }
-    .orbit-2 { width: 270px; height: 270px; }
-    .orbit-3 { width: 310px; height: 310px; }
+    return url;
+  };
+
+  return (
+    <div style={{ animation: "fadeUp 0.4s ease both" }}>
+      {/* Back button */}
+      <button onClick={onBack} style={{
+        background: "none", border: "1px solid #e2e8f0", borderRadius: "5px",
+        cursor: "pointer", padding: "8px 16px", fontFamily: "'Space Mono', monospace",
+        fontSize: "9px", color: "#64748b", letterSpacing: "0.06em",
+        display: "flex", alignItems: "center", gap: "6px", marginBottom: "32px",
+        transition: "all 0.2s",
+      }}
+        onMouseEnter={e => { e.currentTarget.style.borderColor = "#2563eb44"; e.currentTarget.style.color = "#2563eb"; }}
+        onMouseLeave={e => { e.currentTarget.style.borderColor = "#e2e8f0"; e.currentTarget.style.color = "#64748b"; }}
+      >
+        ← BACK TO PROJECTS
+      </button>
+
+      {/* Category badge */}
+      <div style={{ marginBottom: "16px" }}>
+        <span style={{
+          padding: "4px 12px", borderRadius: "3px", fontSize: "8px",
+          fontFamily: "'Space Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase",
+          border: `1px solid ${col}44`, backgroundColor: `${col}0f`, color: col,
+        }}>{project.category}</span>
+        <span style={{ marginLeft: "12px", fontSize: "8px", fontFamily: "'Space Mono', monospace", color: "#94a3b8", letterSpacing: "0.1em", textTransform: "uppercase" }}>{project.industry}</span>
+      </div>
+
+      {/* Title */}
+      <h1 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "clamp(40px, 7vw, 72px)", letterSpacing: "0.03em", lineHeight: 0.92, marginBottom: "20px", color: "#0f172a" }}>
+        {project.title}
+      </h1>
+
+      {/* Result badge */}
+      <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "10px 18px", backgroundColor: `${col}0f`, border: `1px solid ${col}33`, borderRadius: "6px", marginBottom: "36px" }}>
+        <span style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: col, boxShadow: `0 0 8px ${col}` }} />
+        <span style={{ fontSize: "13px", fontFamily: "'Space Mono', monospace", color: col, fontWeight: "bold" }}>Result: {project.result}</span>
+      </div>
+
+      {/* Video / placeholder */}
+      <div style={{
+        width: "100%", aspectRatio: "16/9", borderRadius: "10px", overflow: "hidden",
+        border: `1px solid ${hasVideo ? col + "33" : "#e2e8f0"}`,
+        marginBottom: "40px", backgroundColor: "#f1f5f9",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        position: "relative",
+      }}>
+        {hasVideo ? (
+          <iframe
+            src={getYoutubeEmbedUrl(project.youtubeUrl)}
+            style={{ width: "100%", height: "100%", border: "none" }}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title={project.title}
+          />
+        ) : (
+          <div style={{ textAlign: "center", padding: "40px" }}>
+            <div style={{ width: "56px", height: "56px", border: `1px solid ${col}33`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", backgroundColor: `${col}0a` }}>
+              <span style={{ color: col, fontSize: "20px" }}>▶</span>
+            </div>
+            <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "10px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.12em" }}>VIDEO WALKTHROUGH — COMING SOON</div>
+          </div>
+        )}
+      </div>
+
+      {/* Blog content */}
+      <div style={{ maxWidth: "680px" }}>
+        <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: col, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "16px" }}>// PROJECT OVERVIEW</div>
+        <p style={{ fontSize: "15px", color: "#475569", lineHeight: 1.9, marginBottom: "32px", fontFamily: "'DM Sans', sans-serif" }}>
+          {project.blogContent}
+        </p>
+
+        {/* Tech stack */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "32px" }}>
+          <div style={{ padding: "18px 20px", backgroundColor: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
+            <div style={{ fontSize: "8px", fontFamily: "'Space Mono', monospace", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "12px" }}>Built On</div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+              {project.builtOn.map(t => (
+                <span key={t} style={{ padding: "4px 10px", fontSize: "9px", fontFamily: "'Space Mono', monospace", border: `1px solid ${col}33`, backgroundColor: `${col}0a`, color: col, borderRadius: "3px" }}>{t}</span>
+              ))}
+            </div>
+          </div>
+          <div style={{ padding: "18px 20px", backgroundColor: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
+            <div style={{ fontSize: "8px", fontFamily: "'Space Mono', monospace", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "12px" }}>Integrated With</div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+              {project.integratedWith.map(t => (
+                <span key={t} style={{ padding: "4px 10px", fontSize: "9px", fontFamily: "'Space Mono', monospace", border: "1px solid #e2e8f0", color: "#64748b", borderRadius: "3px" }}>{t}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div style={{ padding: "24px", backgroundColor: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "16px" }}>
+          <div>
+            <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "9px", color: "#2563eb", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "4px" }}>Want something similar?</div>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14px", color: "#1e40af" }}>Let's build it for your business</div>
+          </div>
+          <a href="https://calendly.com/waqasliaqat630/muhammad-waqas" target="_blank" rel="noopener noreferrer" style={{
+            padding: "10px 22px", backgroundColor: "#2563eb", color: "#fff", border: "none", borderRadius: "5px",
+            fontFamily: "'Space Mono', monospace", fontSize: "9px", letterSpacing: "0.08em", cursor: "pointer",
+            textDecoration: "none", transition: "opacity 0.2s",
+          }}
+            onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+            onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+          >BOOK A CALL →</a>
+        </div>
+      </div>
+    </div>
+  );
 }
-</style>
-    </main>
 
-    <footer>
-        <p>&copy; 2023 Muhammad Waqas. All rights reserved.</p>
-    </footer>    
+function ProjectCard({ project, index, onOpen }) {
+  const [hov, setHov] = useState(false);
+  const col = CAT_COLOR[project.category] || "#2563eb";
+  return (
+    <div
+      onClick={() => onOpen(project)}
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        backgroundColor: "#ffffff", border: `1px solid ${hov ? col + "55" : "#e2e8f0"}`,
+        borderRadius: "8px", padding: "22px", display: "flex", flexDirection: "column", gap: "14px",
+        transition: "all 0.3s ease", transform: hov ? "translateY(-3px)" : "none",
+        boxShadow: hov ? `0 16px 40px ${col}18` : "0 1px 4px rgba(0,0,0,0.04)",
+        animation: `fadeUp 0.4s ease ${index * 0.06}s both`,
+        cursor: "pointer",
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
+        <span style={{
+          padding: "3px 9px", borderRadius: "3px", fontSize: "8px",
+          fontFamily: "'Space Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase",
+          border: `1px solid ${col}44`, backgroundColor: `${col}0f`, color: col,
+        }}>{project.category}</span>
+        <div style={{
+          minWidth: "42px", height: "42px", border: `1px solid ${col}33`, borderRadius: "5px",
+          display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: `${col}0a`, flexShrink: 0,
+        }}>
+          <span style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "13px", color: col, letterSpacing: "0.04em" }}>{project.metric}</span>
+        </div>
+      </div>
 
-    <script src="assets/js/script.js"></script>
+      <h3 style={{ margin: 0, fontFamily: "'Bebas Neue', cursive", fontSize: "20px", letterSpacing: "0.04em", color: "#0f172a", lineHeight: 1.1 }}>
+        {project.title}
+      </h3>
+
+      <p style={{ margin: 0, fontSize: "12.5px", color: "#64748b", lineHeight: 1.75, fontFamily: "'DM Sans', sans-serif" }}>
+        {project.description}
+      </p>
+
+      <div style={{ padding: "8px 11px", backgroundColor: `${col}0a`, border: `1px solid ${col}22`, borderRadius: "4px", display: "flex", alignItems: "center", gap: "8px" }}>
+        <span style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: col, flexShrink: 0, boxShadow: `0 0 5px ${col}` }} />
+        <span style={{ fontSize: "11px", fontFamily: "'Space Mono', monospace", color: col }}>{project.result}</span>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+        <div>
+          <div style={{ fontSize: "8px", fontFamily: "'Space Mono', monospace", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "6px" }}>Built On</div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+            {project.builtOn.map(t => (
+              <span key={t} style={{ padding: "2px 7px", fontSize: "8px", fontFamily: "'Space Mono', monospace", border: `1px solid ${col}33`, backgroundColor: `${col}0a`, color: col, borderRadius: "2px" }}>{t}</span>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div style={{ fontSize: "8px", fontFamily: "'Space Mono', monospace", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "6px" }}>Integrated With</div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+            {project.integratedWith.map(t => (
+              <span key={t} style={{ padding: "2px 7px", fontSize: "8px", fontFamily: "'Space Mono', monospace", border: "1px solid #e2e8f0", color: "#64748b", borderRadius: "2px" }}>{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: "8px", fontFamily: "'Space Mono', monospace", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em" }}>{project.industry}</span>
+        <span style={{ fontSize: "9px", fontFamily: "'Space Mono', monospace", color: col, letterSpacing: "0.08em" }}>VIEW PROJECT →</span>
+      </div>
+    </div>
+  );
+}
+
+/* ─── MAIN ──────────────────────────────────────────────────────── */
+function Portfolio() {
+  const [section, setSection] = useState("About");
+  const [catF, setCatF] = useState([]);
+  const [indF, setIndF] = useState([]);
+  const [builtF, setBuiltF] = useState([]);
+  const [intF, setIntF] = useState([]);
+  const [scrambled, setScrambled] = useState("AI AUTOMATION");
+  const [openProject, setOpenProject] = useState(null);
+
+  useEffect(() => {
+    if (section !== "About") return;
+    const target = "AI AUTOMATION";
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$!";
+    let step = 0;
+    const iv = setInterval(() => {
+      setScrambled(target.split("").map((c, i) => {
+        if (c === " ") return " ";
+        if (i < step) return c;
+        return chars[Math.floor(Math.random() * chars.length)];
+      }).join(""));
+      step++;
+      if (step > target.length) clearInterval(iv);
+    }, 50);
+    return () => clearInterval(iv);
+  }, [section]);
+
+  const filtered = PROJECTS.filter(p => {
+    return (catF.length === 0 || catF.includes(p.category))
+      && (indF.length === 0 || indF.includes(p.industry))
+      && (builtF.length === 0 || builtF.some(v => p.builtOn.includes(v)))
+      && (intF.length === 0 || intF.some(v => p.integratedWith.includes(v)));
+  });
+
+  const hasFilter = catF.length || indF.length || builtF.length || intF.length;
+  const clearAll = () => { setCatF([]); setIndF([]); setBuiltF([]); setIntF([]); };
+
+  const SKILLS = [
+    { group: "Automation Platforms", items: ["n8n", "Make (Integromat)", "Zapier", "GoHighLevel"] },
+    { group: "AI & Voice", items: ["OpenAI GPT-4o", "LangChain", "Vapi", "Voiceflow", "ElevenLabs"] },
+    { group: "CRM & Business", items: ["HubSpot", "Airtable", "Notion", "Google Workspace"] },
+    { group: "Commerce & Messaging", items: ["Shopify", "WooCommerce", "WhatsApp API", "Twilio", "Slack"] },
+  ];
+
+  return (
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #f8fafc; }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes ticker { from { transform:translateX(0); } to { transform:translateX(-33.33%); } }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        @keyframes glowPulse { 0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,0.35)} 50%{box-shadow:0 0 0 7px rgba(37,99,235,0)} }
+        @keyframes scanline { 0%{top:-5%} 100%{top:110%} }
+        ::-webkit-scrollbar{width:3px} ::-webkit-scrollbar-thumb{background:#cbd5e1}
+      `}</style>
+
+      <div style={{ minHeight: "100vh", backgroundColor: "#f8fafc", color: "#0f172a", fontFamily: "'DM Sans', sans-serif", position: "relative", overflow: "hidden" }}>
+
+        {/* Grid background */}
+        <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, backgroundImage: `linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px)`, backgroundSize: "44px 44px" }} />
+
+        {/* Scanline */}
+        <div style={{ position: "fixed", left: 0, right: 0, height: "120px", background: "linear-gradient(transparent, rgba(37,99,235,0.03), transparent)", pointerEvents: "none", zIndex: 0, animation: "scanline 10s linear infinite" }} />
+
+        {/* Glow blob */}
+        <div style={{ position: "fixed", top: "20%", right: "-10%", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 65%)", pointerEvents: "none", zIndex: 0 }} />
+
+        {/* NAV */}
+        <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 40px", borderBottom: "1px solid #e2e8f0", backdropFilter: "blur(20px)", backgroundColor: "rgba(248,250,252,0.92)" }}>
+          <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "20px", letterSpacing: "0.14em", color: "#0f172a" }}>
+            WA<span style={{ color: "#2563eb" }}>QAS</span>
+          </div>
+          <div style={{ display: "flex", gap: "2px" }}>
+            {["About", "Projects", "Contact"].map(s => (
+              <button key={s} onClick={() => { setSection(s); setOpenProject(null); }} style={{
+                background: "none", border: "none", cursor: "pointer", padding: "7px 16px", borderRadius: "4px",
+                fontFamily: "'Space Mono', monospace", fontSize: "10px", letterSpacing: "0.1em",
+                color: section === s ? "#2563eb" : "#94a3b8",
+                backgroundColor: section === s ? "#2563eb12" : "transparent",
+                transition: "all 0.2s",
+              }}>{s.toUpperCase()}</button>
+            ))}
+          </div>
+        </nav>
+
+        <div style={{ paddingTop: "53px" }}>
+          <Ticker />
+        </div>
+
+        <main style={{ maxWidth: "980px", margin: "0 auto", padding: "56px 24px 100px", position: "relative", zIndex: 1 }}>
+
+          {/* ══ ABOUT ═══════════════════════════════════════════ */}
+          {section === "About" && (
+            <div style={{ animation: "fadeUp 0.5s ease both" }}>
+
+              {/* Cursor + label */}
+              <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "10px", color: "#94a3b8", letterSpacing: "0.18em", marginBottom: "18px", display: "flex", alignItems: "center", gap: "8px" }}>
+                <span style={{ color: "#2563eb", animation: "blink 1s step-end infinite" }}>█</span>
+                AI_AUTOMATION_ENGINEER.exe — RUNNING
+              </div>
+
+              {/* Hero headline */}
+              <div style={{ marginBottom: "32px" }}>
+                <h1 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "clamp(58px, 11vw, 108px)", lineHeight: 0.92, letterSpacing: "0.03em", color: "#2563eb" }}>
+                  {scrambled}
+                </h1>
+                <h1 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "clamp(58px, 11vw, 108px)", lineHeight: 0.92, letterSpacing: "0.03em", color: "#0f172a" }}>
+                  ENGINEER
+                </h1>
+              </div>
+
+              <p style={{ fontSize: "15px", color: "#64748b", maxWidth: "520px", lineHeight: 1.85, marginBottom: "32px", fontFamily: "'DM Sans', sans-serif" }}>
+                I wire AI into real businesses — replacing manual workflows with systems that run 24/7, scale without hiring, and modernize how companies operate from the ground up.
+              </p>
+
+              <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "64px" }}>
+                <button onClick={() => setSection("Projects")} style={{ padding: "12px 26px", backgroundColor: "#2563eb", color: "#fff", border: "none", borderRadius: "4px", fontFamily: "'Space Mono', monospace", fontSize: "10px", letterSpacing: "0.1em", cursor: "pointer", fontWeight: "bold", transition: "opacity 0.2s" }}
+                  onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+                  onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+                >VIEW PROJECTS →</button>
+                <button onClick={() => setSection("Contact")} style={{ padding: "12px 26px", backgroundColor: "transparent", color: "#2563eb", border: "1px solid #2563eb33", borderRadius: "4px", fontFamily: "'Space Mono', monospace", fontSize: "10px", letterSpacing: "0.1em", cursor: "pointer", transition: "border-color 0.2s" }}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = "#2563eb66"}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = "#2563eb33"}
+                >WORK TOGETHER</button>
+              </div>
+
+              {/* Stats */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", backgroundColor: "#e2e8f0", border: "1px solid #e2e8f0", borderRadius: "7px", overflow: "hidden", marginBottom: "60px" }}>
+                {[["20+","Projects Delivered"],["500+","Hours Automated"],["15+","Tools Integrated"],["8+","Industries Served"]].map(([v, l]) => (
+                  <div key={l} style={{ padding: "22px 16px", backgroundColor: "#ffffff", textAlign: "center" }}>
+                    <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "38px", color: "#2563eb", letterSpacing: "0.04em" }}>{v}</div>
+                    <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", marginTop: "4px" }}>{l}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* About + node map */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: "48px", alignItems: "center", marginBottom: "60px" }}>
+                <div>
+                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#2563eb", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "22px" }}>// ABOUT ME</div>
+                  <p style={{ fontSize: "14.5px", color: "#64748b", lineHeight: 1.88, marginBottom: "14px" }}>
+                    I'm <strong style={{ color: "#0f172a" }}>Waqas</strong> — an AI Automation Engineer who builds systems that replace manual business operations with intelligent, always-on workflows.
+                  </p>
+                  <p style={{ fontSize: "14.5px", color: "#64748b", lineHeight: 1.88, marginBottom: "14px" }}>
+                    I work across <strong style={{ color: "#2563eb" }}>n8n, Make, Vapi, OpenAI, Voiceflow, Shopify, Twilio</strong> and 20+ platforms — and I work with <strong style={{ color: "#2563eb" }}>GoHighLevel</strong> as part of that stack, building full CRM pipelines, white-label agency environments, sub-account provisioning, AI-driven follow-up sequences, and complete sales funnels.
+                  </p>
+                  <p style={{ fontSize: "14.5px", color: "#64748b", lineHeight: 1.88, marginBottom: "24px" }}>
+                    Together, these tools form unified, production-grade systems — so businesses run like machines, not to-do lists.
+                  </p>
+
+                  {/* Video placeholder */}
+                  <div style={{ padding: "20px 22px", border: "1px dashed #e2e8f0", borderRadius: "6px", display: "flex", alignItems: "center", gap: "16px", cursor: "pointer", backgroundColor: "#f8fafc", transition: "border-color 0.2s" }}
+                    onMouseEnter={e => e.currentTarget.style.borderColor = "#2563eb33"}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = "#e2e8f0"}
+                  >
+                    <div style={{ width: "38px", height: "38px", border: "1px solid #e2e8f0", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <span style={{ color: "#94a3b8", fontSize: "12px" }}>▶</span>
+                    </div>
+                    <div>
+                      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "9px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.12em" }}>VIDEO INTRO — COMING SOON</div>
+                      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#cbd5e1", marginTop: "3px" }}>How I approach automation projects</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+                  <NodeMap />
+                  <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "7px", color: "#cbd5e1", textTransform: "uppercase", letterSpacing: "0.14em" }}>AI INTEGRATION MAP — LIVE</span>
+                </div>
+              </div>
+
+              {/* Skills */}
+              <div>
+                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#2563eb", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "18px" }}>// FULL SKILL STACK</div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "10px" }}>
+                  {SKILLS.map(sk => (
+                    <div key={sk.group} style={{ padding: "18px 20px", backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "6px" }}>
+                      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "12px" }}>{sk.group}</div>
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                        {sk.items.map(item => (
+                          <span key={item} style={{ padding: "4px 10px", fontSize: "10px", fontFamily: "'Space Mono', monospace", border: "1px solid #e2e8f0", color: "#475569", borderRadius: "3px" }}>{item}</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ══ PROJECTS ════════════════════════════════════════ */}
+          {section === "Projects" && !openProject && (
+            <div>
+              <div style={{ animation: "fadeUp 0.4s ease both", marginBottom: "40px" }}>
+                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#2563eb", letterSpacing: "0.18em", marginBottom: "16px" }}>// PROJECTS</div>
+                <h2 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "clamp(44px, 8vw, 76px)", letterSpacing: "0.03em", lineHeight: 0.92, marginBottom: "10px", color: "#0f172a" }}>
+                  REAL SYSTEMS.<br /><span style={{ color: "#2563eb" }}>REAL RESULTS.</span>
+                </h2>
+                <p style={{ color: "#94a3b8", fontFamily: "'Space Mono', monospace", fontSize: "10px", letterSpacing: "0.06em" }}>
+                  Click any project to read the full case study. Filter by platform, integration, category, or industry.
+                </p>
+              </div>
+
+              {/* Filter bar */}
+              <div style={{ animation: "fadeUp 0.4s ease 0.08s both", backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "18px 20px", marginBottom: "28px", position: "relative", zIndex: 50 }}>
+                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: "14px" }}>Filter Projects</div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", alignItems: "center" }}>
+                  <Dropdown label="CATEGORY" options={CATEGORIES} selected={catF} onChange={setCatF} />
+                  <Dropdown label="INDUSTRY" options={INDUSTRIES} selected={indF} onChange={setIndF} />
+                  <Dropdown label="BUILT ON" options={BUILT_ONS} selected={builtF} onChange={setBuiltF} />
+                  <Dropdown label="INTEGRATED WITH" options={INTEGRATIONS} selected={intF} onChange={setIntF} />
+                  {hasFilter > 0 && (
+                    <button onClick={clearAll} style={{ background: "none", border: "1px solid #e2e8f0", borderRadius: "5px", cursor: "pointer", padding: "9px 13px", fontFamily: "'Space Mono', monospace", fontSize: "9px", color: "#94a3b8", letterSpacing: "0.06em", transition: "color 0.2s" }}
+                      onMouseEnter={e => e.currentTarget.style.color = "#2563eb"}
+                      onMouseLeave={e => e.currentTarget.style.color = "#94a3b8"}
+                    >CLEAR ALL ×</button>
+                  )}
+                </div>
+                {hasFilter > 0 && (
+                  <div style={{ marginTop: "12px", paddingTop: "12px", borderTop: "1px solid #f1f5f9", fontFamily: "'Space Mono', monospace", fontSize: "9px", color: "#2563eb" }}>
+                    {filtered.length} project{filtered.length !== 1 ? "s" : ""} match your filters
+                  </div>
+                )}
+              </div>
+
+              {filtered.length === 0 ? (
+                <div style={{ textAlign: "center", padding: "80px", fontFamily: "'Space Mono', monospace", fontSize: "11px", color: "#cbd5e1" }}>
+                  NO MATCHES — ADJUST YOUR FILTERS
+                </div>
+              ) : (
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(285px, 1fr))", gap: "14px" }}>
+                  {filtered.map((p, i) => <ProjectCard key={p.id} project={p} index={i} onOpen={setOpenProject} />)}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ══ PROJECT BLOG ════════════════════════════════════ */}
+          {section === "Projects" && openProject && (
+            <ProjectBlog project={openProject} onBack={() => setOpenProject(null)} />
+          )}
+
+          {/* ══ CONTACT ═════════════════════════════════════════ */}
+          {section === "Contact" && (
+            <div style={{ animation: "fadeUp 0.5s ease both", maxWidth: "560px" }}>
+              <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#2563eb", letterSpacing: "0.18em", marginBottom: "18px" }}>// CONTACT</div>
+              <h2 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "clamp(50px, 9vw, 84px)", letterSpacing: "0.03em", lineHeight: 0.92, marginBottom: "22px", color: "#0f172a" }}>
+                LET'S BUILD<br /><span style={{ color: "#2563eb" }}>SOMETHING REAL.</span>
+              </h2>
+              <p style={{ color: "#64748b", fontSize: "13px", lineHeight: 1.85, marginBottom: "40px", fontFamily: "'Space Mono', monospace" }}>
+                Tell me your bottleneck. I'll tell you exactly how to automate it — and how fast.
+              </p>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "20px" }}>
+                {[
+                  { label: "EMAIL", value: "waqasai.consulting@gmail.com", href: "mailto:waqasai.consulting@gmail.com" },
+                  { label: "WHATSAPP", value: "+92 309 782 9808", href: "https://wa.me/923097829808" },
+                  { label: "LINKEDIN", value: "linkedin.com/in/muhammad-waqas-liaqat", href: "https://www.linkedin.com/in/muhammad-waqas-liaqat/" },
+                  { label: "BOOK A CALL", value: "Free strategy session — Book on Calendly →", href: "https://calendly.com/waqasliaqat630/muhammad-waqas" },
+                ].map(item => (
+                  <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
+                    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "6px", cursor: "pointer", transition: "border-color 0.2s", textDecoration: "none" }}
+                    onMouseEnter={e => e.currentTarget.style.borderColor = "#2563eb44"}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = "#e2e8f0"}
+                  >
+                    <div>
+                      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "7px", color: "#94a3b8", letterSpacing: "0.14em", marginBottom: "4px" }}>{item.label}</div>
+                      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "11px", color: "#475569" }}>{item.value}</div>
+                    </div>
+                    <span style={{ color: "#2563eb", fontFamily: "'Space Mono', monospace", fontSize: "12px" }}>→</span>
+                  </a>
+                ))}
+              </div>
+
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "14px 18px", backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "6px" }}>
+                <span style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: "#2563eb", animation: "glowPulse 2s ease-in-out infinite", flexShrink: 0 }} />
+                <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "9px", color: "#64748b", letterSpacing: "0.08em" }}>CURRENTLY AVAILABLE FOR NEW PROJECTS</span>
+              </div>
+            </div>
+          )}
+        </main>
+
+        <footer style={{ borderTop: "1px solid #e2e8f0", padding: "18px 40px", display: "flex", justifyContent: "space-between", position: "relative", zIndex: 1 }}>
+          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#cbd5e1", letterSpacing: "0.1em" }}>WAQAS © 2025</span>
+          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#cbd5e1", letterSpacing: "0.1em" }}>AI AUTOMATION ENGINEER</span>
+        </footer>
+      </div>
+    </>
+  );
+}
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(React.createElement(Portfolio));
+  </script>
 </body>
 </html>
