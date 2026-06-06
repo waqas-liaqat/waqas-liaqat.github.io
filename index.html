@@ -24,7 +24,7 @@ const PROJECTS = [
     title: "AI Voice Agent — Customer Follow-Ups & Booking",
     description: "Fully automated AI voice agent that handles outbound customer follow-up calls and inbound appointment booking using Vapi and n8n — no human intervention required at any stage.",
     categories: ["AI Voice Agent", "Booking System"],
-    industry: "Healthcare",
+    industry: "Agriculture",
     builtOn: ["Vapi", "n8n"],
     integratedWith: ["Google Sheets", "Twilio", "Google Calendar"],
     result: "100% follow-ups automated",
@@ -37,7 +37,7 @@ const PROJECTS = [
       "Ai voice agents/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/make a call.png",
     ],
     blogContent: [
-      "The Problem: A healthcare clinic was losing potential customers simply because no one was available to follow up calls after business hours or during busy periods. Leads would go cold, appointments would be missed, and revenue would walk out the door — all because of a human bandwidth problem.",
+      "The Problem: A Pest Control Company was losing potential customers simply because no one was available to follow up calls after business hours or during busy periods. Leads would go cold, appointments would be missed, and revenue would walk out the door — all because of a human bandwidth problem.",
       "The Solution: I built a fully autonomous AI voice agent using Vapi and n8n that handles both outbound follow-up calls and inbound appointment booking. The agent runs 24/7 without any human involvement. It pulls lead data directly from Google Sheets, places calls via Twilio, conducts natural conversations in real-time, qualifies the prospect, and books confirmed appointments into Google Calendar.",
       "How It Works: When a new lead appears in Google Sheets, n8n triggers the Vapi voice agent to place an outbound call. The AI handles the conversation — answering questions, overcoming objections, and guiding the prospect toward booking. Once confirmed, the appointment is instantly synced to Google Calendar and the lead status is updated in Sheets. Inbound calls are handled identically with zero wait time.",
       "The Result: 100% of follow-ups are now automated. Response time dropped from hours to seconds. The client reclaimed their team's time while simultaneously increasing lead conversion rates — a system that never sleeps, never forgets, and never drops a lead.",
@@ -1133,7 +1133,7 @@ function Portfolio() {
 
               {/* Stats */}
               <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", backgroundColor: "#e2e8f0", border: "1px solid #e2e8f0", borderRadius: "7px", overflow: "hidden", marginBottom: "60px" }}>
-                {[["19+","Projects Delivered"],["500+","Hours Automated"],["30+","Tools Integrated"],["10+","Industries Served"]].map(([v, l]) => (
+                {[["30+","Projects Delivered"],["500+","Hours Automated"],["30+","Tools Integrated"],["10+","Industries Served"]].map(([v, l]) => (
                   <div key={l} style={{ padding: "22px 16px", backgroundColor: "#ffffff", textAlign: "center" }}>
                     <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "38px", color: "#2563eb", letterSpacing: "0.04em" }}>{v}</div>
                     <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", marginTop: "4px" }}>{l}</div>
