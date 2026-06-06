@@ -18,132 +18,470 @@
 
 /* ─── DATA ─────────────────────────────────────────────────────── */
 const PROJECTS = [
+  // ── AI VOICE AGENTS ──────────────────────────────────────────────────
   {
     id: 1,
-    title: "AI Lead Qualification Agent",
-    description: "Autonomous AI agent that qualifies inbound leads, scores them against ICP criteria, and routes hot leads to sales via Slack — zero human review needed.",
-    category: "AI Automation",
-    industry: "Sales",
-    builtOn: ["n8n", "OpenAI"],
-    integratedWith: ["HubSpot", "Slack", "Gmail"],
-    result: "15 hrs/week saved",
-    metric: "15h",
-    youtubeUrl: "",
-    blogContent: "This project involved building a fully autonomous lead qualification pipeline using n8n and OpenAI. The system monitors incoming leads from multiple sources, scores them against your Ideal Customer Profile, and automatically routes hot leads to your sales team via Slack — completely hands-free.",
-  },
-  {
-    id: 2,
-    title: "24/7 AI Voice Receptionist",
-    description: "Fully autonomous voice agent handling appointment booking, rescheduling, and FAQs for a dental clinic. Sends SMS confirmations automatically after every call.",
-    category: "AI Voice Calling",
+    title: "AI Voice Agent — Customer Follow-Ups & Booking",
+    description: "Fully automated AI voice agent that handles outbound customer follow-up calls and inbound appointment booking using Vapi and n8n — no human intervention required at any stage.",
+    categories: ["AI Voice Agent", "Booking System"],
     industry: "Healthcare",
     builtOn: ["Vapi", "n8n"],
-    integratedWith: ["Twilio", "Cal.com", "Google Calendar"],
-    result: "0 missed calls after hours",
-    metric: "0↓",
+    integratedWith: ["Google Sheets", "Twilio", "Google Calendar"],
+    result: "100% follow-ups automated",
+    metric: "100%",
     youtubeUrl: "",
-    blogContent: "Built for a dental clinic, this AI voice receptionist handles appointment booking, rescheduling, and FAQs around the clock. Patients call in, the AI picks up, books them into the calendar, and fires off an SMS confirmation — all without a human ever touching it.",
+    screenshots: [
+      "Ai voice agents/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/workflow 1.png",
+      "Ai voice agents/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/vapi.png",
+      "Ai voice agents/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/google sheets.png",
+      "Ai voice agents/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/make a call.png",
+    ],
+    blogContent: [
+      "The Problem: A healthcare clinic was losing potential customers simply because no one was available to follow up calls after business hours or during busy periods. Leads would go cold, appointments would be missed, and revenue would walk out the door — all because of a human bandwidth problem.",
+      "The Solution: I built a fully autonomous AI voice agent using Vapi and n8n that handles both outbound follow-up calls and inbound appointment booking. The agent runs 24/7 without any human involvement. It pulls lead data directly from Google Sheets, places calls via Twilio, conducts natural conversations in real-time, qualifies the prospect, and books confirmed appointments into Google Calendar.",
+      "How It Works: When a new lead appears in Google Sheets, n8n triggers the Vapi voice agent to place an outbound call. The AI handles the conversation — answering questions, overcoming objections, and guiding the prospect toward booking. Once confirmed, the appointment is instantly synced to Google Calendar and the lead status is updated in Sheets. Inbound calls are handled identically with zero wait time.",
+      "The Result: 100% of follow-ups are now automated. Response time dropped from hours to seconds. The client reclaimed their team's time while simultaneously increasing lead conversion rates — a system that never sleeps, never forgets, and never drops a lead.",
+    ],
+  },
+  // ── AI AUTOMATION ────────────────────────────────────────────────────
+  {
+    id: 2,
+    title: "Dentist Lead Conversion & Booking System",
+    description: "End-to-end automation for a dental clinic — captures leads from ActiveCampaign forms, qualifies via AI, books appointments, and triggers 11-step follow-up sequences automatically.",
+    categories: ["AI Automation", "Lead Generation", "Booking System"],
+    industry: "Healthcare",
+    builtOn: ["n8n", "ActiveCampaign", "OpenAI"],
+    integratedWith: ["ActiveCampaign", "Google Calendar", "Gmail"],
+    result: "Full lead-to-appointment pipeline automated",
+    metric: "AUTO",
+    youtubeUrl: "",
+    screenshots: [
+      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/1.jpg",
+      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/2.png",
+      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/3.png",
+      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/4.png",
+      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/5.png",
+      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/6.png",
+      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/7.png",
+      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/8.png",
+      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/9 (1).jpeg",
+      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/10.jpeg",
+      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/11.jpeg",
+    ],
+    blogContent: [
+      "The Problem: A dental clinic was relying on manual staff to follow up with every web inquiry. Leads filled out forms, but responses were delayed, follow-ups were inconsistent, and potential patients were booking with competitors. The clinic needed a system that could respond immediately, qualify patients, and confirm bookings without any staff involvement.",
+      "The Solution: I built a comprehensive lead conversion and booking automation using n8n and ActiveCampaign. The system captures every form submission instantly, triggers an AI-powered response sequence, qualifies the patient through a multi-step conversation, and books them into the clinic calendar — all without a single manual touchpoint.",
+      "How It Works: When a lead submits the ActiveCampaign form (collecting name, email, and phone), n8n picks up the trigger instantly. OpenAI handles the qualification conversation — asking about the patient's dental needs, insurance, preferred times, and urgency. Based on the responses, the system either books an appointment directly into Google Calendar or escalates to staff. An 11-step email and SMS follow-up sequence runs automatically based on patient behaviour.",
+      "The Result: The clinic now converts leads within minutes of form submission. The full pipeline — from initial inquiry to confirmed appointment — runs on autopilot. Staff focus on patient care while the automation handles all the administrative communication.",
+    ],
   },
   {
     id: 3,
-    title: "GHL CRM Pipeline Automation",
-    description: "Full GoHighLevel build: sub-account setup, automated lead pipeline, AI-written follow-up sequences via SMS/email, and real-time deal stage updates triggered by client actions.",
-    category: "CRM Automation",
-    industry: "Real Estate",
-    builtOn: ["GHL", "OpenAI"],
-    integratedWith: ["Twilio", "Gmail", "Google Sheets"],
-    result: "40% more booked viewings",
-    metric: "40%",
+    title: "N8N WhatsApp AI Sales Agent",
+    description: "Intelligent WhatsApp sales bot built on n8n — handles objections with AI, searches available slots, books appointments, and auto-updates Salesforce post-booking with full conversation logs.",
+    categories: ["WhatsApp Bot", "AI Automation", "CRM Automation"],
+    industry: "Sales",
+    builtOn: ["n8n", "OpenAI"],
+    integratedWith: ["WhatsApp API", "Salesforce", "PostgreSQL"],
+    result: "24/7 WhatsApp sales coverage",
+    metric: "24/7",
     youtubeUrl: "",
-    blogContent: "A full GoHighLevel deployment for a real estate agency. This covers sub-account setup, AI-written follow-up sequences over SMS and email, and deal stage automation that fires based on client actions — resulting in a 40% increase in booked property viewings.",
+    screenshots: [
+      "Ai Automation/N8N WhatsApp  Sales Agent/main workflow.jpg",
+      "Ai Automation/N8N WhatsApp  Sales Agent/Search Objection Script.jpg",
+      "Ai Automation/N8N WhatsApp  Sales Agent/Search Available Slots.jpg",
+      "Ai Automation/N8N WhatsApp  Sales Agent/SalesForce Post-Booking Update.jpg",
+    ],
+    blogContent: [
+      "The Problem: A sales team was manually managing hundreds of WhatsApp conversations daily — answering questions, handling objections, checking calendars, and updating Salesforce records. The process was slow, inconsistent, and completely unscalable. A single sales rep can only handle so many chats at once.",
+      "The Solution: I built a sophisticated WhatsApp AI sales agent using n8n and OpenAI that handles the entire sales conversation workflow autonomously. The agent qualifies prospects, searches for available booking slots in real-time, handles common objections using a customised objection-handling script, books meetings, and updates Salesforce automatically post-booking.",
+      "How It Works: Every incoming WhatsApp message triggers the n8n workflow. The AI agent (powered by OpenAI with Simple Memory for conversation continuity) reads the message, determines intent, and responds appropriately. If the prospect shows buying intent, it checks available slots via the booking API. Objections are handled using a database-backed script. Once a meeting is booked, a Salesforce record is created or updated automatically. All conversation logs are stored in PostgreSQL for CRM enrichment.",
+      "The Result: The business now runs a fully autonomous WhatsApp sales process 24 hours a day, 7 days a week. No rep needed. Every conversation is documented, every lead is captured, and every booking flows directly into Salesforce without any manual entry.",
+    ],
   },
   {
     id: 4,
-    title: "E-commerce Post-Purchase Automation",
-    description: "End-to-end post-purchase flow — order confirmation, fulfillment updates, review requests, and return handling — across Shopify, email, and WhatsApp automatically.",
-    category: "AI Automation",
-    industry: "E-commerce",
-    builtOn: ["Make", "OpenAI"],
-    integratedWith: ["Shopify", "WhatsApp API", "Klaviyo"],
-    result: "60% fewer support tickets",
-    metric: "60%",
+    title: "GHL CRM + Make Integration — Outbound Bot",
+    description: "GoHighLevel and Make.com integration that automates outbound follow-up sequences with reply detection, follow-up scheduling, and full workflow orchestration — zero manual intervention.",
+    categories: ["CRM Automation", "Lead Generation"],
+    industry: "Agency",
+    builtOn: ["GHL", "Make"],
+    integratedWith: ["GoHighLevel", "Gmail", "Google Sheets"],
+    result: "Fully automated outbound follow-up system",
+    metric: "AUTO",
     youtubeUrl: "",
-    blogContent: "This automation handles the entire post-purchase journey for a Shopify store — order confirmation, shipping updates, review requests, and return processing — delivered via email and WhatsApp. The result was a 60% drop in support tickets.",
+    screenshots: [
+      "Ai Automation/GHL CRM + Make Integration_ outbond report/main workflow.jpg",
+      "Ai Automation/GHL CRM + Make Integration_ outbond report/follow-up scheduling.jpg",
+      "Ai Automation/GHL CRM + Make Integration_ outbond report/reply detection.jpg",
+    ],
+    blogContent: [
+      "The Problem: A marketing agency was managing multiple client outbound campaigns through GoHighLevel, but the follow-up sequences were inconsistent. Replies weren't being detected reliably, follow-up timing was manual, and generating outbound reports required hours of manual data pulling each week.",
+      "The Solution: I built a Make.com automation that integrates deeply with GoHighLevel's CRM to automate the entire outbound follow-up workflow — from initial outreach, to reply detection, to intelligent follow-up scheduling, to automated report generation.",
+      "How It Works: The Make.com scenario watches for GHL contact activity in real-time. When a contact replies, the reply detection module intercepts it and pauses or re-routes the outbound sequence intelligently. If no reply comes within a configured window, the follow-up scheduling module triggers the next message in the sequence. A reporting workflow runs on a schedule to pull outbound metrics from GHL and compile them into a formatted Google Sheets report — all without any manual work.",
+      "The Result: The agency eliminated manual report generation and dramatically improved follow-up consistency. Reply handling became instant and systematic. The outbound system now runs as a true autonomous loop — initiate, detect, follow up, report — with zero human touchpoints required.",
+    ],
   },
   {
     id: 5,
-    title: "AI Cold Outreach Machine",
-    description: "Researches prospects with AI, writes fully personalized cold emails per contact, auto-sends via Gmail with smart follow-up sequences — no manual writing, ever.",
-    category: "AI Automation",
-    industry: "Sales",
+    title: "n8n AI Blog Post Generator",
+    description: "Fully automated content pipeline — AI researches topics, writes SEO-optimised blog posts in a structured format, and outputs publication-ready content on a schedule. Zero manual writing.",
+    categories: ["Content Automation", "AI Automation"],
+    industry: "Marketing",
     builtOn: ["n8n", "OpenAI"],
-    integratedWith: ["Apollo", "Gmail", "Airtable"],
-    result: "3x reply rate vs manual",
-    metric: "3x",
+    integratedWith: ["WordPress", "Google Docs", "Airtable"],
+    result: "Blog posts produced automatically on schedule",
+    metric: "AUTO",
     youtubeUrl: "",
-    blogContent: "An end-to-end cold outreach system that researches each prospect using AI, writes a fully personalized email, and auto-sends via Gmail with smart follow-up sequences. No manual writing, ever. Reply rates tripled compared to manual outreach.",
+    screenshots: [
+      "Ai Automation/n8n AI blog post generator/main workflow.jpg",
+    ],
+    blogContent: [
+      "The Problem: Content marketing requires a consistent publishing schedule, but writing high-quality blog posts is time-consuming and expensive. A marketing team needed to publish several posts per week to maintain SEO momentum — without the cost of a full-time content team.",
+      "The Solution: I built an automated blog post generation pipeline using n8n and OpenAI GPT-4. The system researches topics autonomously, generates fully structured SEO-optimised blog posts with proper headings, meta descriptions, and keyword integration, then outputs them as ready-to-publish documents.",
+      "How It Works: The n8n workflow triggers on a schedule (or manually). OpenAI is prompted with a topic seed and a structured blog post template — covering introduction, key sections, conclusion, and meta data. The output is formatted and saved to Google Docs for review or pushed directly to WordPress via API. An Airtable board tracks published posts, scheduled drafts, and topic ideas for the content calendar.",
+      "The Result: The client now publishes consistently on schedule without hiring writers. Blog posts that previously took 3-4 hours to research and write now complete in under 3 minutes. The content pipeline runs autonomously as long as the topic queue is maintained.",
+    ],
   },
   {
     id: 6,
-    title: "GHL White-Label Agency Setup",
-    description: "Fully white-labeled GHL environment for a digital agency — custom domain, branded UI, automated client onboarding snapshots, and sub-account provisioning in minutes.",
-    category: "CRM Automation",
-    industry: "Agency",
-    builtOn: ["GHL"],
-    integratedWith: ["Stripe", "Slack", "Zapier"],
-    result: "Client onboarding in under 10 min",
-    metric: "<10m",
+    title: "n8n Automated Creative Analysis Pipeline",
+    description: "AI pipeline that ingests creative assets and campaign performance data, analyses what works, generates structured insight reports, and delivers recommendations automatically via Slack.",
+    categories: ["Content Automation", "AI Automation"],
+    industry: "Marketing",
+    builtOn: ["n8n", "OpenAI"],
+    integratedWith: ["Google Drive", "Slack", "Airtable"],
+    result: "Instant creative performance insights — no manual review",
+    metric: "AUTO",
     youtubeUrl: "",
-    blogContent: "A full white-label GoHighLevel setup for a digital agency — custom domain, branded interface, automated client onboarding snapshots, and sub-account provisioning. New clients are fully onboarded in under 10 minutes with zero manual work.",
+    screenshots: [
+      "Ai Automation/n8n Automated Creative Analysis Pipeline/Main Workflow.png",
+    ],
+    blogContent: [
+      "The Problem: A marketing agency was running multiple ad creatives simultaneously but had no systematic way to analyse performance. The team spent hours manually comparing metrics, trying to identify which hooks, formats, and creative styles were driving results — a slow and error-prone process.",
+      "The Solution: I built an automated creative analysis pipeline using n8n that ingests campaign data, runs it through OpenAI for AI-powered performance analysis, and delivers a structured insight report directly to Slack — without anyone having to pull a single spreadsheet.",
+      "How It Works: The pipeline connects to the client's Google Drive where creative assets and performance CSVs are stored. n8n watches for new data uploads and triggers the analysis workflow. OpenAI processes the campaign metrics and creative attributes, identifying patterns — which formats performed best, which hooks generated most engagement, which audiences responded. The AI generates a structured report with ranked insights and recommendations, which is posted to the team's Slack channel and logged in Airtable for tracking over time.",
+      "The Result: The marketing team now receives weekly creative performance reports automatically. Decision-making on ad spend and creative direction became data-driven and fast. Time spent on manual analysis dropped to zero, and the team can focus entirely on creative production and strategy.",
+    ],
   },
   {
     id: 7,
-    title: "AI Voice Follow-up Caller",
-    description: "Outbound AI voice caller that contacts leads 5 minutes after form submission, qualifies interest, and schedules a discovery call — fully hands-free.",
-    category: "AI Voice Calling",
-    industry: "E-commerce",
-    builtOn: ["Vapi", "Make"],
-    integratedWith: ["Calendly", "HubSpot", "Twilio"],
-    result: "100% leads contacted in 5 min",
-    metric: "100%",
+    title: "n8n Client Onboarding Automation",
+    description: "Fully automated client onboarding system — new clients trigger welcome sequences, task creation, folder setup in Google Drive, and team Slack alerts — all within 5 minutes of signing.",
+    categories: ["AI Automation", "CRM Automation"],
+    industry: "Agency",
+    builtOn: ["n8n"],
+    integratedWith: ["Airtable", "Gmail", "Slack"],
+    result: "Clients onboarded in under 5 minutes",
+    metric: "<5m",
     youtubeUrl: "",
-    blogContent: "An outbound AI voice agent that fires exactly 5 minutes after a lead fills out a form. It calls the lead, qualifies their interest, and books a discovery call directly into Calendly — fully autonomous, zero human lag.",
+    screenshots: [
+      "Ai Automation/n8n Client Onboarding Automation/workflow.jpg",
+    ],
+    blogContent: [
+      "The Problem: A marketing agency was onboarding new clients manually — writing welcome emails, creating project tasks, setting up folders, and notifying the team one by one. The process was inconsistent across clients, often delayed, and consumed 1-2 hours per new client signup.",
+      "The Solution: I built a comprehensive client onboarding automation using n8n that fires the moment a new client is added to the Airtable CRM. Every onboarding step executes automatically and in sequence — welcome email, task creation, folder setup, and team notification — all completed in under 5 minutes.",
+      "How It Works: When a new client record appears in Airtable (via form submission or manual entry), n8n triggers the onboarding sequence instantly. A branded welcome email with onboarding instructions is sent via Gmail. Project tasks are created automatically in the project management tool. A dedicated Google Drive folder structure is generated with the client's name. The agency's Slack channel receives a notification with the client's details and a summary of what was prepared. Everything is logged back to Airtable.",
+      "The Result: The agency now delivers a consistent, professional onboarding experience to every client within 5 minutes of signup — regardless of time zone or whether anyone is in the office. Staff time on onboarding dropped from 1-2 hours to zero.",
+    ],
   },
   {
     id: 8,
-    title: "AI Chatbot for Real Estate Website",
-    description: "Embedded chatbot that qualifies buyers and sellers, books property viewings, and hands warm leads to agents with a full conversation summary in GHL.",
-    category: "AI Chatbot",
-    industry: "Real Estate",
-    builtOn: ["Voiceflow", "GHL"],
-    integratedWith: ["Google Calendar", "Gmail", "Twilio"],
-    result: "35% more qualified leads",
-    metric: "35%",
+    title: "n8n Outlook Vacancy Email Tracker",
+    description: "Monitors Outlook for incoming vacancy-related emails, uses AI to extract structured job data, and logs everything into an organised tracking dashboard — zero manual email sorting.",
+    categories: ["AI Automation", "RPA"],
+    industry: "Recruitment",
+    builtOn: ["n8n", "OpenAI"],
+    integratedWith: ["Outlook", "Airtable", "Google Sheets"],
+    result: "Zero manual email sorting",
+    metric: "0h",
     youtubeUrl: "",
-    blogContent: "A Voiceflow-powered chatbot embedded on a real estate website. It qualifies buyers and sellers through a conversational flow, books property viewings, and delivers a full conversation summary to GHL — so agents only ever talk to warm leads.",
+    screenshots: [
+      "Ai Automation/n8n Outlook Vacancy Email Tracker/workflow.jpg",
+    ],
+    blogContent: [
+      "The Problem: A recruitment agency was drowning in incoming vacancy emails. HR staff were manually reading each email, extracting job details like title, company, location, salary, and deadline, then logging them into a spreadsheet. This was taking 2-3 hours every day and was prone to missed entries and data errors.",
+      "The Solution: I built an intelligent email tracker using n8n and OpenAI that monitors the Outlook inbox around the clock. Every incoming vacancy email is automatically read, structured data is extracted using AI, and a clean record is created in the tracking dashboard — no human involvement required.",
+      "How It Works: n8n connects to the Outlook inbox via Microsoft Graph API and watches for new incoming emails matching vacancy-related keywords. When a matching email arrives, OpenAI extracts the key data fields — job title, company name, location, salary range, application deadline, and requirements — and structures them into a JSON object. The data is written to both Airtable (for the team dashboard) and Google Sheets (for reporting). The email is tagged in Outlook as processed.",
+      "The Result: The recruitment team eliminated 2-3 hours of daily manual data entry. Every vacancy email is now captured, structured, and logged within seconds of arrival. The dashboard is always up to date, and nothing falls through the cracks — even emails arriving outside business hours.",
+    ],
+  },
+  {
+    id: 9,
+    title: "n8n Shopify Faire Fulfillment Sync",
+    description: "Real-time bidirectional sync between Shopify and Faire — new orders trigger automatic fulfillment creation, inventory updates sync both ways, and confirmation emails fire automatically.",
+    categories: ["E-Commerce Automation", "AI Automation"],
+    industry: "E-commerce",
+    builtOn: ["n8n"],
+    integratedWith: ["Shopify", "Faire", "Gmail"],
+    result: "100% order sync accuracy — zero manual entry",
+    metric: "100%",
+    youtubeUrl: "",
+    screenshots: [
+      "Ai Automation/n8n Shopify Faire Fulfillment Sync/workflow 1.png",
+    ],
+    blogContent: [
+      "The Problem: An e-commerce store was selling on both Shopify and Faire simultaneously, but the two platforms operated as silos. Every Faire order had to be manually created as a Shopify fulfillment. Inventory levels were constantly out of sync. The team spent hours each day reconciling orders across platforms — a process that was both tedious and error-prone.",
+      "The Solution: I built a bidirectional real-time sync between Shopify and Faire using n8n. New Faire orders automatically create Shopify fulfillments. Inventory updates in either platform propagate to the other. Confirmation emails fire automatically. No manual data entry, no sync delays, no discrepancies.",
+      "How It Works: n8n listens to webhook events from both Shopify and Faire. When a new Faire order arrives, the workflow maps the order data to Shopify's fulfillment API and creates the record instantly. When inventory changes in Shopify (due to fulfillments, returns, or manual adjustments), the updated quantity is pushed to Faire's inventory API. Gmail sends branded order confirmation emails to the customer automatically. Error handling and retry logic ensure no orders are missed.",
+      "The Result: The client achieved 100% order sync accuracy across both platforms from day one. The daily reconciliation process was completely eliminated. The team now manages one unified inventory view, and customers receive professional order confirmations without any staff action.",
+    ],
+  },
+  {
+    id: 10,
+    title: "n8n Telegram MultiPlatform Video Publisher",
+    description: "Automated video distribution pipeline — send one video to Telegram, and n8n automatically publishes it to multiple social platforms simultaneously. One upload, every platform.",
+    categories: ["Content Automation", "AI Automation"],
+    industry: "Media",
+    builtOn: ["n8n"],
+    integratedWith: ["Telegram", "YouTube", "Google Drive"],
+    result: "One upload distributed to all platforms",
+    metric: "1→ALL",
+    youtubeUrl: "",
+    screenshots: [
+      "Ai Automation/n8n Telegram MultiPlatform Video Publisher/main workflow.jpg",
+    ],
+    blogContent: [
+      "The Problem: Content creators and media businesses waste significant time uploading the same video manually to multiple social platforms — YouTube, Instagram, TikTok, LinkedIn, and others. Each platform has different format requirements, descriptions, and hashtags. The process is repetitive, time-consuming, and prone to inconsistency.",
+      "The Solution: I built a multiplatform video publishing automation using n8n and Telegram as the trigger interface. The creator sends the video to a private Telegram bot, along with a caption and tags. n8n handles everything from there — downloading the video, processing it as needed, and publishing it to every configured platform simultaneously.",
+      "How It Works: The content creator sends a video to a Telegram bot (along with a description and hashtag list). n8n receives the Telegram webhook, downloads the video file, stores it temporarily in Google Drive, and triggers parallel publishing workflows for each platform. Each platform gets a tailored description and optimised format. YouTube uploads via the Data API. The creator receives a Telegram confirmation once all uploads are complete.",
+      "The Result: What used to take 30-60 minutes of manual uploads per video now happens in under 3 minutes — and requires only sending one Telegram message. Content is distributed consistently across all platforms simultaneously, with zero formatting errors or missed uploads.",
+    ],
+  },
+  {
+    id: 11,
+    title: "Tourism Booking Automation",
+    description: "Comprehensive tourism booking automation — captures inquiries, checks availability across multiple workflows, sends AI-generated quotes, confirms bookings, and runs WhatsApp reminder sequences.",
+    categories: ["Booking System", "WhatsApp Bot", "AI Automation"],
+    industry: "Tourism",
+    builtOn: ["n8n", "OpenAI"],
+    integratedWith: ["WhatsApp API", "Gmail", "Google Sheets"],
+    result: "End-to-end booking pipeline fully automated",
+    metric: "AUTO",
+    youtubeUrl: "",
+    screenshots: [
+      "Ai Automation/Booking & Appointment Systems/N8n Automation System for Tourism/workflow1.png",
+      "Ai Automation/Booking & Appointment Systems/N8n Automation System for Tourism/workflow2.png",
+      "Ai Automation/Booking & Appointment Systems/N8n Automation System for Tourism/workflow 3.png",
+      "Ai Automation/Booking & Appointment Systems/N8n Automation System for Tourism/Sheets data.png",
+      "Ai Automation/Booking & Appointment Systems/N8n Automation System for Tourism/output.png",
+    ],
+    blogContent: [
+      "The Problem: A tourism company was handling travel inquiry-to-booking manually — emails, WhatsApp messages, phone calls, and spreadsheets all mixed together. Staff spent most of their time on repetitive inquiry responses, availability checks, and sending quotes. Follow-ups were missed. Bookings got lost in the shuffle.",
+      "The Solution: I built a comprehensive multi-workflow automation for the tourism company using n8n. The system handles the complete booking journey — from capturing an inquiry, to checking availability, to generating and sending a personalised quote, to confirming the booking, to running automated reminder sequences via WhatsApp and email.",
+      "How It Works: Inquiries arrive via web form or WhatsApp. n8n captures them instantly and logs data to Google Sheets. OpenAI generates a personalised quote based on the requested tour, dates, and group size. The quote is sent via WhatsApp and email simultaneously. If the customer confirms, the booking is created and a confirmation sequence starts — with automated reminders 7 days, 3 days, and 1 day before departure. Three separate n8n workflows handle inquiry handling, booking confirmation, and reminder scheduling independently for clean, maintainable automation.",
+      "The Result: The tourism company converted their chaotic manual process into a fully automated, professional booking system. Response time to inquiries dropped from hours to minutes. Booking confirmations and reminders run without any staff intervention. The team now focuses entirely on tour operations and customer experience.",
+    ],
+  },
+  {
+    id: 12,
+    title: "Power Automate Events Booking System",
+    description: "Microsoft Power Automate booking system for an events business — automates slot management, booking confirmations, Microsoft Calendar sync, and Outlook-based client notifications end-to-end.",
+    categories: ["Booking System", "AI Automation"],
+    industry: "Events",
+    builtOn: ["Power Automate"],
+    integratedWith: ["Outlook", "Microsoft Calendar", "SharePoint"],
+    result: "Fully automated event booking management",
+    metric: "AUTO",
+    youtubeUrl: "",
+    screenshots: [
+      "Ai Automation/Booking & Appointment Systems/powerautomate Exodus Booking System/img1.png",
+    ],
+    blogContent: [
+      "The Problem: An events business was managing all bookings manually through email and a spreadsheet. Slot availability was tracked by hand, confirmation emails had to be written and sent individually, and calendar entries were created manually. The process didn't scale and was causing double-bookings and missed confirmations.",
+      "The Solution: I built a complete booking management system using Microsoft Power Automate — the natural choice given the client was already operating within the Microsoft 365 ecosystem. The system automates slot management, booking processing, calendar synchronisation, and all client communications.",
+      "How It Works: When a booking request is submitted (via a Microsoft Forms intake form or email), Power Automate triggers immediately. The flow checks slot availability against Microsoft Calendar, confirms or declines the request, and sends a professional confirmation email via Outlook. Confirmed bookings are automatically added to Microsoft Calendar and logged to a SharePoint list for the team. If a booking is cancelled, the slot is freed and a cancellation confirmation is sent to the client.",
+      "The Result: The business eliminated all manual booking administration. Double-bookings became impossible. Confirmation emails go out within seconds of a request. The team's Microsoft Calendar is always accurate. And the SharePoint booking log gives management a real-time view of all upcoming events.",
+    ],
+  },
+  {
+    id: 13,
+    title: "Outlook Job Manager Automation",
+    description: "Monitors Outlook for incoming CV and job application emails, extracts structured candidate data using AI, creates Airtable records, and routes candidates to the right hiring manager automatically.",
+    categories: ["AI Automation", "CRM Automation"],
+    industry: "Recruitment",
+    builtOn: ["n8n", "OpenAI"],
+    integratedWith: ["Outlook", "Airtable", "Microsoft Teams"],
+    result: "Zero manual application processing",
+    metric: "0h",
+    youtubeUrl: "",
+    screenshots: [
+      "Ai Automation/Business Operations & HR Automation/Outlook Job Manager/workflow.1.jpeg",
+    ],
+    blogContent: [
+      "The Problem: A recruitment agency was receiving hundreds of CV and job application emails per week. HR staff spent hours each day manually reading emails, extracting candidate information, creating spreadsheet entries, and forwarding applications to the right hiring manager. This was slow, error-prone, and completely unscalable.",
+      "The Solution: I built an intelligent Outlook Job Manager using n8n and OpenAI that monitors the hiring inbox around the clock. Every incoming application email is automatically read, candidate data is extracted using AI, a structured record is created in Airtable, and the application is routed to the appropriate hiring manager via Microsoft Teams notification — all within seconds of arrival.",
+      "How It Works: n8n connects to Outlook via Microsoft Graph API and monitors the recruitment inbox continuously. When a new application email arrives, OpenAI extracts key candidate information — full name, email, phone, applied position, years of experience, key skills, and any salary expectations mentioned. This data is structured and written to an Airtable base as a new candidate record. Based on the applied position, a Teams message is sent to the corresponding hiring manager with a summary of the candidate and a link to the full Airtable record.",
+      "The Result: The HR team eliminated hours of daily manual inbox management. Every application is now captured, structured, and routed within seconds regardless of volume. The hiring team receives instant notifications for new candidates and has a clean, searchable candidate database in Airtable — without anyone touching the inbox manually.",
+    ],
+  },
+  {
+    id: 14,
+    title: "Zapier Lead Gen & Sales System — Auto Detailing",
+    description: "Zapier-powered lead generation and sales automation for an auto detailing business — captures web leads, triggers multi-step personalised follow-up sequences, and tracks deals to close.",
+    categories: ["Lead Generation", "CRM Automation", "AI Automation"],
+    industry: "Auto Detailing",
+    builtOn: ["Zapier"],
+    integratedWith: ["HubSpot", "Gmail", "Google Sheets"],
+    result: "Automated lead-to-sale follow-up pipeline",
+    metric: "AUTO",
+    youtubeUrl: "",
+    screenshots: [
+      "Ai Automation/Lead Generation & CRM Automations/Zapier Lead Generation & Sales System for auto detailing/zap 1.png",
+      "Ai Automation/Lead Generation & CRM Automations/Zapier Lead Generation & Sales System for auto detailing/zap 2.png",
+    ],
+    blogContent: [
+      "The Problem: An auto detailing business was getting web form submissions from potential customers but had no automated follow-up process. Leads would come in and sit uncontacted for hours — or days. By the time a salesperson got to them, many had already booked with a competitor. Manual follow-up was inconsistent and impossible to scale.",
+      "The Solution: I built a Zapier-powered lead generation and sales automation that captures every web form submission and immediately triggers a personalised multi-step follow-up sequence. The system nurtures leads through email and SMS, moves them through the sales pipeline automatically, and notifies the sales team only when a lead is ready to close.",
+      "How It Works: When a prospect submits the quote request form, Zapier fires instantly. The lead is created in HubSpot CRM with all form data. An immediate personalised email response goes out from Gmail. A multi-step follow-up sequence activates — Day 1 email, Day 3 SMS, Day 7 email with offer — all automated. As the lead engages (opens, clicks), HubSpot deal stages update automatically. The sales team gets a notification only when a lead responds positively or clicks the booking link. Conversion data is tracked in Google Sheets for reporting.",
+      "The Result: Lead response time dropped from hours to seconds. The follow-up sequence runs consistently for every lead, regardless of how busy the team is. Lead-to-booking conversion rates improved significantly simply by responding faster and following up more consistently.",
+    ],
+  },
+  {
+    id: 15,
+    title: "WhatsApp Lead Generation Bot — Real Estate",
+    description: "Multi-stage WhatsApp AI chatbot that qualifies real estate leads through 6 progressive stages — ownership, property type, needs, timing, budget, and appointment booking — syncing qualified leads live to GHL CRM.",
+    categories: ["WhatsApp Bot", "Lead Generation", "CRM Automation"],
+    industry: "Real Estate",
+    builtOn: ["n8n", "OpenAI"],
+    integratedWith: ["WhatsApp API", "GHL CRM", "Google Calendar"],
+    result: "Full 6-stage lead qualification on WhatsApp",
+    metric: "QUAL",
+    youtubeUrl: "",
+    screenshots: [
+      "Ai Automation/Lead Generation & CRM Automations/whatsapp lead generation bot n8n+ GHL/Main Workflow.png",
+      "Ai Automation/Lead Generation & CRM Automations/whatsapp lead generation bot n8n+ GHL/Ownership qualification stage.jpg",
+      "Ai Automation/Lead Generation & CRM Automations/whatsapp lead generation bot n8n+ GHL/Property qualification stage.png",
+      "Ai Automation/Lead Generation & CRM Automations/whatsapp lead generation bot n8n+ GHL/need quailfication stage.png",
+      "Ai Automation/Lead Generation & CRM Automations/whatsapp lead generation bot n8n+ GHL/timing qualification.png",
+      "Ai Automation/Lead Generation & CRM Automations/whatsapp lead generation bot n8n+ GHL/appoointment booking stage.png",
+      "Ai Automation/Lead Generation & CRM Automations/whatsapp lead generation bot n8n+ GHL/post-booking conversation.png",
+      "Ai Automation/Lead Generation & CRM Automations/whatsapp lead generation bot n8n+ GHL/Email with collection and validation.png",
+      "Ai Automation/Lead Generation & CRM Automations/whatsapp lead generation bot n8n+ GHL/Lead Creation.png",
+    ],
+    blogContent: [
+      "The Problem: A real estate agency was generating WhatsApp inquiries but couldn't qualify them efficiently. Agents were spending time talking to unqualified prospects — people who weren't ready to buy, couldn't afford the properties, or didn't match the agency's target profile. They needed a system to qualify leads before a human ever picked up the phone.",
+      "The Solution: I built a sophisticated 6-stage WhatsApp lead qualification bot using n8n and OpenAI, deeply integrated with GoHighLevel CRM. The bot conducts a complete qualification interview through WhatsApp — naturally, conversationally — and only passes qualified, appointment-ready leads to agents.",
+      "How It Works: When a prospect messages the agency's WhatsApp number, the bot starts the qualification sequence. Stage 1 checks ownership status. Stage 2 identifies property type interest. Stage 3 explores their specific property needs. Stage 4 qualifies buying timeline. Stage 5 captures budget range and email (with validation). Stage 6 books a consultation appointment if the lead qualifies. Throughout the conversation, OpenAI handles natural language understanding. Once qualified, a GHL lead record is created automatically with all conversation data, a deal is created in the pipeline, and the agent is notified.",
+      "The Result: The agency dramatically reduced time-to-qualified-lead. Agents now only speak with prospects who have confirmed their timeline, budget, and property requirements. The GHL pipeline is populated automatically with rich lead data, making agent follow-ups faster and more personalised.",
+    ],
+  },
+  {
+    id: 16,
+    title: "AI CAPTCHA Solve — Web Scraping Automation",
+    description: "Advanced RPA web scraping automation using Octoparse with AI-powered CAPTCHA solving — extracts large-scale structured data from protected websites and outputs clean, usable datasets automatically.",
+    categories: ["RPA", "AI Automation"],
+    industry: "Data Extraction",
+    builtOn: ["Octoparse", "RPA"],
+    integratedWith: ["Web Apps", "Google Sheets", "Excel"],
+    result: "Large-scale data extraction from protected sites",
+    metric: "SCALE",
+    youtubeUrl: "",
+    screenshots: [],
+    blogContent: [
+      "The Problem: A data analytics company needed to extract large volumes of structured data from websites that actively block automated scrapers with CAPTCHAs, rate limiting, and bot detection. Manual data collection was impossibly slow, and standard scraping tools kept getting blocked.",
+      "The Solution: I built an advanced web scraping automation using Octoparse enhanced with AI-powered CAPTCHA solving capabilities. The system bypasses standard bot detection mechanisms, extracts the required data at scale, and outputs clean, structured datasets to Google Sheets or Excel — automatically.",
+      "How It Works: Octoparse handles the browser automation and page navigation logic. When CAPTCHA challenges appear, the AI CAPTCHA solving integration intercepts and resolves them in real time, allowing the scraping session to continue uninterrupted. The extracted data is cleaned and structured according to the client's required schema, then exported automatically. The workflow can run scheduled or on-demand, handling thousands of pages per session.",
+      "The Result: The company achieved reliable, large-scale data extraction from sites that were previously inaccessible to automation. Data collection that would have taken weeks of manual work now runs overnight. The structured output feeds directly into their analysis and reporting workflows.",
+    ],
+  },
+  {
+    id: 17,
+    title: "HubSpot & n8n Automation Integration Suite",
+    description: "7-workflow HubSpot automation suite built on n8n — handles CV processing, lead scoring, deal stage updates, follow-up sequences, team notifications, and full CRM pipeline automation.",
+    categories: ["CRM Automation", "AI Automation", "Lead Generation"],
+    industry: "Sales",
+    builtOn: ["n8n", "HubSpot"],
+    integratedWith: ["Gmail", "Slack", "Airtable"],
+    result: "Full CRM pipeline automated — 7 workflows",
+    metric: "7WF",
+    youtubeUrl: "",
+    screenshots: [
+      "Ai Automation/hubspot automation/HubSpot & n8n Automation Integration Suite/workflow 1 .jpeg",
+      "Ai Automation/hubspot automation/HubSpot & n8n Automation Integration Suite/workflow 2 & 3.jpeg",
+      "Ai Automation/hubspot automation/HubSpot & n8n Automation Integration Suite/workflow 4 .jpeg",
+      "Ai Automation/hubspot automation/HubSpot & n8n Automation Integration Suite/workflow 5 .jpeg",
+      "Ai Automation/hubspot automation/HubSpot & n8n Automation Integration Suite/workflow 6 .jpeg",
+      "Ai Automation/hubspot automation/HubSpot & n8n Automation Integration Suite/workflow 7.jpeg",
+    ],
+    blogContent: [
+      "The Problem: A B2B sales company had HubSpot as their CRM but was barely using its automation capabilities. Leads were being added manually, deal stages required human updates, follow-up emails were sent inconsistently, and the sales team had no visibility into pipeline health without manually pulling reports. The CRM was a data store, not a sales engine.",
+      "The Solution: I built a comprehensive 7-workflow HubSpot automation suite using n8n that transformed the client's CRM from passive database to active sales machine. Each workflow handles a specific part of the CRM lifecycle — from CV/lead ingestion, to scoring, to deal management, to follow-up sequences, to reporting.",
+      "How It Works: Workflow 1 handles CV and lead ingestion — new leads from any source are automatically created in HubSpot with complete data. Workflows 2 & 3 manage lead scoring and segmentation based on engagement and profile data. Workflow 4 handles deal stage transitions — when a prospect takes a qualifying action, their deal moves forward automatically. Workflow 5 runs personalised follow-up email sequences via Gmail. Workflow 6 sends Slack alerts to the sales team for high-priority events. Workflow 7 generates weekly pipeline health reports in Airtable.",
+      "The Result: The HubSpot CRM became a fully automated sales pipeline. Deal stages update themselves. Follow-ups send themselves. Reports generate themselves. The sales team now uses their time closing deals instead of managing a CRM, and pipeline visibility is always accurate and up-to-date.",
+    ],
+  },
+  {
+    id: 18,
+    title: "n8n CV Processing & Email-to-HubSpot Automation",
+    description: "Processes incoming CV emails automatically — AI extracts candidate data, creates structured HubSpot contacts, routes to the correct hiring pipeline, and sends acknowledgement emails instantly.",
+    categories: ["CRM Automation", "AI Automation"],
+    industry: "Recruitment",
+    builtOn: ["n8n", "OpenAI"],
+    integratedWith: ["Gmail", "Outlook", "HubSpot"],
+    result: "Zero manual CRM entry from email",
+    metric: "0h",
+    youtubeUrl: "",
+    screenshots: [
+      "Ai Automation/hubspot automation/n8n email to hubspot automation/main workflow.jpeg",
+    ],
+    blogContent: [
+      "The Problem: A recruitment agency was receiving CV submissions via email and manually creating HubSpot contact records for each one. A busy week could mean 50-100 emails, each requiring 5-10 minutes of manual data entry into the CRM. This was consuming hours of HR time and creating data inconsistencies.",
+      "The Solution: I built an n8n automation that monitors the email inbox (Gmail or Outlook), reads incoming CV emails using OpenAI, extracts all relevant candidate information, and creates or updates HubSpot contact records automatically — sending an acknowledgement email to the candidate instantly.",
+      "How It Works: n8n monitors the email inbox via IMAP or Microsoft Graph. When a new CV email arrives, OpenAI reads the email body and any attached CV text to extract: candidate name, email address, phone number, applied position, key skills, years of experience, current employer, and expected salary. This data is mapped to HubSpot's contact fields and a new contact is created (or existing record updated). The candidate receives an automated acknowledgement email confirming their application was received. The hiring manager is notified via HubSpot task or email.",
+      "The Result: The agency eliminated manual CRM data entry from email processing entirely. Every CV now creates a perfect HubSpot record within seconds of arriving — consistently structured, fully tagged, and immediately searchable. Candidates receive professional acknowledgements instantly rather than waiting hours or days.",
+    ],
+  },
+  {
+    id: 19,
+    title: "n8n Smart Amazon Order Processing & Zoho Accounting",
+    description: "Automated Amazon order-to-accounting pipeline — new orders trigger fulfillment routing, Zoho Books invoice generation, accounting entries, and reporting — all in seconds, without any manual input.",
+    categories: ["E-Commerce Automation", "AI Automation"],
+    industry: "E-commerce",
+    builtOn: ["n8n", "Zoho"],
+    integratedWith: ["Amazon", "Zoho Books", "Google Sheets"],
+    result: "Orders processed & invoiced in seconds",
+    metric: "AUTO",
+    youtubeUrl: "",
+    screenshots: [
+      "Ai Automation/Zoho/n8n Smart Amazon Order Processing & Accounting Automation/workflow.jpg",
+      "Ai Automation/Zoho/n8n Smart Amazon Order Processing & Accounting Automation/zoho sales order.jpg",
+      "Ai Automation/Zoho/n8n Smart Amazon Order Processing & Accounting Automation/Normal processing sheet.jpg",
+    ],
+    blogContent: [
+      "The Problem: An e-commerce business was selling on Amazon but managing their accounting in Zoho Books manually. Every Amazon order required someone to log into Zoho, create a sales order, generate an invoice, record the payment, and update the tracking sheet. With hundreds of orders per week, this was consuming a bookkeeper's full working day.",
+      "The Solution: I built a seamless Amazon-to-Zoho accounting automation using n8n that processes every new Amazon order automatically — creating the Zoho Books sales order and invoice, recording the payment, updating Google Sheets for reporting, and completing the entire accounting entry without any human involvement.",
+      "How It Works: n8n monitors Amazon for new orders via the Amazon SP-API. When an order is detected, the workflow extracts order details — items, quantities, prices, customer info, and shipping details. A sales order is created in Zoho Books instantly with all line items populated. The invoice is generated and linked to the sales order. Payment is recorded automatically based on Amazon's payment status. A summary row is added to the Google Sheets reporting tracker. The entire workflow completes within seconds of an order being placed.",
+      "The Result: The Amazon-to-accounting process became fully automated. What previously took a bookkeeper 4-6 hours per day now happens in real-time with zero manual work. Zoho Books is always accurate. The Google Sheets report is always up to date. And the accounting team can focus on analysis and planning instead of data entry.",
+    ],
   },
 ];
 
-const CATEGORIES = [...new Set(PROJECTS.map(p => p.category))];
-const INDUSTRIES = [...new Set(PROJECTS.map(p => p.industry))];
+const CATEGORIES = [...new Set(PROJECTS.flatMap(p => p.categories))].sort();
+const INDUSTRIES = [...new Set(PROJECTS.map(p => p.industry))].sort();
 const BUILT_ONS = [...new Set(PROJECTS.flatMap(p => p.builtOn))].sort();
 const INTEGRATIONS = [...new Set(PROJECTS.flatMap(p => p.integratedWith))].sort();
 
 const CAT_COLOR = {
-  "AI Automation": "#2563eb",
-  "AI Voice Calling": "#1d4ed8",
-  "CRM Automation": "#3b82f6",
-  "AI Chatbot": "#60a5fa",
+  "AI Automation":        "#2563eb",
+  "AI Voice Agent":       "#7c3aed",
+  "Booking System":       "#0891b2",
+  "CRM Automation":       "#0e7490",
+  "Content Automation":   "#d97706",
+  "E-Commerce Automation":"#dc2626",
+  "Lead Generation":      "#9333ea",
+  "RPA":                  "#475569",
+  "WhatsApp Bot":         "#059669",
 };
 
 const TICKER_ITEMS = [
   "CONNECTING AI TO REAL BUSINESSES",
-  "GHL · N8N · MAKE · VAPI · OPENAI · VOICEFLOW",
+  "GHL · N8N · MAKE · VAPI · OPENAI · ZAPIER · POWER AUTOMATE",
   "500+ HOURS AUTOMATED FOR CLIENTS",
   "AI VOICE AGENTS RUNNING 24/7",
-  "20+ AUTOMATIONS DELIVERED",
-  "SHOPIFY · HUBSPOT · TWILIO · SLACK · GMAIL",
-  "CRM PIPELINES · WHITE-LABEL AGENCY SETUPS",
+  "19+ REAL PROJECTS DELIVERED",
+  "SHOPIFY · HUBSPOT · TWILIO · SLACK · WHATSAPP · SALESFORCE",
+  "CRM · RPA · CONTENT · E-COMMERCE · VOICE AUTOMATIONS",
   "MODERNIZING BUSINESS OPERATIONS WITH AI",
 ];
 
@@ -232,7 +570,9 @@ function Dropdown({ label, options, selected, onChange }) {
       </button>
       {open && (
         <div style={{
-          position: "fixed",
+          position: "absolute",
+          top: "calc(100% + 6px)",
+          left: "0",
           zIndex: 9999,
           backgroundColor: "#fff",
           border: "1px solid #e2e8f0",
@@ -243,19 +583,7 @@ function Dropdown({ label, options, selected, onChange }) {
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
-        }}
-          ref={el => {
-            if (el && ref.current) {
-              const btn = ref.current.querySelector("button");
-              if (btn) {
-                const rect = btn.getBoundingClientRect();
-                el.style.top = (rect.bottom + 6) + "px";
-                el.style.left = rect.left + "px";
-              }
-            }
-          }}
-        >
-          {/* Search */}
+        }}>
           <div style={{ padding: "8px 10px", borderBottom: "1px solid #f1f5f9" }}>
             <input
               autoFocus
@@ -271,7 +599,6 @@ function Dropdown({ label, options, selected, onChange }) {
               }}
             />
           </div>
-          {/* Options */}
           <div style={{ overflowY: "auto", flex: 1 }}>
             {filtered.length === 0 && (
               <div style={{ padding: "14px", textAlign: "center", fontSize: "10px", fontFamily: "'Space Mono', monospace", color: "#94a3b8" }}>No results</div>
@@ -305,10 +632,125 @@ function Dropdown({ label, options, selected, onChange }) {
   );
 }
 
+/* ─── SCREENSHOT GALLERY ────────────────────────────────────────── */
+function ScreenshotGallery({ screenshots, col }) {
+  const [active, setActive] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
+  if (!screenshots || screenshots.length === 0) return null;
+
+  return (
+    <div style={{ marginBottom: "40px" }}>
+      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: col, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "16px" }}>// PROJECT SCREENSHOTS</div>
+
+      {/* Main image */}
+      <div
+        onClick={() => setLightbox(true)}
+        style={{
+          width: "100%", borderRadius: "10px", overflow: "hidden",
+          border: `1px solid ${col}33`, marginBottom: "10px",
+          cursor: "zoom-in", position: "relative", backgroundColor: "#0f172a",
+        }}
+      >
+        <img
+          src={screenshots[active]}
+          alt={`Screenshot ${active + 1}`}
+          style={{ width: "100%", display: "block", maxHeight: "460px", objectFit: "contain" }}
+          onError={e => { e.currentTarget.style.display = "none"; }}
+        />
+        <div style={{
+          position: "absolute", top: "10px", right: "10px",
+          background: "rgba(0,0,0,0.5)", borderRadius: "4px",
+          padding: "3px 8px", fontFamily: "'Space Mono', monospace",
+          fontSize: "8px", color: "#fff", letterSpacing: "0.06em",
+        }}>
+          {active + 1} / {screenshots.length} · CLICK TO ZOOM
+        </div>
+      </div>
+
+      {/* Thumbnails */}
+      {screenshots.length > 1 && (
+        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+          {screenshots.map((src, i) => (
+            <div
+              key={i}
+              onClick={() => setActive(i)}
+              style={{
+                width: "64px", height: "48px", borderRadius: "4px", overflow: "hidden",
+                border: `2px solid ${i === active ? col : "#e2e8f0"}`,
+                cursor: "pointer", transition: "border-color 0.2s", backgroundColor: "#0f172a",
+                flexShrink: 0,
+              }}
+            >
+              <img
+                src={src}
+                alt={`Thumb ${i + 1}`}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                onError={e => { e.currentTarget.style.display = "none"; }}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Lightbox */}
+      {lightbox && (
+        <div
+          onClick={() => setLightbox(false)}
+          style={{
+            position: "fixed", inset: 0, zIndex: 99999,
+            backgroundColor: "rgba(0,0,0,0.92)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            cursor: "zoom-out",
+          }}
+        >
+          <img
+            src={screenshots[active]}
+            alt="Full screen"
+            style={{ maxWidth: "94vw", maxHeight: "94vh", objectFit: "contain", borderRadius: "8px" }}
+            onClick={e => e.stopPropagation()}
+          />
+          <button
+            onClick={() => setLightbox(false)}
+            style={{
+              position: "fixed", top: "20px", right: "20px",
+              background: "rgba(255,255,255,0.15)", border: "none",
+              color: "#fff", width: "36px", height: "36px", borderRadius: "50%",
+              cursor: "pointer", fontSize: "18px", display: "flex", alignItems: "center", justifyContent: "center",
+            }}
+          >✕</button>
+          {screenshots.length > 1 && (
+            <>
+              <button
+                onClick={e => { e.stopPropagation(); setActive((active - 1 + screenshots.length) % screenshots.length); }}
+                style={{
+                  position: "fixed", left: "20px", top: "50%", transform: "translateY(-50%)",
+                  background: "rgba(255,255,255,0.15)", border: "none",
+                  color: "#fff", width: "44px", height: "44px", borderRadius: "50%",
+                  cursor: "pointer", fontSize: "20px",
+                }}
+              >‹</button>
+              <button
+                onClick={e => { e.stopPropagation(); setActive((active + 1) % screenshots.length); }}
+                style={{
+                  position: "fixed", right: "20px", top: "50%", transform: "translateY(-50%)",
+                  background: "rgba(255,255,255,0.15)", border: "none",
+                  color: "#fff", width: "44px", height: "44px", borderRadius: "50%",
+                  cursor: "pointer", fontSize: "20px",
+                }}
+              >›</button>
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ─── PROJECT BLOG PAGE ─────────────────────────────────────────── */
 function ProjectBlog({ project, onBack }) {
-  const col = CAT_COLOR[project.category] || "#2563eb";
+  const col = CAT_COLOR[project.categories[0]] || "#2563eb";
   const hasVideo = project.youtubeUrl && project.youtubeUrl.trim() !== "";
+  const hasScreenshots = project.screenshots && project.screenshots.length > 0;
 
   const getYoutubeEmbedUrl = (url) => {
     if (!url) return "";
@@ -320,30 +762,33 @@ function ProjectBlog({ project, onBack }) {
     return url;
   };
 
+  const blogParagraphs = Array.isArray(project.blogContent)
+    ? project.blogContent
+    : [project.blogContent];
+
   return (
     <div style={{ animation: "fadeUp 0.4s ease both" }}>
-      {/* Back button */}
-      <button onClick={onBack} style={{
-        background: "none", border: "1px solid #e2e8f0", borderRadius: "5px",
-        cursor: "pointer", padding: "8px 16px", fontFamily: "'Space Mono', monospace",
-        fontSize: "9px", color: "#64748b", letterSpacing: "0.06em",
-        display: "flex", alignItems: "center", gap: "6px", marginBottom: "32px",
-        transition: "all 0.2s",
-      }}
-        onMouseEnter={e => { e.currentTarget.style.borderColor = "#2563eb44"; e.currentTarget.style.color = "#2563eb"; }}
-        onMouseLeave={e => { e.currentTarget.style.borderColor = "#e2e8f0"; e.currentTarget.style.color = "#64748b"; }}
-      >
-        ← BACK TO PROJECTS
-      </button>
+      {/* Back button — sticky at top */}
+      <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px", paddingBottom: "20px", borderBottom: "1px solid #e2e8f0" }}>
+        <button onClick={onBack} style={{
+          background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "6px",
+          cursor: "pointer", padding: "10px 20px", fontFamily: "'Space Mono', monospace",
+          fontSize: "9px", color: "#2563eb", letterSpacing: "0.06em",
+          display: "flex", alignItems: "center", gap: "8px",
+          transition: "all 0.2s", fontWeight: "bold",
+        }}
+          onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#dbeafe"; e.currentTarget.style.borderColor = "#2563eb"; }}
+          onMouseLeave={e => { e.currentTarget.style.backgroundColor = "#eff6ff"; e.currentTarget.style.borderColor = "#bfdbfe"; }}
+        >
+          ← BACK TO PROJECTS
+        </button>
+        <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#94a3b8", letterSpacing: "0.1em" }}>Press ESC to go back</span>
+      </div>
 
-      {/* Category badge */}
-      <div style={{ marginBottom: "16px" }}>
-        <span style={{
-          padding: "4px 12px", borderRadius: "3px", fontSize: "8px",
-          fontFamily: "'Space Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase",
-          border: `1px solid ${col}44`, backgroundColor: `${col}0f`, color: col,
-        }}>{project.category}</span>
-        <span style={{ marginLeft: "12px", fontSize: "8px", fontFamily: "'Space Mono', monospace", color: "#94a3b8", letterSpacing: "0.1em", textTransform: "uppercase" }}>{project.industry}</span>
+      {/* Category badges */}
+      <div style={{ marginBottom: "16px", display: "flex", flexWrap: "wrap", gap: "6px", alignItems: "center" }}>
+        {project.categories.map(cat => <CategoryBadge key={cat} cat={cat} />)}
+        <span style={{ fontSize: "8px", fontFamily: "'Space Mono', monospace", color: "#94a3b8", letterSpacing: "0.1em", textTransform: "uppercase", marginLeft: "4px" }}>{project.industry}</span>
       </div>
 
       {/* Title */}
@@ -357,11 +802,11 @@ function ProjectBlog({ project, onBack }) {
         <span style={{ fontSize: "13px", fontFamily: "'Space Mono', monospace", color: col, fontWeight: "bold" }}>Result: {project.result}</span>
       </div>
 
-      {/* Video / placeholder */}
+      {/* Video / placeholder — always at top */}
       <div style={{
         width: "100%", aspectRatio: "16/9", borderRadius: "10px", overflow: "hidden",
         border: `1px solid ${hasVideo ? col + "33" : "#e2e8f0"}`,
-        marginBottom: "40px", backgroundColor: "#f1f5f9",
+        marginBottom: "32px", backgroundColor: "#f1f5f9",
         display: "flex", alignItems: "center", justifyContent: "center",
         position: "relative",
       }}>
@@ -384,11 +829,37 @@ function ProjectBlog({ project, onBack }) {
       </div>
 
       {/* Blog content */}
-      <div style={{ maxWidth: "680px" }}>
+      <div style={{ maxWidth: "720px" }}>
         <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: col, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "16px" }}>// PROJECT OVERVIEW</div>
-        <p style={{ fontSize: "15px", color: "#475569", lineHeight: 1.9, marginBottom: "32px", fontFamily: "'DM Sans', sans-serif" }}>
-          {project.blogContent}
-        </p>
+
+        {/* Blog paragraphs */}
+        {blogParagraphs.map((para, i) => {
+          const colonIdx = para.indexOf(":");
+          const hasBold = colonIdx > -1 && colonIdx < 25;
+          return (
+            <div key={i} style={{ marginBottom: "20px" }}>
+              {hasBold ? (
+                <p style={{ fontSize: "15px", color: "#475569", lineHeight: 1.9, fontFamily: "'DM Sans', sans-serif", margin: 0 }}>
+                  <strong style={{ color: col, fontFamily: "'Space Mono', monospace", fontSize: "11px", letterSpacing: "0.04em" }}>
+                    {para.substring(0, colonIdx + 1)}
+                  </strong>
+                  {para.substring(colonIdx + 1)}
+                </p>
+              ) : (
+                <p style={{ fontSize: "15px", color: "#475569", lineHeight: 1.9, fontFamily: "'DM Sans', sans-serif", margin: 0 }}>
+                  {para}
+                </p>
+              )}
+            </div>
+          );
+        })}
+
+        {/* Screenshots gallery */}
+        {hasScreenshots && (
+          <div style={{ marginTop: "32px", marginBottom: "12px" }}>
+            <ScreenshotGallery screenshots={project.screenshots} col={col} />
+          </div>
+        )}
 
         {/* Tech stack */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "32px" }}>
@@ -430,9 +901,27 @@ function ProjectBlog({ project, onBack }) {
   );
 }
 
+function CategoryBadge({ cat, small }) {
+  const col = CAT_COLOR[cat] || "#2563eb";
+  return (
+    <span style={{
+      padding: small ? "2px 7px" : "3px 9px",
+      borderRadius: "3px",
+      fontSize: small ? "7px" : "8px",
+      fontFamily: "'Space Mono', monospace",
+      letterSpacing: "0.1em",
+      textTransform: "uppercase",
+      border: `1px solid ${col}44`,
+      backgroundColor: `${col}0f`,
+      color: col,
+      whiteSpace: "nowrap",
+    }}>{cat}</span>
+  );
+}
+
 function ProjectCard({ project, index, onOpen }) {
   const [hov, setHov] = useState(false);
-  const col = CAT_COLOR[project.category] || "#2563eb";
+  const col = CAT_COLOR[project.categories[0]] || "#2563eb";
   return (
     <div
       onClick={() => onOpen(project)}
@@ -447,12 +936,11 @@ function ProjectCard({ project, index, onOpen }) {
         cursor: "pointer",
       }}
     >
+      {/* Top row: category badges + metric */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
-        <span style={{
-          padding: "3px 9px", borderRadius: "3px", fontSize: "8px",
-          fontFamily: "'Space Mono', monospace", letterSpacing: "0.1em", textTransform: "uppercase",
-          border: `1px solid ${col}44`, backgroundColor: `${col}0f`, color: col,
-        }}>{project.category}</span>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", flex: 1 }}>
+          {project.categories.map(cat => <CategoryBadge key={cat} cat={cat} small />)}
+        </div>
         <div style={{
           minWidth: "42px", height: "42px", border: `1px solid ${col}33`, borderRadius: "5px",
           display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: `${col}0a`, flexShrink: 0,
@@ -511,6 +999,21 @@ function Portfolio() {
   const [scrambled, setScrambled] = useState("AI AUTOMATION");
   const [openProject, setOpenProject] = useState(null);
 
+  // Scroll to top & handle ESC key for project navigation
+  useEffect(() => {
+    if (openProject) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [openProject]);
+
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "Escape" && openProject) setOpenProject(null);
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [openProject]);
+
   useEffect(() => {
     if (section !== "About") return;
     const target = "AI AUTOMATION";
@@ -529,7 +1032,7 @@ function Portfolio() {
   }, [section]);
 
   const filtered = PROJECTS.filter(p => {
-    return (catF.length === 0 || catF.includes(p.category))
+    return (catF.length === 0 || catF.some(c => p.categories.includes(c)))
       && (indF.length === 0 || indF.includes(p.industry))
       && (builtF.length === 0 || builtF.some(v => p.builtOn.includes(v)))
       && (intF.length === 0 || intF.some(v => p.integratedWith.includes(v)));
@@ -539,8 +1042,9 @@ function Portfolio() {
   const clearAll = () => { setCatF([]); setIndF([]); setBuiltF([]); setIntF([]); };
 
   const SKILLS = [
-    { group: "Automation Platforms", items: ["n8n", "Make (Integromat)", "Zapier", "GoHighLevel"] },
+    { group: "Automation Platforms", items: ["n8n", "Make (Integromat)", "Zapier", "GoHighLevel", "Power Automate"] },
     { group: "AI & Voice", items: ["OpenAI GPT-4o", "LangChain", "Vapi", "Voiceflow", "ElevenLabs", "And Many More"] },
+    { group: "Programming", items: ["Python", "JavaScript", "HTML/CSS", "REST APIs"] },
     { group: "CRM & Business", items: ["HubSpot", "Airtable", "Notion", "Google Workspace", "And Many More"] },
     { group: "Commerce & Messaging", items: ["Shopify", "WooCommerce", "WhatsApp API", "Twilio", "Slack", "And Many More"] },
   ];
@@ -565,36 +1069,34 @@ function Portfolio() {
         <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, backgroundImage: `linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px)`, backgroundSize: "44px 44px" }} />
 
         {/* Scanline */}
-        <div style={{ position: "fixed", left: 0, right: 0, height: "120px", background: "linear-gradient(transparent, rgba(37,99,235,0.03), transparent)", pointerEvents: "none", zIndex: 0, animation: "scanline 10s linear infinite" }} />
+        <div style={{ position: "fixed", left: 0, right: 0, height: "120px", background: "linear-gradient(transparent, rgba(37,99,235,0.03), transparent)", pointerEvents: "none", zIndex: 0, animation: "scanline 8s linear infinite" }} />
 
-        {/* Glow blob */}
-        <div style={{ position: "fixed", top: "20%", right: "-10%", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 65%)", pointerEvents: "none", zIndex: 0 }} />
-
-        {/* NAV */}
-        <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 40px", borderBottom: "1px solid #e2e8f0", backdropFilter: "blur(20px)", backgroundColor: "rgba(248,250,252,0.92)" }}>
-          <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "20px", letterSpacing: "0.14em", color: "#0f172a" }}>
-            MUHAMMAD<span style={{ color: "#2563eb" }}> WAQAS</span>
+        {/* Header */}
+        <header style={{ position: "sticky", top: 0, zIndex: 100, backgroundColor: "rgba(248,250,252,0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid #e2e8f0", padding: "0 40px" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "56px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <div style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: "#2563eb", animation: "glowPulse 2s ease-in-out infinite" }} />
+              <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "11px", fontWeight: "bold", letterSpacing: "0.1em", color: "#0f172a" }}>WAQAS.AI</span>
+            </div>
+            <nav style={{ display: "flex", gap: "4px" }}>
+              {["About", "Projects", "Contact"].map(s => (
+                <button key={s} onClick={() => { setSection(s); setOpenProject(null); }} style={{
+                  background: "none", border: section === s ? "1px solid #2563eb22" : "1px solid transparent",
+                  borderRadius: "4px", cursor: "pointer", padding: "6px 14px",
+                  fontFamily: "'Space Mono', monospace", fontSize: "9px", letterSpacing: "0.1em",
+                  color: section === s ? "#2563eb" : "#94a3b8", backgroundColor: section === s ? "#eff6ff" : "transparent",
+                  transition: "all 0.2s",
+                }}>{s.toUpperCase()}</button>
+              ))}
+            </nav>
           </div>
-          <div style={{ display: "flex", gap: "2px" }}>
-            {["About", "Projects", "Contact"].map(s => (
-              <button key={s} onClick={() => { setSection(s); setOpenProject(null); }} style={{
-                background: "none", border: "none", cursor: "pointer", padding: "7px 16px", borderRadius: "4px",
-                fontFamily: "'Space Mono', monospace", fontSize: "10px", letterSpacing: "0.1em",
-                color: section === s ? "#2563eb" : "#94a3b8",
-                backgroundColor: section === s ? "#2563eb12" : "transparent",
-                transition: "all 0.2s",
-              }}>{s.toUpperCase()}</button>
-            ))}
-          </div>
-        </nav>
+        </header>
 
-        <div style={{ paddingTop: "53px" }}>
-          <Ticker />
-        </div>
+        <Ticker />
 
-        <main style={{ maxWidth: "980px", margin: "0 auto", padding: "56px 24px 100px", position: "relative", zIndex: 1 }}>
+        <main style={{ padding: "52px 40px 80px", maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
 
-          {/* ══ ABOUT ═══════════════════════════════════════════ */}
+          {/* ══ ABOUT ════════════════════════════════════════════ */}
           {section === "About" && (
             <div style={{ animation: "fadeUp 0.5s ease both" }}>
 
@@ -631,7 +1133,7 @@ function Portfolio() {
 
               {/* Stats */}
               <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", backgroundColor: "#e2e8f0", border: "1px solid #e2e8f0", borderRadius: "7px", overflow: "hidden", marginBottom: "60px" }}>
-                {[["30+","Projects Delivered"],["500+","Hours Automated"],["30+","Tools Integrated"],["8+","Industries Served"]].map(([v, l]) => (
+                {[["19+","Projects Delivered"],["500+","Hours Automated"],["30+","Tools Integrated"],["10+","Industries Served"]].map(([v, l]) => (
                   <div key={l} style={{ padding: "22px 16px", backgroundColor: "#ffffff", textAlign: "center" }}>
                     <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "38px", color: "#2563eb", letterSpacing: "0.04em" }}>{v}</div>
                     <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", marginTop: "4px" }}>{l}</div>
@@ -683,7 +1185,13 @@ function Portfolio() {
                       <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "12px" }}>{sk.group}</div>
                       <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
                         {sk.items.map(item => (
-                          <span key={item} style={{ padding: "4px 10px", fontSize: "10px", fontFamily: "'Space Mono', monospace", border: "1px solid #e2e8f0", color: "#475569", borderRadius: "3px" }}>{item}</span>
+                          <span key={item} style={{
+                            padding: "4px 10px", fontSize: "10px", fontFamily: "'Space Mono', monospace",
+                            border: item === "Python" ? "1px solid #3b82f633" : "1px solid #e2e8f0",
+                            color: item === "Python" ? "#2563eb" : "#475569",
+                            backgroundColor: item === "Python" ? "#eff6ff" : "transparent",
+                            borderRadius: "3px",
+                          }}>{item}</span>
                         ))}
                       </div>
                     </div>
@@ -707,25 +1215,31 @@ function Portfolio() {
               </div>
 
               {/* Filter bar */}
-              <div style={{ animation: "fadeUp 0.4s ease 0.08s both", backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "18px 20px", marginBottom: "28px", position: "relative", zIndex: 50 }}>
-                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: "14px" }}>Filter Projects</div>
+              <div style={{ animation: "fadeUp 0.4s ease 0.08s both", backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", padding: "20px", marginBottom: "28px", position: "relative", zIndex: 50 }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "14px" }}>
+                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.14em" }}>Filter Projects</div>
+                  {hasFilter > 0 && (
+                    <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "9px", color: "#2563eb" }}>
+                      {filtered.length} project{filtered.length !== 1 ? "s" : ""} match
+                    </div>
+                  )}
+                </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", alignItems: "center" }}>
                   <Dropdown label="CATEGORY" options={CATEGORIES} selected={catF} onChange={setCatF} />
                   <Dropdown label="INDUSTRY" options={INDUSTRIES} selected={indF} onChange={setIndF} />
                   <Dropdown label="BUILT ON" options={BUILT_ONS} selected={builtF} onChange={setBuiltF} />
                   <Dropdown label="INTEGRATED WITH" options={INTEGRATIONS} selected={intF} onChange={setIntF} />
                   {hasFilter > 0 && (
-                    <button onClick={clearAll} style={{ background: "none", border: "1px solid #e2e8f0", borderRadius: "5px", cursor: "pointer", padding: "9px 13px", fontFamily: "'Space Mono', monospace", fontSize: "9px", color: "#94a3b8", letterSpacing: "0.06em", transition: "color 0.2s" }}
-                      onMouseEnter={e => e.currentTarget.style.color = "#2563eb"}
-                      onMouseLeave={e => e.currentTarget.style.color = "#94a3b8"}
+                    <button onClick={clearAll} style={{
+                      background: "none", border: "1px solid #fca5a5", borderRadius: "5px", cursor: "pointer",
+                      padding: "9px 13px", fontFamily: "'Space Mono', monospace", fontSize: "9px",
+                      color: "#ef4444", letterSpacing: "0.06em", transition: "all 0.2s",
+                    }}
+                      onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#fef2f2"; e.currentTarget.style.borderColor = "#ef4444"; }}
+                      onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.borderColor = "#fca5a5"; }}
                     >CLEAR ALL ×</button>
                   )}
                 </div>
-                {hasFilter > 0 && (
-                  <div style={{ marginTop: "12px", paddingTop: "12px", borderTop: "1px solid #f1f5f9", fontFamily: "'Space Mono', monospace", fontSize: "9px", color: "#2563eb" }}>
-                    {filtered.length} project{filtered.length !== 1 ? "s" : ""} match your filters
-                  </div>
-                )}
               </div>
 
               {filtered.length === 0 ? (
