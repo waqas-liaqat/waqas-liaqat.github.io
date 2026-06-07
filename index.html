@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Waqas — AI Automation Engineer</title>
-  <meta name="description" content="AI Automation Engineer — building intelligent, always-on systems for real businesses." />
+  <title>Waqas — AI Systems Engineer</title>
+  <meta name="description" content="AI Systems Engineer — building AI automation, agentic AI systems, and AI-powered applications for real businesses." />
+  <meta property="og:title" content="Waqas — AI Systems Engineer" />
+  <meta property="og:description" content="I build AI automation systems, agentic AI workflows, and AI-powered applications. 30+ systems built. 500+ hours automated." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://waqas-liaqat.github.io" />
+  <meta property="og:image" content="https://waqas-liaqat.github.io/og-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Waqas — AI Systems Engineer" />
+  <meta name="twitter:description" content="AI automation systems, agentic AI, and AI-powered applications. 30+ systems built." />
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -475,14 +483,13 @@ const CAT_COLOR = {
 };
 
 const TICKER_ITEMS = [
-  "CONNECTING AI TO REAL BUSINESSES",
-  "GHL · N8N · MAKE · VAPI · OPENAI · ZAPIER · POWER AUTOMATE",
-  "500+ HOURS AUTOMATED FOR CLIENTS",
-  "AI VOICE AGENTS RUNNING 24/7",
-  "19+ REAL PROJECTS DELIVERED",
-  "SHOPIFY · HUBSPOT · TWILIO · SLACK · WHATSAPP · SALESFORCE",
-  "CRM · RPA · CONTENT · E-COMMERCE · VOICE AUTOMATIONS",
-  "MODERNIZING BUSINESS OPERATIONS WITH AI",
+  "RUNNING 24/7",
+  "30+ SYSTEMS BUILT",
+  "500+ HOURS AUTOMATED",
+  "Python · n8n · Vapi · Claude · GoHighLevel · Make · WhatsApp · HubSpot · Salesforce · Twilio · OpenAI",
+  "AI AUTOMATION · AGENTIC AI · AI APPLICATIONS · RPA · CRM",
+  "27+ PLATFORMS INTEGRATED",
+  "HEALTHCARE · REAL ESTATE · E-COMMERCE · AGENCIES · SALES",
 ];
 
 /* ─── COMPONENTS ───────────────────────────────────────────────── */
@@ -996,7 +1003,7 @@ function Portfolio() {
   const [indF, setIndF] = useState([]);
   const [builtF, setBuiltF] = useState([]);
   const [intF, setIntF] = useState([]);
-  const [scrambled, setScrambled] = useState("AI AUTOMATION");
+  const [scrambled, setScrambled] = useState("AI SYSTEMS");
   const [openProject, setOpenProject] = useState(null);
 
   // Scroll to top & handle ESC key for project navigation
@@ -1016,7 +1023,7 @@ function Portfolio() {
 
   useEffect(() => {
     if (section !== "About") return;
-    const target = "AI AUTOMATION";
+    const target = "AI SYSTEMS";
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$!";
     let step = 0;
     const iv = setInterval(() => {
@@ -1042,11 +1049,26 @@ function Portfolio() {
   const clearAll = () => { setCatF([]); setIndF([]); setBuiltF([]); setIntF([]); };
 
   const SKILLS = [
-    { group: "Automation Platforms", items: ["n8n", "Make (Integromat)", "Zapier", "GoHighLevel", "Power Automate"] },
-    { group: "AI & Voice", items: ["OpenAI GPT-4o", "LangChain", "Vapi", "Voiceflow", "ElevenLabs", "And Many More"] },
-    { group: "Programming", items: ["Python", "JavaScript", "HTML/CSS", "REST APIs"] },
-    { group: "CRM & Business", items: ["HubSpot", "Airtable", "Notion", "Google Workspace", "And Many More"] },
-    { group: "Commerce & Messaging", items: ["Shopify", "WooCommerce", "WhatsApp API", "Twilio", "Slack", "And Many More"] },
+    {
+      group: "AI Automation",
+      items: ["n8n", "Make (Integromat)", "GoHighLevel", "Vapi", "Voiceflow", "Zapier", "Power Automate", "Twilio"]
+    },
+    {
+      group: "Agentic AI",
+      items: ["Claude API", "OpenAI GPT-4o", "n8n Agents", "LangChain", "Generative AI", "Multi-Agent Workflows"]
+    },
+    {
+      group: "RPA & Data Science",
+      items: ["Octoparse", "RPA Automation", "Python", "SQL", "Machine Learning", "Data Analysis"]
+    },
+    {
+      group: "CRM & Platforms",
+      items: ["HubSpot", "Salesforce", "ActiveCampaign", "Airtable", "Google Workspace", "Notion"]
+    },
+    {
+      group: "Development & Integrations",
+      items: ["JavaScript", "HTML/CSS", "REST APIs", "WhatsApp API", "Shopify", "WooCommerce", "Slack"]
+    },
   ];
 
   return (
@@ -1079,7 +1101,7 @@ function Portfolio() {
               <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "11px", fontWeight: "bold", letterSpacing: "0.1em", color: "#0f172a" }}>WAQAS.AI</span>
             </div>
             <nav style={{ display: "flex", gap: "4px" }}>
-              {["About", "Projects", "Contact"].map(s => (
+              {["About", "Services", "Projects", "Contact"].map(s => (
                 <button key={s} onClick={() => { setSection(s); setOpenProject(null); }} style={{
                   background: "none", border: section === s ? "1px solid #2563eb22" : "1px solid transparent",
                   borderRadius: "4px", cursor: "pointer", padding: "6px 14px",
@@ -1103,7 +1125,7 @@ function Portfolio() {
               {/* Cursor + label */}
               <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "10px", color: "#94a3b8", letterSpacing: "0.18em", marginBottom: "18px", display: "flex", alignItems: "center", gap: "8px" }}>
                 <span style={{ color: "#2563eb", animation: "blink 1s step-end infinite" }}>█</span>
-                AI_AUTOMATION_ENGINEER.exe — RUNNING
+                AI_SYSTEMS_ENGINEER.exe — RUNNING
               </div>
 
               {/* Hero headline */}
@@ -1117,7 +1139,7 @@ function Portfolio() {
               </div>
 
               <p style={{ fontSize: "15px", color: "#64748b", maxWidth: "520px", lineHeight: 1.85, marginBottom: "32px", fontFamily: "'DM Sans', sans-serif" }}>
-                I wire AI into real businesses, replacing manual workflows with systems that run 24/7, scale without hiring, and modernize how companies operate from the ground up.
+                I build AI automation systems, agentic AI workflows, and AI-powered applications — for businesses that are done running on manual effort.
               </p>
 
               <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "64px" }}>
@@ -1133,7 +1155,7 @@ function Portfolio() {
 
               {/* Stats */}
               <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", backgroundColor: "#e2e8f0", border: "1px solid #e2e8f0", borderRadius: "7px", overflow: "hidden", marginBottom: "60px" }}>
-                {[["30+","Projects Delivered"],["500+","Hours Automated"],["30+","Tools Integrated"],["10+","Industries Served"]].map(([v, l]) => (
+                {[["30+","Systems Built"],["500+","Hours Automated"],["27+","Platforms Integrated"],["5+","Industries Served"]].map(([v, l]) => (
                   <div key={l} style={{ padding: "22px 16px", backgroundColor: "#ffffff", textAlign: "center" }}>
                     <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "38px", color: "#2563eb", letterSpacing: "0.04em" }}>{v}</div>
                     <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", marginTop: "4px" }}>{l}</div>
@@ -1146,28 +1168,16 @@ function Portfolio() {
                 <div>
                   <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#2563eb", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "22px" }}>// ABOUT ME</div>
                   <p style={{ fontSize: "14.5px", color: "#64748b", lineHeight: 1.88, marginBottom: "14px" }}>
-                    I am <strong style={{ color: "#0f172a" }}>Muhammad Waqas</strong>, an AI Automation Engineer who builds systems that replace manual business operations with intelligent, always-on workflows.
+                    I am <strong style={{ color: "#0f172a" }}>Muhammad Waqas</strong>, an AI Systems Engineer with a foundation in data science and machine learning — I understand what the AI is doing underneath, not just how to connect the tools.
                   </p>
                   <p style={{ fontSize: "14.5px", color: "#64748b", lineHeight: 1.88, marginBottom: "14px" }}>
-                    I work across <strong style={{ color: "#2563eb" }}>n8n, Make, Vapi, OpenAI, Voiceflow, Zapier, Claude, Twilio</strong> and 20+ platforms. And I work with <strong style={{ color: "#2563eb" }}>GoHighLevel</strong> as part of that stack, building full CRM pipelines, white-label agency environments, sub-account provisioning, AI-driven follow-up sequences, and complete sales funnels.
+                    My work spans three areas: <strong style={{ color: "#2563eb" }}>AI Automation Systems</strong> that eliminate manual workflows across sales, CRM, outreach, and operations — <strong style={{ color: "#2563eb" }}> Agentic AI Systems</strong> that reason, decide, and execute complex tasks independently — and <strong style={{ color: "#2563eb" }}> AI-Powered Applications</strong> built custom for businesses when off-the-shelf software doesn't fit.
                   </p>
                   <p style={{ fontSize: "14.5px", color: "#64748b", lineHeight: 1.88, marginBottom: "24px" }}>
-                    Together, these tools form unified, production-grade systems, so businesses run like machines, not to-do lists.
+                    I also work with RPA tools to bridge legacy systems into modern AI pipelines. Across 30+ production systems and 5+ industries, the result is always the same — a business that runs on infrastructure, not on people doing things manually.
                   </p>
 
-                  {/* Video placeholder */}
-                  <div style={{ padding: "20px 22px", border: "1px dashed #e2e8f0", borderRadius: "6px", display: "flex", alignItems: "center", gap: "16px", cursor: "pointer", backgroundColor: "#f8fafc", transition: "border-color 0.2s" }}
-                    onMouseEnter={e => e.currentTarget.style.borderColor = "#2563eb33"}
-                    onMouseLeave={e => e.currentTarget.style.borderColor = "#e2e8f0"}
-                  >
-                    <div style={{ width: "38px", height: "38px", border: "1px solid #e2e8f0", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <span style={{ color: "#94a3b8", fontSize: "12px" }}>▶</span>
-                    </div>
-                    <div>
-                      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "9px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.12em" }}>VIDEO INTRO — COMING SOON</div>
-                      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#cbd5e1", marginTop: "3px" }}>How I approach automation projects</div>
-                    </div>
-                  </div>
+
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
@@ -1197,6 +1207,86 @@ function Portfolio() {
                     </div>
                   ))}
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* ══ SERVICES ══════════════════════════════════════════════════════════ */}
+          {section === "Services" && (
+            <div style={{ animation: "fadeUp 0.5s ease both" }}>
+              <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#2563eb", letterSpacing: "0.18em", marginBottom: "16px" }}>// SERVICES</div>
+              <h2 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "clamp(44px, 8vw, 76px)", letterSpacing: "0.03em", lineHeight: 0.92, marginBottom: "12px", color: "#0f172a" }}>
+                WHAT I<br /><span style={{ color: "#2563eb" }}>BUILD FOR YOU.</span>
+              </h2>
+              <p style={{ color: "#94a3b8", fontFamily: "'Space Mono', monospace", fontSize: "10px", letterSpacing: "0.06em", marginBottom: "48px" }}>
+                Three service areas. One engineer. Full delivery.
+              </p>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+
+                {/* Service 1 */}
+                <div style={{ padding: "32px", backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "10px" }}>
+                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#2563eb", letterSpacing: "0.18em", marginBottom: "12px" }}>01 — AI AUTOMATION SYSTEMS</div>
+                  <h3 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "32px", letterSpacing: "0.04em", color: "#0f172a", marginBottom: "14px" }}>END-TO-END AUTOMATED WORKFLOWS</h3>
+                  <p style={{ fontSize: "14px", color: "#64748b", lineHeight: 1.85, marginBottom: "20px", fontFamily: "'DM Sans', sans-serif", maxWidth: "680px" }}>
+                    Your sales pipeline, CRM, outreach, communications, e-commerce operations, and client workflows — rebuilt to run without manual work. Every tool connected. Every step automated. No one on your team touching it.
+                  </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "20px" }}>
+                    {["AI Voice Agents", "CRM Pipelines", "WhatsApp Bots", "Cold Outreach", "Client Onboarding", "E-commerce Flows", "White-label GHL"].map(item => (
+                      <span key={item} style={{ padding: "5px 12px", fontSize: "9px", fontFamily: "'Space Mono', monospace", border: "1px solid #2563eb33", backgroundColor: "#eff6ff", color: "#2563eb", borderRadius: "3px" }}>{item}</span>
+                    ))}
+                  </div>
+                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "9px", color: "#94a3b8", letterSpacing: "0.08em" }}>
+                    PLATFORMS: n8n · Make · GoHighLevel · Vapi · Voiceflow · WhatsApp API · Zapier
+                  </div>
+                </div>
+
+                {/* Service 2 */}
+                <div style={{ padding: "32px", backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "10px" }}>
+                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#7c3aed", letterSpacing: "0.18em", marginBottom: "12px" }}>02 — AGENTIC AI SYSTEMS</div>
+                  <h3 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "32px", letterSpacing: "0.04em", color: "#0f172a", marginBottom: "14px" }}>AI THAT REASONS, DECIDES, AND ACTS</h3>
+                  <p style={{ fontSize: "14px", color: "#64748b", lineHeight: 1.85, marginBottom: "20px", fontFamily: "'DM Sans', sans-serif", maxWidth: "680px" }}>
+                    For workflows too complex for simple automation. AI agents that analyze situations, make multi-step decisions, and execute tasks independently — without predefined rules for every scenario.
+                  </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "20px" }}>
+                    {["Multi-Step AI Agents", "Reasoning Workflows", "Autonomous Research", "Decision Logic", "Agent Orchestration"].map(item => (
+                      <span key={item} style={{ padding: "5px 12px", fontSize: "9px", fontFamily: "'Space Mono', monospace", border: "1px solid #7c3aed33", backgroundColor: "#f5f3ff", color: "#7c3aed", borderRadius: "3px" }}>{item}</span>
+                    ))}
+                  </div>
+                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "9px", color: "#94a3b8", letterSpacing: "0.08em" }}>
+                    PLATFORMS: Claude API · OpenAI · n8n Agents · LangChain
+                  </div>
+                </div>
+
+                {/* Service 3 */}
+                <div style={{ padding: "32px", backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "10px" }}>
+                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#059669", letterSpacing: "0.18em", marginBottom: "12px" }}>03 — AI-POWERED APPLICATIONS</div>
+                  <h3 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "32px", letterSpacing: "0.04em", color: "#0f172a", marginBottom: "14px" }}>CUSTOM TOOLS BUILT WITH AI AT THE CORE</h3>
+                  <p style={{ fontSize: "14px", color: "#64748b", lineHeight: 1.85, marginBottom: "20px", fontFamily: "'DM Sans', sans-serif", maxWidth: "680px" }}>
+                    When no existing software fits your workflow and traditional development costs too much. Custom business applications built with AI embedded — faster to ship, built exactly to your requirements.
+                  </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "20px" }}>
+                    {["Custom AI Dashboards", "Internal Business Tools", "AI-Integrated Interfaces", "Rapid Prototyping"].map(item => (
+                      <span key={item} style={{ padding: "5px 12px", fontSize: "9px", fontFamily: "'Space Mono', monospace", border: "1px solid #05966933", backgroundColor: "#ecfdf5", color: "#059669", borderRadius: "3px" }}>{item}</span>
+                    ))}
+                  </div>
+                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "9px", color: "#94a3b8", letterSpacing: "0.08em" }}>
+                    APPROACH: AI-Assisted Development · Python · JavaScript · REST APIs
+                  </div>
+                </div>
+
+              </div>
+
+              {/* CTA */}
+              <div style={{ marginTop: "40px", padding: "28px", backgroundColor: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "16px" }}>
+                <div>
+                  <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: "24px", color: "#0f172a", marginBottom: "4px" }}>NOT SURE WHICH ONE YOU NEED?</div>
+                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "10px", color: "#64748b" }}>Book a free 30-min call. I'll tell you exactly what to build.</div>
+                </div>
+                <a href="https://calendly.com/waqasliaqat630/muhammad-waqas" target="_blank" rel="noopener noreferrer"
+                  style={{ padding: "12px 28px", backgroundColor: "#2563eb", color: "#fff", borderRadius: "5px", fontFamily: "'Space Mono', monospace", fontSize: "10px", letterSpacing: "0.1em", cursor: "pointer", textDecoration: "none", fontWeight: "bold" }}>
+                  BOOK A FREE CALL →
+                </a>
               </div>
             </div>
           )}
@@ -1300,8 +1390,8 @@ function Portfolio() {
         </main>
 
         <footer style={{ borderTop: "1px solid #e2e8f0", padding: "18px 40px", display: "flex", justifyContent: "space-between", position: "relative", zIndex: 1 }}>
-          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#cbd5e1", letterSpacing: "0.1em" }}>WAQAS © 2025</span>
-          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#cbd5e1", letterSpacing: "0.1em" }}>AI AUTOMATION ENGINEER</span>
+          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#cbd5e1", letterSpacing: "0.1em" }}>WAQAS © 2026</span>
+          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "8px", color: "#cbd5e1", letterSpacing: "0.1em" }}>AI SYSTEMS ENGINEER</span>
         </footer>
       </div>
     </>
