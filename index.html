@@ -860,11 +860,11 @@
         WAQAS.AI
       </a>
       <nav>
-        <button class="nav-btn" onclick="scrollTo('hero')">HOME</button>
-        <button class="nav-btn" onclick="scrollTo('about')">ABOUT</button>
-        <button class="nav-btn" onclick="scrollTo('services')">SERVICES</button>
-        <button class="nav-btn" onclick="scrollTo('projects')">PROJECTS</button>
-        <button class="nav-btn" onclick="scrollTo('contact')">CONTACT</button>
+        <button class="nav-btn" onclick="goTo('hero')">HOME</button>
+        <button class="nav-btn" onclick="goTo('about')">ABOUT</button>
+        <button class="nav-btn" onclick="goTo('services')">SERVICES</button>
+        <button class="nav-btn" onclick="goTo('projects')">PROJECTS</button>
+        <button class="nav-btn" onclick="goTo('contact')">CONTACT</button>
       </nav>
     </div>
   </div>
@@ -908,8 +908,8 @@
       for businesses that are done running on manual effort.
     </p>
     <div class="btn-row anim-fade-up-3">
-      <button class="btn-primary" onclick="scrollTo('projects')">VIEW PROJECTS →</button>
-      <button class="btn-secondary" onclick="scrollTo('contact')">WORK TOGETHER</button>
+      <button class="btn-primary" onclick="goTo('projects')">VIEW PROJECTS →</button>
+      <button class="btn-secondary" onclick="goTo('contact')">WORK TOGETHER</button>
     </div>
     <div class="stats-bar anim-fade-up-3">
       <div class="stat-item">
@@ -1665,7 +1665,7 @@ function scrambleText() {
 scrambleText();
 
 /* ─── SMOOTH SCROLL ──────────────────────────────────────────── */
-function scrollTo(id) {
+function goTo(id) {
   const el = document.getElementById(id);
   if (!el) return;
   const top = el.getBoundingClientRect().top + window.scrollY - 72;
