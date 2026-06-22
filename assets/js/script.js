@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             media: [
                 {type: 'image', url: 'assets/images/Insurance Meeting Manager/InsuranceMeetingManager.png'},
-                {type: 'image', url: 'assets/images/InsuranceMeetingManager/workflow.png'},
             ],
             liveDemo: '#',
             github: '#'
@@ -139,8 +138,8 @@ document.addEventListener('DOMContentLoaded', function() {
             technologies: ['Python', 'Scikit-learn', 'Pandas', 'NumPy', 'Matplotlib', 'Jupyter Notebook'],
             media: [
                 {type: 'image', url: 'assets/images/heartdiseaselogo.png'},
-                {type: 'image', url: 'assets/images/cardiopredict-model.jpg'},
-                {type: 'image', url: 'assets/images/cardiopredict-results.jpg'}
+                {type: 'image', url: 'assets/images/heartdiseaselogo.png'},
+                {type: 'image', url: 'assets/images/heartdiseaselogo.png'}
             ],
             liveDemo: '#',
             github: '#'
@@ -151,8 +150,8 @@ document.addEventListener('DOMContentLoaded', function() {
             technologies: ['Python', 'Pandas', 'Seaborn', 'Plotly', 'Jupyter Notebook', 'Data Visualization'],
             media: [
                 {type: 'image', url: 'assets/images/eda.png'},
-                {type: 'image', url: 'assets/images/playstore-dashboard.jpg'},
-                {type: 'image', url: 'assets/images/playstore-insights.jpg'}
+                {type: 'image', url: 'assets/images/eda.png'},
+                {type: 'image', url: 'assets/images/eda.png'}
             ],
             liveDemo: '#',
             github: '#'
@@ -163,8 +162,8 @@ document.addEventListener('DOMContentLoaded', function() {
             technologies: ['SQL', 'Power BI', 'Excel', 'Data Analysis', 'Business Intelligence'],
             media: [
                 {type: 'image', url: 'assets/images/musiclogo.webp'},
-                {type: 'image', url: 'assets/images/music-store-dashboard.jpg'},
-                {type: 'image', url: 'assets/images/music-sales-analysis.jpg'}
+                {type: 'image', url: 'assets/images/musiclogo.webp'},
+                {type: 'image', url: 'assets/images/musiclogo.webp'}
             ],
             liveDemo: '#',
             github: '#'
@@ -175,8 +174,8 @@ document.addEventListener('DOMContentLoaded', function() {
             technologies: ['Python', 'Pandas', 'NumPy', 'Data Cleaning', 'Data Preprocessing'],
             media: [
                 {type: 'image', url: 'assets/images/fifa21.webp'},
-                {type: 'image', url: 'assets/images/fifa-data-cleaning.jpg'},
-                {type: 'image', url: 'assets/images/fifa-player-analysis.jpg'}
+                {type: 'image', url: 'assets/images/fifa21.webp'},
+                {type: 'image', url: 'assets/images/fifa21.webp'}
             ],
             liveDemo: '#',
             github: '#'
@@ -187,8 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
             technologies: ['Power BI', 'SQL', 'Data Visualization', 'Dashboard Design', 'Business Analytics'],
             media: [
                 {type: 'image', url: 'assets/images/electrohublogo.webp'},
-                {type: 'image', url: 'assets/images/electrohub-dashboard.jpg'},
-                {type: 'image', url: 'assets/images/retail-analytics.jpg'}
+                {type: 'image', url: 'assets/images/electrohublogo.webp'},
+                {type: 'image', url: 'assets/images/electrohublogo.webp'}
             ],
             liveDemo: '#',
             github: '#'
