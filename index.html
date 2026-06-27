@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+?<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -582,6 +582,50 @@
       letter-spacing: 0.1em;
     }
 
+    /* ── PAGINATION ───────────────────────────────────────────── */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+    .pg-btn {
+      display: flex; align-items: center; justify-content: center;
+      height: 36px; min-width: 36px; padding: 0 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .pg-btn:hover:not(:disabled) {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: rgba(0,120,255,0.07);
+    }
+    .pg-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      font-weight: 700;
+    }
+    .pg-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    .pg-info {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      padding: 0 6px;
+    }
+
     /* ── MODAL ────────────────────────────────────────────────── */
     .modal-overlay {
       display: none;
@@ -669,7 +713,26 @@
       font-family: 'Space Mono', monospace; font-size: 11px;
     }
 
-    /* Screenshot gallery */
+    /* Inline images within blog content */
+    .modal-inline-img {
+      margin: 28px 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .modal-inline-img img {
+      width: 100%; display: block;
+      object-fit: contain; max-height: 520px;
+    }
+    .modal-inline-img figcaption {
+      padding: 10px 14px;
+      font-size: 11.5px; color: var(--muted);
+      border-top: 1px solid var(--border);
+      font-style: italic; line-height: 1.5;
+    }
+
+
     .gallery { margin: 32px 0; }
     .gallery-main {
       width: 100%; aspect-ratio: 16/9;
@@ -1139,6 +1202,7 @@
 
     <div class="project-grid" id="project-grid"></div>
     <div class="no-results" id="no-results" style="display:none;">NO MATCHES ADJUST YOUR FILTERS</div>
+    <div class="pagination" id="pagination"></div>
   </div>
 </section>
 
@@ -1202,6 +1266,8 @@
   </div>
 </section>
 
+<hr class="section-divider" />
+
 <!-- ── FOOTER ───────────────────────────────────────────────────── -->
 <footer>
   <div class="footer-left">WAQAS © 2026</div>
@@ -1222,418 +1288,434 @@
 const PROJECTS = [
   {
     id: 1,
-    title: "AI Voice Agent Customer Follow-Ups & Booking",
-    description: "Fully automated AI voice agent that handles outbound customer follow-up calls and inbound appointment booking using Vapi and n8n, no human intervention required at any stage.",
+    title: "AI Voice Agent for Automated Follow-Ups and Booking",
+    description: "Fully autonomous AI voice agent built on n8n and Vapi that handles outbound customer follow-up calls and appointment booking around the clock. The voice agent Sarah pulls customer data from the CRM and Google Sheets, makes calls, detects outcomes, and writes AI-generated summaries back automatically.",
     categories: ["AI Voice Agent", "Booking System"],
-    industry: "Agriculture",
-    builtOn: ["Vapi", "n8n"],
-    integratedWith: ["Google Sheets", "Twilio", "Google Calendar"],
-    result: "100% follow-ups automated",
+    industry: "Pest Control",
+    builtOn: ["n8n", "Vapi"],
+    integratedWith: ["Google Sheets", "OpenAI", "11labs"],
+    result: "100% of follow-up calls automated, zero manual dialing",
     metric: "100%",
     youtubeUrl: "",
-    screenshots: [
-      "Ai voice agents/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/workflow 1.png",
-      "Ai voice agents/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/vapi.png",
-      "Ai voice agents/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/google sheets.png",
-      "Ai voice agents/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/make a call.png",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: A Pest Control Company was losing potential customers simply because no one was available to follow up calls after business hours or during busy periods. Leads would go cold, appointments would be missed, and revenue would walk out the door, all because of a human bandwidth problem.",
-      "The Solution: I built a fully autonomous AI voice agent using Vapi and n8n that handles both outbound follow-up calls and inbound appointment booking. The agent runs 24/7 without any human involvement. It pulls lead data directly from Google Sheets, places calls via Twilio, conducts natural conversations in real-time, qualifies the prospect, and books confirmed appointments into Google Calendar.",
-      "How It Works: When a new lead appears in Google Sheets, n8n triggers the Vapi voice agent to place an outbound call. The AI handles the conversation, answering questions, overcoming objections, and guiding the prospect toward booking. Once confirmed, the appointment is instantly synced to Google Calendar and the lead status is updated in Sheets. Inbound calls are handled identically with zero wait time.",
-      "The Result: 100% of follow-ups are now automated. Response time dropped from hours to seconds. The client reclaimed their team's time while simultaneously increasing lead conversion rates, a system that never sleeps, never forgets, and never drops a lead.",
+      "The Problem: A pest control company was relying on staff to manually call customers due for service. During busy periods, calls were missed, leads went cold, and bookings were dropped simply because there was not enough time in the day to reach everyone on the list.",
+      "The Solution: I built a two-workflow n8n automation powered by Vapi and OpenAI. The first workflow runs on a schedule, logs into the Safe Pest Control CRM, fetches all customers due for service, and adds them as rows to a Google Sheet. The second workflow fires the moment a new row appears, immediately triggering an outbound call through Vapi using a voice agent named Sarah.",
+      { type: "image", src: "Projects/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/workflow 1.png", caption: "Workflow 1: Schedule trigger fetches customers from CRM and populates Google Sheets, triggering Workflow 2" },
+      "How Sarah Works: Sarah is powered by OpenAI GPT-4o with Deepgram for speech recognition and 11labs for natural text-to-speech. She opens every call with the customer's name and references their service history. She handles the conversation naturally, confirms service details, and books appointments. She never rushes and responds the way a real person would.",
+      { type: "image", src: "Projects/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/vapi.png", caption: "Vapi dashboard showing Sarah's agent configuration with GPT-4o cluster and 11labs voice stack" },
+      "Call Outcome Tracking: After every call, n8n detects the outcome. Whether the call was answered, went to voicemail, or was not connected, an AI agent writes a human-readable summary back to the Google Sheet alongside the updated status. The team sees exactly what happened on every call without listening to a single recording.",
+      { type: "image", src: "Projects/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/google sheets.png", caption: "Google Sheets tracking customer data, call status, and AI-generated call summaries" },
+      { type: "image", src: "Projects/n8n AI Voice Agent for Automated Customer Follow-Ups & Booking/make a call.png", caption: "Workflow 2: Row trigger fires the Vapi call and writes the outcome back to the sheet" },
+      "The Result: The client went from missing follow-up calls to having a system that contacts every customer automatically on schedule. Response time dropped from hours to seconds. Appointments get booked while the team focuses on service delivery rather than phone calls.",
     ],
   },
   {
     id: 2,
-    title: "Dentist Lead Conversion & Booking System",
-    description: "End-to-end automation for a dental clinic, captures leads from ActiveCampaign forms, qualifies via AI, books appointments, and triggers 11-step follow-up sequences automatically.",
+    title: "Dentist Lead Conversion and Booking System",
+    description: "End-to-end lead automation for a dental clinic built on ActiveCampaign, Make.com, and Atlas AI. The system captures form submissions, runs a 10-day AI-powered follow-up sequence using voice calls and WhatsApp, and automatically books discovery calls via Cal.com without any manual involvement.",
     categories: ["AI Automation", "Lead Generation", "Booking System"],
     industry: "Healthcare",
-    builtOn: ["n8n", "ActiveCampaign", "OpenAI"],
-    integratedWith: ["ActiveCampaign", "Google Calendar", "Gmail"],
-    result: "Full lead-to-appointment pipeline automated",
+    builtOn: ["ActiveCampaign", "Make.com", "Atlas AI"],
+    integratedWith: ["Cal.com", "WhatsApp Business", "Gmail"],
+    result: "Full lead-to-appointment pipeline running on autopilot",
     metric: "AUTO",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/1.jpg",
-      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/2.png",
-      "Ai Automation/Ai lead Conversation System/Dentist Lead Conversion & Booking System/3.png",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: A dental clinic was relying on manual staff to follow up with every web inquiry. Leads filled out forms, but responses were delayed, follow-ups were inconsistent, and potential patients were booking with competitors. The clinic needed a system that could respond immediately, qualify patients, and confirm bookings without any staff involvement.",
-      "The Solution: I built a comprehensive lead conversion and booking automation using n8n and ActiveCampaign. The system captures every form submission instantly, triggers an AI-powered response sequence, qualifies the patient through a multi-step conversation, and books them into the clinic calendar, all without a single manual touchpoint.",
-      "How It Works: When a lead submits the ActiveCampaign form (collecting name, email, and phone), n8n picks up the trigger instantly. OpenAI handles the qualification conversation, asking about the patient's dental needs, insurance, preferred times, and urgency. Based on the responses, the system either books an appointment directly into Google Calendar or escalates to staff. An 11-step email and SMS follow-up sequence runs automatically based on patient behaviour.",
-      "The Result: The clinic now converts leads within minutes of form submission. The full pipeline, from initial inquiry to confirmed appointment, runs on autopilot. Staff focus on patient care while the automation handles all the administrative communication.",
+      "The Problem: A dental clinic was receiving leads through an online intake form, but follow-up was inconsistent. Staff would sometimes respond hours later, sometimes not at all. Non-bookers were simply left in the CRM with no structured re-engagement. The clinic was losing bookings it had already earned through its marketing spend.",
+      "The Solution: I built a complete lead automation system using ActiveCampaign as the CRM, Make.com as the middleware, Atlas AI for outbound voice calls, and Cal.com for appointment scheduling. The moment a lead fills out the intake form, the system takes over and handles everything until a discovery call is booked or the 10-day nurture sequence is complete.",
+      { type: "image", src: "Projects/Dentist Lead Conversion & Booking System/1.jpg", caption: "ActiveCampaign intake form capturing name, email, and phone number for dentist leads" },
+      "Automation A - Non-Booker Sequence: For leads who do not book immediately, Automation A launches a 10-day nurture sequence. Every two days, Make.com triggers an Atlas AI outbound voice call and a WhatsApp message simultaneously. The Atlas AI agent introduces itself as a virtual assistant for the clinic and tries to guide the lead toward booking. This repeats across six rounds over ten days.",
+      { type: "image", src: "Projects/Dentist Lead Conversion & Booking System/2.png", caption: "ActiveCampaign Automation A showing the 10-day non-booker follow-up sequence with branching logic" },
+      { type: "image", src: "Projects/Dentist Lead Conversion & Booking System/3.png", caption: "Make.com scenario triggering Atlas AI calls and WhatsApp messages in sequence" },
+      "Automation B - Booker Welcome Sequence: As soon as a lead books via Cal.com, ActiveCampaign detects the tag change and exits the non-booker sequence immediately. Automation B then fires, sending a welcome Atlas AI voice call and a WhatsApp confirmation. Reminder messages go out automatically at 24 hours, 1 hour, and 15 minutes before the scheduled call.",
+      { type: "image", src: "Projects/Dentist Lead Conversion & Booking System/4.png", caption: "Automation B welcoming confirmed bookers with an AI call and timed WhatsApp reminders" },
+      { type: "image", src: "Projects/Dentist Lead Conversion & Booking System/5.png", caption: "WhatsApp message flow showing the reminder cadence before the discovery call" },
+      { type: "image", src: "Projects/Dentist Lead Conversion & Booking System/6.png", caption: "Atlas AI agent call configuration with dentist clinic script and dynamic variables" },
+      { type: "image", src: "Projects/Dentist Lead Conversion & Booking System/7.png", caption: "Make.com Discovery Call Booking workflow triggered by a Cal.com booking event" },
+      { type: "image", src: "Projects/Dentist Lead Conversion & Booking System/8.png", caption: "Cal.com calendar integration receiving bookings driven by the automated follow-up flow" },
+      { type: "image", src: "Projects/Dentist Lead Conversion & Booking System/9 (1).jpeg", caption: "ActiveCampaign contact record showing tags, booking status, and current automation state" },
+      { type: "image", src: "Projects/Dentist Lead Conversion & Booking System/10.jpeg", caption: "WhatsApp Business integration confirming appointment details to the lead" },
+      { type: "image", src: "Projects/Dentist Lead Conversion & Booking System/11.jpeg", caption: "Make.com scenario overview showing the full trigger-to-response automation chain" },
+      "The Result: The clinic now converts leads within the same day of form submission. Non-bookers receive a structured, professional sequence over ten days without any staff involvement. Staff focus entirely on patient care while the automation handles qualification and booking.",
     ],
   },
   {
     id: 3,
-    title: "N8N WhatsApp AI Sales Agent",
-    description: "Intelligent WhatsApp sales bot built on n8n, handles objections with AI, searches available slots, books appointments, and auto-updates Salesforce post-booking with full conversation logs.",
+    title: "WhatsApp AI Sales Agent for Real Estate Lead Qualification",
+    description: "Fully autonomous WhatsApp sales agent built on n8n and OpenAI that handles inbound messages, manages objections using a vector knowledge base, checks Calendly availability, books meetings, and updates Salesforce in real time. Supports human takeover mode for seamless agent handoff.",
     categories: ["WhatsApp Bot", "AI Automation", "CRM Automation"],
-    industry: "Sales",
+    industry: "Real Estate",
     builtOn: ["n8n", "OpenAI"],
-    integratedWith: ["WhatsApp API", "Salesforce", "PostgreSQL"],
-    result: "24/7 WhatsApp sales coverage",
+    integratedWith: ["WhatsApp Business API", "Salesforce", "Calendly", "PostgreSQL"],
+    result: "24/7 WhatsApp sales coverage with zero manual intervention",
     metric: "24/7",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/N8N WhatsApp  Sales Agent/main workflow.jpg",
-      "Ai Automation/N8N WhatsApp  Sales Agent/Search Objection Script.jpg",
-      "Ai Automation/N8N WhatsApp  Sales Agent/Search Available Slots.jpg",
-      "Ai Automation/N8N WhatsApp  Sales Agent/SalesForce Post-Booking Update.jpg",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: A sales team was manually managing hundreds of WhatsApp conversations daily ,answering questions, handling objections, checking calendars, and updating Salesforce records. The process was slow, inconsistent, and completely unscalable. A single sales rep can only handle so many chats at once.",
-      "The Solution: I built a sophisticated WhatsApp AI sales agent using n8n and OpenAI that handles the entire sales conversation workflow autonomously. The agent qualifies prospects, searches for available booking slots in real-time, handles common objections using a customised objection-handling script, books meetings, and updates Salesforce automatically post-booking.",
-      "How It Works: Every incoming WhatsApp message triggers the n8n workflow. The AI agent (powered by OpenAI with Simple Memory for conversation continuity) reads the message, determines intent, and responds appropriately. If the prospect shows buying intent, it checks available slots via the booking API. Objections are handled using a database-backed script. Once a meeting is booked, a Salesforce record is created or updated automatically. All conversation logs are stored in PostgreSQL for CRM enrichment.",
-      "The Result: The business now runs a fully autonomous WhatsApp sales process 24 hours a day, 7 days a week. No rep needed. Every conversation is documented, every lead is captured, and every booking flows directly into Salesforce without any manual entry.",
+      "The Problem: A real estate sales team was manually managing dozens of WhatsApp conversations simultaneously. Agents were answering questions, handling objections, checking calendars, and updating Salesforce after each conversation. The process was slow, inconsistent, and impossible to scale without hiring more people.",
+      "The Solution: I built a fully autonomous WhatsApp AI sales agent on n8n. The agent connects to Salesforce via JWT authentication, loads each lead's CRM record and conversation history from PostgreSQL, and runs an OpenAI-powered agent that handles the full sales conversation including objections, slot lookups, and meeting bookings.",
+      { type: "image", src: "Projects/N8N WhatsApp  Sales Agent/main workflow.jpg", caption: "Main n8n workflow: WhatsApp webhook to Salesforce auth, AI agent pipeline, and CRM update" },
+      "How the AI Agent Works: Every incoming WhatsApp message triggers the workflow. The system fetches the lead's Salesforce record, loads the last 20 conversation turns from PostgreSQL, and passes everything to the AI agent with strict instructions not to re-ask for information already provided. The agent can search objection scripts, check Calendly slots, and book meetings using tool calls.",
+      { type: "image", src: "Projects/N8N WhatsApp  Sales Agent/Search Objection Script.jpg", caption: "Sub-workflow: AI agent searching the vector knowledge base to retrieve relevant objection scripts" },
+      { type: "image", src: "Projects/N8N WhatsApp  Sales Agent/Search Available Slots.jpg", caption: "Sub-workflow: Real-time Calendly slot lookup triggered by the AI agent during conversation" },
+      { type: "image", src: "Projects/N8N WhatsApp  Sales Agent/SalesForce Post-Booking Update.jpg", caption: "Sub-workflow: Salesforce lead record updated automatically after a meeting is booked" },
+      "Human Takeover Mode: When a human agent needs to step in, they disable AI mode directly on the Salesforce contact record. The system continues logging all messages to PostgreSQL so conversation history is preserved and the AI can resume seamlessly when takeover mode is turned off.",
+      "The Result: The real estate team now runs a fully automated WhatsApp sales process around the clock. Every conversation is documented, every lead update flows directly into Salesforce, and meetings are booked without any manual work from the sales team.",
     ],
   },
   {
     id: 4,
-    title: "GHL CRM + Make Integration ,Outbound Bot",
-    description: "GoHighLevel and Make.com integration that automates outbound follow-up sequences with reply detection, follow-up scheduling, and full workflow orchestration ,zero manual intervention.",
-    categories: ["CRM Automation", "Lead Generation"],
+    title: "GHL CRM and Make.com Outbound Bot Automation",
+    description: "AI-powered outbound messaging bot built on Make.com and GoHighLevel. When a contact replies to any outbound campaign, the system routes the message through an OpenAI assistant, generates a contextual reply, classifies intent, extracts structured data, and writes everything back to the GHL contact record automatically.",
+    categories: ["CRM Automation", "Lead Generation", "AI Automation"],
     industry: "Agency",
-    builtOn: ["GHL", "Make"],
-    integratedWith: ["GoHighLevel", "Gmail", "Google Sheets"],
-    result: "Fully automated outbound follow-up system",
+    builtOn: ["Make.com", "GoHighLevel"],
+    integratedWith: ["OpenAI", "SMS", "Gmail"],
+    result: "Fully automated outbound reply handling across all channels",
     metric: "AUTO",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/GHL CRM + Make Integration_ outbond report/main workflow.jpg",
-      "Ai Automation/GHL CRM + Make Integration_ outbond report/follow-up scheduling.jpg",
-      "Ai Automation/GHL CRM + Make Integration_ outbond report/reply detection.jpg",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: A marketing agency was managing multiple client outbound campaigns through GoHighLevel, but the follow-up sequences were inconsistent. Replies weren't being detected reliably, follow-up timing was manual, and generating outbound reports required hours of manual data pulling each week.",
-      "The Solution: I built a Make.com automation that integrates deeply with GoHighLevel's CRM to automate the entire outbound follow-up workflow ,from initial outreach, to reply detection, to intelligent follow-up scheduling, to automated report generation.",
-      "How It Works: The Make.com scenario watches for GHL contact activity in real-time. When a contact replies, the reply detection module intercepts it and pauses or re-routes the outbound sequence intelligently. If no reply comes within a configured window, the follow-up scheduling module triggers the next message in the sequence. A reporting workflow runs on a schedule to pull outbound metrics from GHL and compile them into a formatted Google Sheets report ,all without any manual work.",
-      "The Result: The agency eliminated manual report generation and dramatically improved follow-up consistency. Reply handling became instant and systematic. The outbound system now runs as a true autonomous loop ,initiate, detect, follow up, report ,with zero human touchpoints required.",
+      "The Problem: A marketing agency was running outbound campaigns through GoHighLevel but had no way to handle replies intelligently. When contacts responded to SMS, live chat, or email outreach, someone on the team had to read every reply and respond manually. During peak campaign periods, this became a bottleneck that slowed down the entire sales process.",
+      "The Solution: I built a Make.com automation deeply integrated with GoHighLevel's CRM. The moment a contact replies to any outbound message, GHL fires a webhook to Make.com. The bot routes the message through an OpenAI Assistant, generates a human-like reply, classifies the response intent, extracts key data, and writes everything back to the GHL contact record without any human involvement.",
+      { type: "image", src: "Projects/GHL CRM + Make Integration_ outbond report/main workflow.jpg", caption: "Make.com scenario overview: GHL webhook trigger through router, OpenAI nodes, and contact update steps" },
+      "New vs Returning Contact Handling: The workflow checks whether a contact already has an OpenAI Thread ID stored in GHL. New contacts get a fresh thread. Returning contacts resume their existing thread, so the AI maintains full conversation history and responds in context rather than starting over every time.",
+      "AI Response Structure: The OpenAI Assistant returns a structured JSON object containing the answer type, the reply text, the data type extracted, and the specific data value such as a follow-up date or objection type. All four fields are written back to custom fields on the GHL contact record.",
+      { type: "image", src: "Projects/GHL CRM + Make Integration_ outbond report/follow-up scheduling.jpg", caption: "Follow-up scheduling logic: AI-extracted date saved to GHL and used to trigger re-engagement" },
+      { type: "image", src: "Projects/GHL CRM + Make Integration_ outbond report/reply detection.jpg", caption: "GHL workflow detecting multi-channel replies and routing them to the Make.com bot" },
+      "The Result: The agency now handles all outbound replies automatically across every channel. Reply speed went from hours to seconds. Every lead interaction is captured, classified, and logged to GHL without any manual input. The sales team only gets involved when a lead is flagged as ready to close.",
     ],
   },
   {
     id: 5,
     title: "n8n AI Blog Post Generator",
-    description: "Fully automated content pipeline ,AI researches topics, writes SEO-optimised blog posts in a structured format, and outputs publication-ready content on a schedule. Zero manual writing.",
+    description: "Fully automated blog production pipeline that runs four chained AI agents to research topics, create outlines, write full articles, and generate SEO metadata. A parallel image pipeline generates a custom hero image using Flux1-dev and assembles everything into a Google Doc ready for publishing.",
     categories: ["Content Automation", "AI Automation"],
     industry: "Marketing",
     builtOn: ["n8n", "OpenAI"],
-    integratedWith: ["WordPress", "Google Docs", "Airtable"],
-    result: "Blog posts produced automatically on schedule",
+    integratedWith: ["SerpAPI", "Google Docs", "PiAPI"],
+    result: "Publish-ready blog posts produced in under 3 minutes",
     metric: "AUTO",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/n8n AI blog post generator/main workflow.jpg",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: Content marketing requires a consistent publishing schedule, but writing high-quality blog posts is time-consuming and expensive. A marketing team needed to publish several posts per week to maintain SEO momentum ,without the cost of a full-time content team.",
-      "The Solution: I built an automated blog post generation pipeline using n8n and OpenAI GPT-4. The system researches topics autonomously, generates fully structured SEO-optimised blog posts with proper headings, meta descriptions, and keyword integration, then outputs them as ready-to-publish documents.",
-      "How It Works: The n8n workflow triggers on a schedule (or manually). OpenAI is prompted with a topic seed and a structured blog post template ,covering introduction, key sections, conclusion, and meta data. The output is formatted and saved to Google Docs for review or pushed directly to WordPress via API. An Airtable board tracks published posts, scheduled drafts, and topic ideas for the content calendar.",
-      "The Result: The client now publishes consistently on schedule without hiring writers. Blog posts that previously took 3-4 hours to research and write now complete in under 3 minutes. The content pipeline runs autonomously as long as the topic queue is maintained.",
+      "The Problem: A marketing team needed to maintain a consistent publishing schedule to keep SEO momentum going, but producing quality blog posts was time-consuming and expensive. Hiring writers for volume was not viable, and the team did not have the bandwidth to research and write multiple articles per week on top of their existing workload.",
+      "The Solution: I built a fully automated blog post generation pipeline using n8n and GPT-4o-mini. The system handles the entire process from topic discovery to final document delivery on a single trigger. Four chained AI agents work in sequence, with a separate parallel track handling image generation simultaneously.",
+      { type: "image", src: "Projects/n8n AI blog post generator/main workflow.jpg", caption: "Full n8n pipeline: four sequential AI agents for content plus a parallel Flux1-dev image generation track" },
+      "How the Content Pipeline Works: The first agent searches the web via SerpAPI to find one high-value trending topic. The second agent builds a structured outline with an introduction, four to six section headings, and a conclusion. The third agent writes the full 1000 to 1200 word article based on the outline, returning strict JSON with a title and blog body. The fourth agent reads the finished article and generates a meta title, meta description, and up to eight SEO keywords.",
+      "How the Image Pipeline Works: In parallel with writing, a fifth agent converts the blog topic into a detailed image generation prompt. This prompt is submitted to PiAPI's Flux1-dev model, which generates a 1024x1024 image. The workflow waits 60 seconds, polls for completion, downloads the result, and resizes it to the standard 1340x638 blog hero dimensions.",
+      "The Result: Blog posts that used to take three to four hours of research and writing now complete in under three minutes. The client maintains a consistent publishing schedule without hiring writers, and every post is properly structured for SEO from the moment it comes out of the pipeline.",
     ],
   },
   {
     id: 6,
     title: "n8n Automated Creative Analysis Pipeline",
-    description: "AI pipeline that ingests creative assets and campaign performance data, analyses what works, generates structured insight reports, and delivers recommendations automatically via Slack.",
+    description: "AI pipeline that monitors a Google Drive folder for new marketing videos, sends each video to Gemini 2.0 Flash for structured creative analysis, passes the output to ChatGPT for strict formatting, and creates a Notion page with a six-column creative framework table and the original video embedded.",
     categories: ["Content Automation", "AI Automation"],
     industry: "Marketing",
-    builtOn: ["n8n", "OpenAI"],
-    integratedWith: ["Google Drive", "Slack", "Airtable"],
-    result: "Instant creative performance insights ,no manual review",
+    builtOn: ["n8n", "Google Gemini"],
+    integratedWith: ["Google Drive", "ChatGPT", "Notion"],
+    result: "Video creatives analyzed and documented in Notion automatically",
     metric: "AUTO",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/n8n Automated Creative Analysis Pipeline/Main Workflow.png",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: A marketing agency was running multiple ad creatives simultaneously but had no systematic way to analyse performance. The team spent hours manually comparing metrics, trying to identify which hooks, formats, and creative styles were driving results ,a slow and error-prone process.",
-      "The Solution: I built an automated creative analysis pipeline using n8n that ingests campaign data, runs it through OpenAI for AI-powered performance analysis, and delivers a structured insight report directly to Slack ,without anyone having to pull a single spreadsheet.",
-      "How It Works: The pipeline connects to the client's Google Drive where creative assets and performance CSVs are stored. n8n watches for new data uploads and triggers the analysis workflow. OpenAI processes the campaign metrics and creative attributes, identifying patterns ,which formats performed best, which hooks generated most engagement, which audiences responded. The AI generates a structured report with ranked insights and recommendations, which is posted to the team's Slack channel and logged in Airtable for tracking over time.",
-      "The Result: The marketing team now receives weekly creative performance reports automatically. Decision-making on ad spend and creative direction became data-driven and fast. Time spent on manual analysis dropped to zero, and the team can focus entirely on creative production and strategy.",
+      "The Problem: A marketing agency was running multiple ad creatives and had no systematic way to document or analyze them. The team would watch high-performing videos and manually note down hooks, emotional beats, CTAs, and shot types. This took hours, was inconsistent across team members, and produced documents that were scattered and hard to reuse.",
+      "The Solution: I built a fully automated creative analysis pipeline on n8n that monitors a Google Drive folder. The moment a new video is uploaded, the workflow downloads it, sends it to Gemini 2.0 Flash for deep creative analysis, passes the structured output to ChatGPT for strict linguistic formatting, and creates a dedicated Notion page with a six-column framework table and the original video embedded directly inside it.",
+      { type: "image", src: "Projects/n8n Automated Creative Analysis Pipeline/Main Workflow.png", caption: "Full n8n pipeline: Google Drive trigger through Gemini analysis, ChatGPT formatting, and Notion page creation" },
+      "What Gemini Analyzes: Gemini 2.0 Flash processes the full video and produces a structured table with six columns for every scene: Framework Section (Hook, Conflict, Solution, Proof, CTA), Reference Script, Script Breakdown using universal placeholders, Visual Description, Shot Type, and Audio. All product-specific language is replaced with placeholders so the framework can be applied to any niche.",
+      "The Result: The agency now has every analyzed creative stored as a self-contained Notion page combining the full framework table and the source video in one place. What used to take hours of manual note-taking now happens automatically the moment a video is uploaded to the designated Drive folder.",
     ],
   },
   {
     id: 7,
     title: "n8n Client Onboarding Automation",
-    description: "Fully automated client onboarding system ,new clients trigger welcome sequences, task creation, folder setup in Google Drive, and team Slack alerts ,all within 5 minutes of signing.",
+    description: "Fully automated onboarding workflow for a social media agency built on n8n. When a new client submits the Tally onboarding form, the system creates an Airtable record, provisions two Google Drive folders, generates a 9-section AI strategy brief via GPT-4.1-mini, emails it to two recipients, sends a Slack alert, and creates a Notion task.",
     categories: ["AI Automation", "CRM Automation"],
     industry: "Agency",
-    builtOn: ["n8n"],
-    integratedWith: ["Airtable", "Gmail", "Slack"],
-    result: "Clients onboarded in under 5 minutes",
-    metric: "<5m",
+    builtOn: ["n8n", "OpenAI"],
+    integratedWith: ["Airtable", "Google Drive", "Slack", "Notion", "Gmail"],
+    result: "New clients fully onboarded in under 5 minutes from form submission",
+    metric: "5 min",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/n8n Client Onboarding Automation/workflow.jpg",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: A marketing agency was onboarding new clients manually ,writing welcome emails, creating project tasks, setting up folders, and notifying the team one by one. The process was inconsistent across clients, often delayed, and consumed 1-2 hours per new client signup.",
-      "The Solution: I built a comprehensive client onboarding automation using n8n that fires the moment a new client is added to the Airtable CRM. Every onboarding step executes automatically and in sequence ,welcome email, task creation, folder setup, and team notification ,all completed in under 5 minutes.",
-      "How It Works: When a new client record appears in Airtable (via form submission or manual entry), n8n triggers the onboarding sequence instantly. A branded welcome email with onboarding instructions is sent via Gmail. Project tasks are created automatically in the project management tool. A dedicated Google Drive folder structure is generated with the client's name. The agency's Slack channel receives a notification with the client's details and a summary of what was prepared. Everything is logged back to Airtable.",
-      "The Result: The agency now delivers a consistent, professional onboarding experience to every client within 5 minutes of signup ,regardless of time zone or whether anyone is in the office. Staff time on onboarding dropped from 1-2 hours to zero.",
+      "The Problem: A social media agency was onboarding new clients manually. Every time someone signed up, a team member had to write a welcome email, create an Airtable record, set up Drive folders, brief the content team, alert the Slack channel, and create a task in Notion. This took one to two hours per client and was prone to steps being skipped or done inconsistently.",
+      "The Solution: I built a complete client onboarding automation using n8n. The Tally onboarding form captures over 20 fields covering the client's business, social media goals, target audience, content preferences, and login details. The moment the form is submitted, every downstream step runs automatically in sequence.",
+      { type: "image", src: "Projects/n8n Client Onboarding Automation/workflow.jpg", caption: "Full n8n onboarding workflow: Tally form trigger through Airtable, Drive, AI brief, Slack, and Notion" },
+      "What the Automation Does: All 20 plus form fields are mapped and saved to the Airtable Clients table with Payment Status set to Unpaid and Status set to Todo. Two Google Drive folders are created: one colored red for client access and one colored green for the internal team. The AI agent then generates a detailed 9-section HTML strategy brief covering business overview, social media goals, target audience, brand voice, content strategy, and production guidelines.",
+      "The AI Strategy Brief: Generated by GPT-4.1-mini using a strict 9-section system prompt, the brief transforms raw form data into a scannable, styled HTML document the content team can act on immediately. It is emailed to two internal recipients with a Slack notification following immediately after. A Notion task is also created with today's date as the due date.",
+      "The Result: The agency now delivers a consistent, professional onboarding experience to every client within five minutes of signup regardless of the time of day. Staff time spent on onboarding dropped from one to two hours to zero.",
     ],
   },
   {
     id: 8,
     title: "n8n Outlook Vacancy Email Tracker",
-    description: "Monitors Outlook for incoming vacancy-related emails, uses AI to extract structured job data, and logs everything into an organised tracking dashboard ,zero manual email sorting.",
+    description: "n8n automation that monitors a Microsoft Outlook inbox, classifies each incoming email using AI to identify job vacancies, extracts structured vacancy data using a second AI agent, and appends the results as organized rows to a Microsoft Excel spreadsheet in real time.",
     categories: ["AI Automation", "RPA"],
     industry: "Recruitment",
     builtOn: ["n8n", "OpenAI"],
-    integratedWith: ["Outlook", "Airtable", "Google Sheets"],
-    result: "Zero manual email sorting",
+    integratedWith: ["Microsoft Outlook", "Microsoft Excel"],
+    result: "Zero manual email sorting, every vacancy captured and logged instantly",
     metric: "0h",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/n8n Outlook Vacancy Email Tracker/workflow.jpg",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: A recruitment agency was drowning in incoming vacancy emails. HR staff were manually reading each email, extracting job details like title, company, location, salary, and deadline, then logging them into a spreadsheet. This was taking 2-3 hours every day and was prone to missed entries and data errors.",
-      "The Solution: I built an intelligent email tracker using n8n and OpenAI that monitors the Outlook inbox around the clock. Every incoming vacancy email is automatically read, structured data is extracted using AI, and a clean record is created in the tracking dashboard ,no human involvement required.",
-      "How It Works: n8n connects to the Outlook inbox via Microsoft Graph API and watches for new incoming emails matching vacancy-related keywords. When a matching email arrives, OpenAI extracts the key data fields ,job title, company name, location, salary range, application deadline, and requirements ,and structures them into a JSON object. The data is written to both Airtable (for the team dashboard) and Google Sheets (for reporting). The email is tagged in Outlook as processed.",
-      "The Result: The recruitment team eliminated 2-3 hours of daily manual data entry. Every vacancy email is now captured, structured, and logged within seconds of arrival. The dashboard is always up to date, and nothing falls through the cracks ,even emails arriving outside business hours.",
+      "The Problem: A recruitment agency was receiving dozens of vacancy emails daily across a shared Outlook inbox. Staff were manually reading every email, deciding whether it contained a job posting, and then copying the job title, company, location, salary, and deadline into a spreadsheet. This was taking two to three hours every day and created data entry errors when people were busy.",
+      "The Solution: I built an n8n automation connected to the Outlook inbox via Microsoft Graph API. Every new email passes through two AI agents in sequence. The first classifies whether the email is a vacancy or not. The second extracts structured data from confirmed vacancies and appends it to a Microsoft Excel spreadsheet automatically.",
+      { type: "image", src: "Projects/n8n Outlook Vacancy Email Tracker/workflow.jpg", caption: "Complete n8n workflow: Outlook trigger, AI classification agent, vacancy filter, data extraction agent, and Excel output" },
+      "How the Classification Works: The first AI agent reads the email subject and body and returns either VACANCY or NOT_VACANCY as a structured output. Internal emails, newsletters, invoices, and reply-style messages are filtered out before even reaching the AI, keeping the system efficient and reducing unnecessary API calls.",
+      "How the Extraction Works: The second AI agent reads the confirmed vacancy email and extracts eight structured fields: Job Title, Client, Location, Job Description, Rate or Salary, Closing Date, Source Folder, and Sender Email. Missing fields return NAN to preserve the spreadsheet structure. The vacancy is appended as a new row to the Excel tracker. If a row with the same Job Description already exists, it is updated instead of duplicated.",
+      "The Result: The recruitment team eliminated two to three hours of daily manual inbox work. Every vacancy is now captured, classified, and logged within seconds of arrival. The Excel tracker is always up to date, including emails that arrive on weekends or outside business hours.",
     ],
   },
   {
     id: 9,
-    title: "n8n Shopify Faire Fulfillment Sync",
-    description: "Real-time bidirectional sync between Shopify and Faire ,new orders trigger automatic fulfillment creation, inventory updates sync both ways, and confirmation emails fire automatically.",
+    title: "n8n Shopify to Faire Fulfillment Sync",
+    description: "n8n workflow that automatically syncs shipments from Shopify to Faire the moment an order is fulfilled. The workflow verifies Faire order origin, uses an AI agent to extract the shipping label cost from Shopify's event timeline, and registers the shipment on Faire with the correct carrier, tracking number, and cost.",
     categories: ["E-Commerce Automation", "AI Automation"],
     industry: "E-commerce",
-    builtOn: ["n8n"],
-    integratedWith: ["Shopify", "Faire", "Gmail"],
-    result: "100% order sync accuracy ,zero manual entry",
+    builtOn: ["n8n", "OpenAI"],
+    integratedWith: ["Shopify", "Faire API", "Shopify GraphQL"],
+    result: "100% fulfillment sync accuracy between Shopify and Faire",
     metric: "100%",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/n8n Shopify Faire Fulfillment Sync/workflow 1.png",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: An e-commerce store was selling on both Shopify and Faire simultaneously, but the two platforms operated as silos. Every Faire order had to be manually created as a Shopify fulfillment. Inventory levels were constantly out of sync. The team spent hours each day reconciling orders across platforms ,a process that was both tedious and error-prone.",
-      "The Solution: I built a bidirectional real-time sync between Shopify and Faire using n8n. New Faire orders automatically create Shopify fulfillments. Inventory updates in either platform propagate to the other. Confirmation emails fire automatically. No manual data entry, no sync delays, no discrepancies.",
-      "How It Works: n8n listens to webhook events from both Shopify and Faire. When a new Faire order arrives, the workflow maps the order data to Shopify's fulfillment API and creates the record instantly. When inventory changes in Shopify (due to fulfillments, returns, or manual adjustments), the updated quantity is pushed to Faire's inventory API. Gmail sends branded order confirmation emails to the customer automatically. Error handling and retry logic ensure no orders are missed.",
-      "The Result: The client achieved 100% order sync accuracy across both platforms from day one. The daily reconciliation process was completely eliminated. The team now manages one unified inventory view, and customers receive professional order confirmations without any staff action.",
+      "The Problem: A seller operating on both Shopify and Faire had to manually register every Faire shipment inside the Faire platform after fulfilling it in Shopify. This involved logging in, entering the carrier, tracking number, and shipping cost by hand for each order. During busy periods, shipments were registered late or with incorrect costs, which affected seller ratings on the Faire platform.",
+      "The Solution: I built an n8n workflow triggered by Shopify's Fulfillment Created webhook. The workflow checks whether the order originated from Faire, extracts the shipping label cost using an AI agent reading the order's event timeline, and posts the shipment to Faire's API automatically with the correct carrier, tracking code, and cost.",
+      { type: "image", src: "Projects/n8n Shopify Faire Fulfillment Sync/workflow 1.png", caption: "Full n8n workflow: Shopify fulfillment trigger through Faire verification, AI cost extraction, and shipment posting" },
+      "The Shipping Cost Problem: Faire requires the exact shipping cost when registering a shipment, but this value is not included in Shopify's standard fulfillment webhook payload. The workflow queries Shopify's GraphQL API to retrieve all events and comments on the order. A GPT-4o-mini agent then reads the event timeline and identifies only the shipping label purchase message, extracting the price as structured JSON and returning null if none is found.",
+      "Faire-Only Filtering: Not every Shopify fulfillment belongs to a Faire order. The workflow calls the Faire API to verify the order exists before doing any further processing. If no match is found, execution halts immediately, preventing API errors and unnecessary processing.",
+      "The Result: The seller now has 100% fulfillment sync accuracy between Shopify and Faire from the moment an order ships. Manual double-entry was completely eliminated. Shipment records on Faire are always accurate and submitted on time.",
     ],
   },
   {
     id: 10,
-    title: "n8n Telegram MultiPlatform Video Publisher",
-    description: "Automated video distribution pipeline ,send one video to Telegram, and n8n automatically publishes it to multiple social platforms simultaneously. One upload, every platform.",
+    title: "n8n Telegram Multi-Platform Video Publisher",
+    description: "One-message publishing hub built on n8n. Send a video to a Telegram bot and the workflow automatically publishes it to YouTube, Facebook, and Instagram Reels simultaneously. Handles Instagram's async publishing loop with status polling and self-healing error recovery.",
     categories: ["Content Automation", "AI Automation"],
     industry: "Media",
     builtOn: ["n8n"],
-    integratedWith: ["Telegram", "YouTube", "Google Drive"],
-    result: "One upload distributed to all platforms",
-    metric: "1→ALL",
+    integratedWith: ["Telegram", "YouTube", "Facebook", "Instagram", "Google Sheets"],
+    result: "One Telegram message distributes video to three platforms simultaneously",
+    metric: "1 to 3",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/n8n Telegram MultiPlatform Video Publisher/main workflow.jpg",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: Content creators and media businesses waste significant time uploading the same video manually to multiple social platforms ,YouTube, Instagram, TikTok, LinkedIn, and others. Each platform has different format requirements, descriptions, and hashtags. The process is repetitive, time-consuming, and prone to inconsistency.",
-      "The Solution: I built a multiplatform video publishing automation using n8n and Telegram as the trigger interface. The creator sends the video to a private Telegram bot, along with a caption and tags. n8n handles everything from there ,downloading the video, processing it as needed, and publishing it to every configured platform simultaneously.",
-      "How It Works: The content creator sends a video to a Telegram bot (along with a description and hashtag list). n8n receives the Telegram webhook, downloads the video file, stores it temporarily in Google Drive, and triggers parallel publishing workflows for each platform. Each platform gets a tailored description and optimised format. YouTube uploads via the Data API. The creator receives a Telegram confirmation once all uploads are complete.",
-      "The Result: What used to take 30-60 minutes of manual uploads per video now happens in under 3 minutes ,and requires only sending one Telegram message. Content is distributed consistently across all platforms simultaneously, with zero formatting errors or missed uploads.",
+      "The Problem: A content creator was uploading the same video manually to YouTube, Facebook, and Instagram one platform at a time. Each upload required different formats, descriptions, and account logins. A single piece of content that could be distributed in minutes was taking thirty to sixty minutes of repetitive work every single time.",
+      "The Solution: I built an n8n workflow that turns Telegram into a one-stop publishing hub. The creator sends a video to a private Telegram bot along with a caption. n8n takes over from there, downloading the video and fanning out to three parallel publishing branches at the same time.",
+      { type: "image", src: "Projects/n8n Telegram MultiPlatform Video Publisher/main workflow.jpg", caption: "Full n8n workflow: Telegram trigger, parallel YouTube, Facebook, and Instagram publishing branches, and Google Sheets logging" },
+      "YouTube and Facebook Branches: The video binary is uploaded directly to YouTube using the Data API, with the Telegram caption becoming the video title. The same video is uploaded to Facebook as a Page video post via the Graph API. Both branches complete instantly after the upload.",
+      "Instagram Branch: Instagram does not accept direct video uploads. The workflow first uploads the video to LitterBox to generate a publicly accessible URL, then creates a Reel media container via the Instagram Graph API. The workflow enters a polling loop checking container status every 30 seconds. If the status is IN_PROGRESS, it waits and retries. If it returns ERROR, the workflow self-heals by re-uploading and creating a new container. Once FINISHED, the Reel is published.",
+      "The Result: What used to take thirty to sixty minutes per video now takes under three minutes and requires only sending one Telegram message. All three platforms receive the video simultaneously with consistent descriptions and zero formatting errors.",
     ],
   },
   {
     id: 11,
-    title: "Tourism Booking Automation",
-    description: "Comprehensive tourism booking automation ,captures inquiries, checks availability across multiple workflows, sends AI-generated quotes, confirms bookings, and runs WhatsApp reminder sequences.",
-    categories: ["Booking System", "WhatsApp Bot", "AI Automation"],
+    title: "AI Booking Automation System for Al Annabi Tourism",
+    description: "n8n automation that monitors eight email inboxes across Gmail and Outlook simultaneously for a Qatar-based tourism company. AI agents classify each email as a booking or cancellation, extract 14 structured fields, and append or update rows in a centralized Google Sheets tracker in real time.",
+    categories: ["Booking System", "AI Automation"],
     industry: "Tourism",
     builtOn: ["n8n", "OpenAI"],
-    integratedWith: ["WhatsApp API", "Gmail", "Google Sheets"],
-    result: "End-to-end booking pipeline fully automated",
+    integratedWith: ["Gmail", "Microsoft Outlook", "Google Sheets"],
+    result: "All bookings and cancellations captured and tracked automatically",
     metric: "AUTO",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/Booking & Appointment Systems/N8n Automation System for Tourism/workflow1.png",
-      "Ai Automation/Booking & Appointment Systems/N8n Automation System for Tourism/workflow2.png",
-      "Ai Automation/Booking & Appointment Systems/N8n Automation System for Tourism/workflow 3.png",
-      "Ai Automation/Booking & Appointment Systems/N8n Automation System for Tourism/Sheets data.png",
-      "Ai Automation/Booking & Appointment Systems/N8n Automation System for Tourism/output.png",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: A tourism company was handling travel inquiry-to-booking manually ,emails, WhatsApp messages, phone calls, and spreadsheets all mixed together. Staff spent most of their time on repetitive inquiry responses, availability checks, and sending quotes. Follow-ups were missed. Bookings got lost in the shuffle.",
-      "The Solution: I built a comprehensive multi-workflow automation for the tourism company using n8n. The system handles the complete booking journey ,from capturing an inquiry, to checking availability, to generating and sending a personalised quote, to confirming the booking, to running automated reminder sequences via WhatsApp and email.",
-      "How It Works: Inquiries arrive via web form or WhatsApp. n8n captures them instantly and logs data to Google Sheets. OpenAI generates a personalised quote based on the requested tour, dates, and group size. The quote is sent via WhatsApp and email simultaneously. If the customer confirms, the booking is created and a confirmation sequence starts ,with automated reminders 7 days, 3 days, and 1 day before departure. Three separate n8n workflows handle inquiry handling, booking confirmation, and reminder scheduling independently for clean, maintainable automation.",
-      "The Result: The tourism company converted their chaotic manual process into a fully automated, professional booking system. Response time to inquiries dropped from hours to minutes. Booking confirmations and reminders run without any staff intervention. The team now focuses entirely on tour operations and customer experience.",
+      "The Problem: Al Annabi Tourism in Doha was managing bookings across four Gmail accounts and four Microsoft Outlook inboxes simultaneously. Booking confirmations were arriving from platforms like GetYourGuide, Viator, Shouf, and direct email. Staff were manually reading every email, copying booking details into a spreadsheet, and tracking cancellations separately. Bookings were missed and data was frequently incorrect.",
+      "The Solution: I built a unified n8n automation that monitors all eight inboxes in parallel. Three separate workflows handle different email types: one for Outlook bookings, one for Gmail bookings, and one dedicated to cancellations. All workflows feed into a single centralized Google Sheets tracker.",
+      { type: "image", src: "Projects/N8n Automation System for Tourism/workflow1.png", caption: "Workflow 1: Four Outlook inboxes monitored in parallel and merged through AI classification into Google Sheets" },
+      { type: "image", src: "Projects/N8n Automation System for Tourism/workflow2.png", caption: "Workflow 2: Four Gmail accounts processed through the same AI booking pipeline" },
+      "How the AI Classification Works: Every incoming email passes through a primary AI agent that determines whether it is a booking confirmation or a cancellation. Only emails that pass classification move to the extraction step. This prevents newsletter clutter, system notifications, and unrelated messages from polluting the tracker.",
+      { type: "image", src: "Projects/N8n Automation System for Tourism/workflow 3.png", caption: "Workflow 3: Dedicated cancellation detection pipeline that updates booking status in Google Sheets" },
+      "What Gets Extracted: The extraction agent pulls 14 structured fields from each booking email including Booking Reference, Date, Tour Name, Tour Type, Tour Hours (Morning, Afternoon, Evening, Sunset), Start Time, End Time, Pick-Up Location, Number of Passengers, Platform, and special Notes.",
+      { type: "image", src: "Projects/N8n Automation System for Tourism/Sheets data.png", caption: "Google Sheets tracker showing extracted booking fields across all platforms and inboxes" },
+      { type: "image", src: "Projects/N8n Automation System for Tourism/output.png", caption: "Sample booking row in the tracker with all 14 extracted fields populated from an incoming email" },
+      "The Result: Al Annabi Tourism went from manually checking eight inboxes to having every booking and cancellation automatically captured and organized. Response time to data entry dropped from hours to seconds. The team now uses the tracker as their single source of truth for all active tours.",
     ],
   },
   {
     id: 12,
-    title: "Power Automate Events Booking System",
-    description: "Microsoft Power Automate booking system for an events business ,automates slot management, booking confirmations, Microsoft Calendar sync, and Outlook-based client notifications end-to-end.",
+    title: "Exodus Executive Travel Booking and Fare System",
+    description: "Full-stack web application for Exodus Executive Travel that handles ride quote requests, calculates fares in real time using distance-based and fixed airport pricing rules, processes payments via Stripe, sends automated invoice emails, and logs every booking to SharePoint. Built with Flask and Google Maps API.",
     categories: ["Booking System", "AI Automation"],
-    industry: "Events",
-    builtOn: ["Power Automate"],
-    integratedWith: ["Outlook", "Microsoft Calendar", "SharePoint"],
-    result: "Fully automated event booking management",
+    industry: "Executive Travel",
+    builtOn: ["Power Automate", "Flask"],
+    integratedWith: ["Stripe", "Google Maps API", "SharePoint", "Outlook SMTP"],
+    result: "Zero manual quoting, all bookings processed and invoiced automatically",
     metric: "AUTO",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/Booking & Appointment Systems/powerautomate Exodus Booking System/img1.png",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: An events business was managing all bookings manually through email and a spreadsheet. Slot availability was tracked by hand, confirmation emails had to be written and sent individually, and calendar entries were created manually. The process didn't scale and was causing double-bookings and missed confirmations.",
-      "The Solution: I built a complete booking management system using Microsoft Power Automate ,the natural choice given the client was already operating within the Microsoft 365 ecosystem. The system automates slot management, booking processing, calendar synchronisation, and all client communications.",
-      "How It Works: When a booking request is submitted (via a Microsoft Forms intake form or email), Power Automate triggers immediately. The flow checks slot availability against Microsoft Calendar, confirms or declines the request, and sends a professional confirmation email via Outlook. Confirmed bookings are automatically added to Microsoft Calendar and logged to a SharePoint list for the team. If a booking is cancelled, the slot is freed and a cancellation confirmation is sent to the client.",
-      "The Result: The business eliminated all manual booking administration. Double-bookings became impossible. Confirmation emails go out within seconds of a request. The team's Microsoft Calendar is always accurate. And the SharePoint booking log gives management a real-time view of all upcoming events.",
+      "The Problem: Exodus Executive Travel was quoting rides manually through email back-and-forth. Customers would request a price, a staff member would calculate the fare, apply any applicable surcharges for time or day of week, send the quote, wait for payment, and then manually create a booking log entry. This process was slow, inconsistent, and left room for calculation errors.",
+      "The Solution: I built a full-stack web application using Flask on the backend and vanilla HTML, CSS, and JavaScript on the frontend. The system handles the complete journey from address entry to payment to invoice delivery without any manual steps. It was deployed on cPanel shared hosting and embedded within the Exodus domain.",
+      { type: "image", src: "Projects/powerautomate Exodus Booking System/img1.png", caption: "Exodus booking form with Google Places autocomplete, passenger selection, date and time pickers, and real-time fare calculation" },
+      "The Pricing Engine: All fare calculations run server-side in Flask to prevent client-side manipulation. The system identifies whether either endpoint matches a known airport Place ID for Glasgow or Edinburgh. If so, a fixed fare table is applied based on destination zone with parking fees added automatically. For other routes, the Google Distance Matrix API calculates mileage-based pricing. The system then checks for midnight and weekend surcharges before presenting the final locked quote.",
+      "Payment and Invoice: The customer sees only the final quoted amount which cannot be modified. The fare is locked server-side before being passed to Stripe Checkout. On confirmed payment, the system generates a professional HTML invoice and sends it to the customer via SMTP. A structured booking log entry is created in SharePoint with the fare breakdown, surcharges, route, and passenger count.",
+      "The Result: Exodus Executive Travel replaced manual quoting entirely. Customers receive an accurate fare instantly, pay securely, and receive a professional invoice within seconds of booking confirmation. Every booking is automatically logged to SharePoint with complete financial details.",
     ],
   },
   {
     id: 13,
     title: "Outlook Job Manager Automation",
-    description: "Monitors Outlook for incoming CV and job application emails, extracts structured candidate data using AI, creates Airtable records, and routes candidates to the right hiring manager automatically.",
-    categories: ["AI Automation", "CRM Automation"],
+    description: "n8n automation that monitors a Microsoft Outlook inbox every minute, uses two GPT-4o-mini agents to classify emails as job vacancies and extract eight structured data fields, and appends each confirmed vacancy as a new row in Google Sheets with duplicate prevention built in.",
+    categories: ["AI Automation", "RPA"],
     industry: "Recruitment",
     builtOn: ["n8n", "OpenAI"],
-    integratedWith: ["Outlook", "Airtable", "Microsoft Teams"],
-    result: "Zero manual application processing",
+    integratedWith: ["Microsoft Outlook", "Google Sheets"],
+    result: "Zero manual email scanning, all vacancies logged in seconds",
     metric: "0h",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/Business Operations & HR Automation/Outlook Job Manager/workflow.1.jpeg",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: A recruitment agency was receiving hundreds of CV and job application emails per week. HR staff spent hours each day manually reading emails, extracting candidate information, creating spreadsheet entries, and forwarding applications to the right hiring manager. This was slow, error-prone, and completely unscalable.",
-      "The Solution: I built an intelligent Outlook Job Manager using n8n and OpenAI that monitors the hiring inbox around the clock. Every incoming application email is automatically read, candidate data is extracted using AI, a structured record is created in Airtable, and the application is routed to the appropriate hiring manager via Microsoft Teams notification ,all within seconds of arrival.",
-      "How It Works: n8n connects to Outlook via Microsoft Graph API and monitors the recruitment inbox continuously. When a new application email arrives, OpenAI extracts key candidate information ,full name, email, phone, applied position, years of experience, key skills, and any salary expectations mentioned. This data is structured and written to an Airtable base as a new candidate record. Based on the applied position, a Teams message is sent to the corresponding hiring manager with a summary of the candidate and a link to the full Airtable record.",
-      "The Result: The HR team eliminated hours of daily manual inbox management. Every application is now captured, structured, and routed within seconds regardless of volume. The hiring team receives instant notifications for new candidates and has a clean, searchable candidate database in Airtable ,without anyone touching the inbox manually.",
+      "The Problem: A recruitment firm was drowning in incoming vacancy emails. HR staff were manually scanning the Outlook inbox, deciding which emails contained actual job postings, and then copying job titles, companies, locations, rates, and deadlines into a Google Sheet one by one. During busy weeks, this could take three to four hours every day.",
+      "The Solution: I built a two-agent n8n automation connected to Microsoft Outlook via OAuth2. The workflow fires every minute, checks for new emails, and passes each one through two GPT-4o-mini agents in sequence. The first classifies the email as VACANCY or NOT_VACANCY. The second extracts structured vacancy data from confirmed postings and writes them to Google Sheets.",
+      { type: "image", src: "Projects/Outlook Job Manager/workflow.1.jpeg", caption: "Full n8n workflow: Outlook trigger, internal email filter, AI classification, vacancy filter, AI extraction, and Google Sheets output" },
+      "Classification Rules: Internal emails from known company domains are filtered out before the AI even sees them. The first AI agent classifies based on the presence of job titles, candidate requests, salary details, or role descriptions. Newsletters, invoices, meeting invites, and reply-style messages are all excluded automatically.",
+      "Data Extraction and Duplicate Prevention: The second AI agent extracts eight structured fields: Job Title, Client, Location, Job Description, Rate or Salary, Closing Date, Source Folder, and Sender Email. Before appending a new row, the workflow checks whether a record with the same Job Description already exists in the sheet. If a match is found, the existing row is updated instead of creating a duplicate.",
+      "The Result: The recruitment team eliminated daily manual inbox scanning entirely. Every vacancy is captured, classified, and logged within seconds of arriving. The Google Sheet is always current, searchable, and accurate including postings that arrive on evenings and weekends.",
     ],
   },
   {
     id: 14,
-    title: "Zapier Lead Gen & Sales System ,Auto Detailing",
-    description: "Zapier-powered lead generation and sales automation for an auto detailing business ,captures web leads, triggers multi-step personalised follow-up sequences, and tracks deals to close.",
+    title: "Zapier Lead Generation and Sales System for Auto Detailing",
+    description: "Zapier-powered lead automation for Ceramic Pro Markham, an auto detailing business. New leads from OrbisX CRM trigger AI scoring via Gemini, personalized SMS through Quo, email follow-ups through Gmail, and automated re-engagement sequences for no-response leads.",
     categories: ["Lead Generation", "CRM Automation", "AI Automation"],
     industry: "Auto Detailing",
     builtOn: ["Zapier"],
-    integratedWith: ["HubSpot", "Gmail", "Google Sheets"],
-    result: "Automated lead-to-sale follow-up pipeline",
-    metric: "AUTO",
+    integratedWith: ["OrbisX CRM", "Google Gemini", "Gmail", "Quo SMS"],
+    result: "Lead response time reduced from hours to under 2 minutes",
+    metric: "2 min",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/Lead Generation & CRM Automations/Zapier Lead Generation & Sales System for auto detailing/zap 1.png",
-      "Ai Automation/Lead Generation & CRM Automations/Zapier Lead Generation & Sales System for auto detailing/zap 2.png",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: An auto detailing business was getting web form submissions from potential customers but had no automated follow-up process. Leads would come in and sit uncontacted for hours ,or days. By the time a salesperson got to them, many had already booked with a competitor. Manual follow-up was inconsistent and impossible to scale.",
-      "The Solution: I built a Zapier-powered lead generation and sales automation that captures every web form submission and immediately triggers a personalised multi-step follow-up sequence. The system nurtures leads through email and SMS, moves them through the sales pipeline automatically, and notifies the sales team only when a lead is ready to close.",
-      "How It Works: When a prospect submits the quote request form, Zapier fires instantly. The lead is created in HubSpot CRM with all form data. An immediate personalised email response goes out from Gmail. A multi-step follow-up sequence activates ,Day 1 email, Day 3 SMS, Day 7 email with offer ,all automated. As the lead engages (opens, clicks), HubSpot deal stages update automatically. The sales team gets a notification only when a lead responds positively or clicks the booking link. Conversion data is tracked in Google Sheets for reporting.",
-      "The Result: Lead response time dropped from hours to seconds. The follow-up sequence runs consistently for every lead, regardless of how busy the team is. Lead-to-booking conversion rates improved significantly simply by responding faster and following up more consistently.",
+      "The Problem: Ceramic Pro Markham was getting leads from website forms and inbound calls, but response times were slow and follow-up was inconsistent. By the time someone reached out, the lead had often already called a competitor. There was no system for scoring leads by quality or for re-engaging leads who did not respond to the first outreach.",
+      "The Solution: I built a Zapier automation that triggers the moment a new lead appears in OrbisX CRM. The system fetches the full lead record, passes it to Gemini AI for scoring and personalization, sends an immediate SMS through Quo and a follow-up email through Gmail, and activates a re-engagement sequence for any lead that does not respond.",
+      { type: "image", src: "Projects/Zapier Lead Generation & Sales System for auto detailing/zap 1.png", caption: "Zap 1: OrbisX trigger through Zapier delay, live data fetch, Gemini AI scoring, Quo SMS, and OrbisX record update" },
+      { type: "image", src: "Projects/Zapier Lead Generation & Sales System for auto detailing/zap 2.png", caption: "Zap 2: Gmail email follow-up step and continued sequence based on AI-assigned lead score" },
+      "AI Lead Scoring: Gemini AI reads each lead's inquiry text or call transcript and assigns a score of Hot, Warm, or Cold based on service interest level, inquiry detail, and engagement signals. Hot leads also trigger an internal real-time alert so a team member can follow up personally within minutes.",
+      "The Result: Lead response time dropped from hours to under two minutes. Every lead now receives an immediate, personalized outreach regardless of how busy the team is. The consistent follow-up sequence runs automatically in the background, and the team only steps in for hot leads or when a booking is confirmed.",
     ],
   },
   {
     id: 15,
-    title: "WhatsApp Lead Generation Bot ,Real Estate",
-    description: "Multi-stage WhatsApp AI chatbot that qualifies real estate leads through 6 progressive stages ,ownership, property type, needs, timing, budget, and appointment booking ,syncing qualified leads live to GHL CRM.",
+    title: "WhatsApp Lead Qualification Bot for Real Estate (n8n + GHL)",
+    description: "Six-stage WhatsApp chatbot built on n8n and integrated with GoHighLevel CRM. The bot qualifies real estate leads through progressive stages covering need, ownership, timing, property value, and appointment booking. All lead data, stage updates, and conversation logs are written to GHL in real time.",
     categories: ["WhatsApp Bot", "Lead Generation", "CRM Automation"],
     industry: "Real Estate",
     builtOn: ["n8n", "OpenAI"],
-    integratedWith: ["WhatsApp API", "GHL CRM", "Google Calendar"],
-    result: "Full 6-stage lead qualification on WhatsApp",
+    integratedWith: ["WhatsApp API", "GoHighLevel", "Google Calendar"],
+    result: "Full 6-stage lead qualification completed on WhatsApp before agent contact",
     metric: "QUAL",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/Lead Generation & CRM Automations/whatsapp lead generation bot n8n+ GHL/Main Workflow.png",
-      "Ai Automation/Lead Generation & CRM Automations/whatsapp lead generation bot n8n+ GHL/Ownership qualification stage.jpg",
-      "Ai Automation/Lead Generation & CRM Automations/whatsapp lead generation bot n8n+ GHL/Property qualification stage.png",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: A real estate agency was generating WhatsApp inquiries but couldn't qualify them efficiently. Agents were spending time talking to unqualified prospects ,people who weren't ready to buy, couldn't afford the properties, or didn't match the agency's target profile. They needed a system to qualify leads before a human ever picked up the phone.",
-      "The Solution: I built a sophisticated 6-stage WhatsApp lead qualification bot using n8n and OpenAI, deeply integrated with GoHighLevel CRM. The bot conducts a complete qualification interview through WhatsApp ,naturally, conversationally ,and only passes qualified, appointment-ready leads to agents.",
-      "How It Works: When a prospect messages the agency's WhatsApp number, the bot starts the qualification sequence. Stage 1 checks ownership status. Stage 2 identifies property type interest. Stage 3 explores their specific property needs. Stage 4 qualifies buying timeline. Stage 5 captures budget range and email (with validation). Stage 6 books a consultation appointment if the lead qualifies. Throughout the conversation, OpenAI handles natural language understanding. Once qualified, a GHL lead record is created automatically with all conversation data, a deal is created in the pipeline, and the agent is notified.",
-      "The Result: The agency dramatically reduced time-to-qualified-lead. Agents now only speak with prospects who have confirmed their timeline, budget, and property requirements. The GHL pipeline is populated automatically with rich lead data, making agent follow-ups faster and more personalised.",
+      "The Problem: A real estate agency was getting WhatsApp inquiries but had no way to qualify them before agents got involved. Agents were spending time having full conversations with people who were not serious buyers, could not afford the properties, or were outside the agency's target market. The qualification process had to happen earlier in the funnel.",
+      "The Solution: I built a six-stage WhatsApp qualification bot on n8n, deeply integrated with GoHighLevel CRM. When a prospect messages the agency's WhatsApp number, the bot begins a structured qualification interview. Each stage gates the next one, and only leads who pass all stages are offered an appointment. GHL is updated in real time throughout the entire conversation.",
+      { type: "image", src: "Projects/whatsapp lead generation bot n8n+ GHL/Main Workflow.png", caption: "Main n8n workflow: WhatsApp webhook to GHL lead lookup, conversation stage routing, and OpenAI response generation" },
+      "The Six Qualification Stages: Stage 1 collects the lead's name. Stage 2 validates their email. Stage 3 qualifies their specific need and what they are looking for. Stage 4 checks ownership status. Stage 5 asks about buying timeline to filter out leads who are not ready to act. Stage 6 qualifies property value range and budget. Leads who fail any stage are redirected to free resources and their GHL status is updated accordingly.",
+      { type: "image", src: "Projects/whatsapp lead generation bot n8n+ GHL/Ownership qualification stage.jpg", caption: "Sub-workflow handling the ownership qualification stage with GHL stage update logic" },
+      { type: "image", src: "Projects/whatsapp lead generation bot n8n+ GHL/Property qualification stage.png", caption: "Sub-workflow handling property value qualification and routing qualified leads to appointment booking" },
+      "Appointment Booking: Once a lead passes all six stages, the bot offers available calendar slots from Google Calendar. The lead selects a time, the appointment is booked, and the GHL deal is created with all conversation data attached. The assigned agent receives a notification with a link to the fully populated GHL record.",
+      { type: "image", src: "Projects/whatsapp lead generation bot n8n+ GHL/Email with collection and validation.png", caption: "Email collection and validation sub-workflow with retry logic for invalid email formats" },
+      { type: "image", src: "Projects/whatsapp lead generation bot n8n+ GHL/Lead Creation.png", caption: "GHL lead creation workflow firing when a new prospect contacts the WhatsApp number for the first time" },
+      { type: "image", src: "Projects/whatsapp lead generation bot n8n+ GHL/need quailfication stage.png", caption: "Need qualification stage: AI evaluates the lead's stated needs and routes accordingly" },
+      { type: "image", src: "Projects/whatsapp lead generation bot n8n+ GHL/timing qualification.png", caption: "Timing qualification stage: bot asks about purchase timeline and updates GHL status" },
+      { type: "image", src: "Projects/whatsapp lead generation bot n8n+ GHL/appoointment booking stage.png", caption: "Appointment booking stage: qualified leads select from available Google Calendar slots" },
+      { type: "image", src: "Projects/whatsapp lead generation bot n8n+ GHL/post-booking conversation.png", caption: "Post-booking conversation stage: agent takes over while bot handles remaining follow-up queries" },
+      "The Result: The agency now only speaks with prospects who have confirmed their need, ownership status, timeline, and budget through the WhatsApp conversation. GHL pipelines are populated automatically with rich, structured lead data. Agent time is spent on closing rather than qualifying.",
     ],
   },
   {
     id: 16,
-    title: "AI CAPTCHA Solve ,Web Scraping Automation",
-    description: "Advanced RPA web scraping automation using Octoparse with AI-powered CAPTCHA solving ,extracts large-scale structured data from protected websites and outputs clean, usable datasets automatically.",
+    title: "Octoparse AI CAPTCHA Solve Web Scraping Automation",
+    description: "RPA automation built on Octoparse that reads input data from Google Sheets, fills web forms, selects parameters, enters dates, solves CAPTCHA challenges autonomously mid-flow, submits the form, and writes the returned reference number back to the corresponding row in the sheet.",
     categories: ["RPA", "AI Automation"],
     industry: "Data Extraction",
-    builtOn: ["Octoparse", "RPA"],
-    integratedWith: ["Web Apps", "Google Sheets", "Excel"],
-    result: "Large-scale data extraction from protected sites",
+    builtOn: ["Octoparse"],
+    integratedWith: ["Google Sheets", "CAPTCHA Solver"],
+    result: "End-to-end form submission with CAPTCHA solved automatically",
     metric: "SCALE",
     youtubeUrl: "",
     screenshots: [],
     blogContent: [
-      "The Problem: A data analytics company needed to extract large volumes of structured data from websites that actively block automated scrapers with CAPTCHAs, rate limiting, and bot detection. Manual data collection was impossibly slow, and standard scraping tools kept getting blocked.",
-      "The Solution: I built an advanced web scraping automation using Octoparse enhanced with AI-powered CAPTCHA solving capabilities. The system bypasses standard bot detection mechanisms, extracts the required data at scale, and outputs clean, structured datasets to Google Sheets or Excel ,automatically.",
-      "How It Works: Octoparse handles the browser automation and page navigation logic. When CAPTCHA challenges appear, the AI CAPTCHA solving integration intercepts and resolves them in real time, allowing the scraping session to continue uninterrupted. The extracted data is cleaned and structured according to the client's required schema, then exported automatically. The workflow can run scheduled or on-demand, handling thousands of pages per session.",
-      "The Result: The company achieved reliable, large-scale data extraction from sites that were previously inaccessible to automation. Data collection that would have taken weeks of manual work now runs overnight. The structured output feeds directly into their analysis and reporting workflows.",
+      "The Problem: A client needed to submit large volumes of web forms on behalf of end users. Each submission required reading data from a spreadsheet, filling multiple form fields, selecting dropdown parameters, entering dates, and solving a CAPTCHA before submission. The entire process was being done manually one by one, which was slow, repetitive, and impossible to scale.",
+      "The Solution: I built an RPA automation using Octoparse AI that automates the entire end-to-end form submission process. The bot reads each pending row from Google Sheets, opens the target web form in a real browser session, fills all fields, selects the correct parameters, enters dates, solves the CAPTCHA autonomously when it appears, submits the form, scrapes the confirmation reference number, and writes it back to the spreadsheet.",
+      "How the CAPTCHA Solving Works: CAPTCHA solving is the most technically significant part of this automation. Standard RPA tools fail when CAPTCHA challenges appear because they cannot interpret the visual puzzle. Octoparse's built-in CAPTCHA solver integration intercepts the challenge mid-flow, resolves it autonomously, and allows the session to continue without any human input. This is what enables fully unattended operation at scale.",
+      "The Full Process: The automation reads the next pending row from Google Sheets. It opens the target form in a real browser, fills text fields with names and IDs from the sheet, populates dropdowns and selection controls, enters dates into calendar pickers, solves the CAPTCHA, submits the form, waits for the confirmation page, scrapes the reference number, and writes it back to the matching row in Google Sheets.",
+      "The Result: The client now runs batch form submissions without any manual involvement. What previously required hours of repetitive work now runs as a scheduled or on-demand job handling the full queue automatically.",
     ],
   },
   {
     id: 17,
-    title: "HubSpot & n8n Automation Integration Suite",
-    description: "7-workflow HubSpot automation suite built on n8n ,handles CV processing, lead scoring, deal stage updates, follow-up sequences, team notifications, and full CRM pipeline automation.",
+    title: "HubSpot and n8n Automation Integration Suite",
+    description: "Seven-workflow HubSpot automation suite built on n8n integrating Xero, CreditSafe, and Calendly. Workflows handle financial data enrichment from Xero, website lead capture, Calendly booking sync, credit profiling via CreditSafe, and deal stage automation directly inside HubSpot.",
     categories: ["CRM Automation", "AI Automation", "Lead Generation"],
     industry: "Sales",
     builtOn: ["n8n", "HubSpot"],
-    integratedWith: ["Gmail", "Slack", "Airtable"],
-    result: "Full CRM pipeline automated ,7 workflows",
-    metric: "7WF",
+    integratedWith: ["Xero", "CreditSafe", "Calendly", "Gmail", "Slack"],
+    result: "Full CRM pipeline automated across 7 connected workflows",
+    metric: "7 WF",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/hubspot automation/HubSpot & n8n Automation Integration Suite/workflow 1 .jpeg",
-      "Ai Automation/hubspot automation/HubSpot & n8n Automation Integration Suite/workflow 2 & 3.jpeg",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: A B2B sales company had HubSpot as their CRM but was barely using its automation capabilities. Leads were being added manually, deal stages required human updates, follow-up emails were sent inconsistently, and the sales team had no visibility into pipeline health without manually pulling reports. The CRM was a data store, not a sales engine.",
-      "The Solution: I built a comprehensive 7-workflow HubSpot automation suite using n8n that transformed the client's CRM from passive database to active sales machine. Each workflow handles a specific part of the CRM lifecycle ,from CV/lead ingestion, to scoring, to deal management, to follow-up sequences, to reporting.",
-      "How It Works: Workflow 1 handles CV and lead ingestion ,new leads from any source are automatically created in HubSpot with complete data. Workflows 2 & 3 manage lead scoring and segmentation based on engagement and profile data. Workflow 4 handles deal stage transitions. Workflow 5 runs personalised follow-up email sequences via Gmail. Workflow 6 sends Slack alerts to the sales team for high-priority events. Workflow 7 generates weekly pipeline health reports in Airtable.",
-      "The Result: The HubSpot CRM became a fully automated sales pipeline. Deal stages update themselves. Follow-ups send themselves. Reports generate themselves. The sales team now uses their time closing deals instead of managing a CRM, and pipeline visibility is always accurate and up-to-date.",
+      "The Problem: A B2B company had HubSpot as their CRM but it was barely being used as an automation platform. Financial data from Xero had to be manually pulled and entered. Leads from the website were created by hand. Calendly bookings required manual CRM updates. Credit checks via CreditSafe were done separately and not connected to HubSpot at all.",
+      "The Solution: I built a seven-workflow HubSpot automation suite on n8n that connects HubSpot to Xero, CreditSafe, and Calendly, with each workflow handling a specific part of the CRM lifecycle automatically.",
+      { type: "image", src: "Projects/HubSpot & n8n Automation Integration Suite/workflow 1 .jpeg", caption: "Workflow 1: HubSpot company status change triggers Xero financial data fetch and CRM field update" },
+      { type: "image", src: "Projects/HubSpot & n8n Automation Integration Suite/workflow 2 & 3.jpeg", caption: "Workflows 2 and 3: Website form lead capture creates and associates HubSpot contact, company, and deal" },
+      "Xero Financial Data Enrichment: When a company record in HubSpot is updated with a Data Enrich trigger, n8n retrieves the last three months of invoices from Xero, calculates service-wise totals and average monthly recurring revenue, and writes these metrics back to custom fields on the HubSpot company record.",
+      { type: "image", src: "Projects/HubSpot & n8n Automation Integration Suite/workflow 4 .jpeg", caption: "Workflow 4: Calendly booking webhook syncs meeting data to HubSpot contact and advances deal stage" },
+      { type: "image", src: "Projects/HubSpot & n8n Automation Integration Suite/workflow 5 .jpeg", caption: "Workflow 5: CreditSafe company credit profile pulled and structured data mapped to HubSpot fields" },
+      { type: "image", src: "Projects/HubSpot & n8n Automation Integration Suite/workflow 6 .jpeg", caption: "Workflow 6: Deal stage transition automation based on engagement signals and CRM field changes" },
+      { type: "image", src: "Projects/HubSpot & n8n Automation Integration Suite/workflow 7.jpeg", caption: "Workflow 7: Email-based lead capture and HubSpot CRM enrichment from inbound sales inquiries" },
+      "The Result: HubSpot became a fully connected, actively updated sales platform instead of a passive contact database. Financial records, credit profiles, and deal stages now update automatically based on real-world events. The sales team focuses on conversations and closing while the automation handles all data management.",
     ],
   },
   {
     id: 18,
-    title: "n8n CV Processing & Email-to-HubSpot Automation",
-    description: "Processes incoming CV emails automatically ,AI extracts candidate data, creates structured HubSpot contacts, routes to the correct hiring pipeline, and sends acknowledgement emails instantly.",
+    title: "n8n CV Processing and Email-to-HubSpot Automation",
+    description: "End-to-end n8n automation for a recruitment agency that monitors Microsoft Outlook for incoming CV emails, processes PDFs using Mistral AI OCR, parses structured candidate profiles using GPT-4.1-mini, creates HubSpot contacts and Google Sheets records, and sends automated acknowledgement emails instantly.",
     categories: ["CRM Automation", "AI Automation"],
     industry: "Recruitment",
     builtOn: ["n8n", "OpenAI"],
-    integratedWith: ["Gmail", "Outlook", "HubSpot"],
-    result: "Zero manual CRM entry from email",
+    integratedWith: ["Microsoft Outlook", "HubSpot", "Mistral AI", "Google Sheets", "Google Drive"],
+    result: "Zero manual CRM data entry from email CV processing",
     metric: "0h",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/hubspot automation/n8n email to hubspot automation/main workflow.jpeg",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: A recruitment agency was receiving CV submissions via email and manually creating HubSpot contact records for each one. A busy week could mean 50-100 emails, each requiring 5-10 minutes of manual data entry into the CRM. This was consuming hours of HR time and creating data inconsistencies.",
-      "The Solution: I built an n8n automation that monitors the email inbox (Gmail or Outlook), reads incoming CV emails using OpenAI, extracts all relevant candidate information, and creates or updates HubSpot contact records automatically ,sending an acknowledgement email to the candidate instantly.",
-      "How It Works: n8n monitors the email inbox via IMAP or Microsoft Graph. When a new CV email arrives, OpenAI reads the email body and any attached CV text to extract: candidate name, email address, phone number, applied position, key skills, years of experience, current employer, and expected salary. This data is mapped to HubSpot's contact fields and a new contact is created (or existing record updated). The candidate receives an automated acknowledgement email confirming their application was received. The hiring manager is notified via HubSpot task or email.",
-      "The Result: The agency eliminated manual CRM data entry from email processing entirely. Every CV now creates a perfect HubSpot record within seconds of arriving ,consistently structured, fully tagged, and immediately searchable. Candidates receive professional acknowledgements instantly rather than waiting hours or days.",
+      "The Problem: A recruitment agency was receiving candidate CVs and supporting documents via Microsoft Outlook. Every application had to be manually read, relevant information copied out, and a HubSpot contact record created by hand. During busy periods with fifty to one hundred applications per week, this was consuming hours of HR time every day and creating data inconsistencies.",
+      "The Solution: I built a 36-node n8n automation that monitors the Outlook inbox every minute. When a new email with attachments arrives, each document is processed by Mistral AI for text extraction, then passed to GPT-4.1-mini to build a complete structured candidate profile. The profile is pushed to HubSpot and Google Sheets automatically, and an acknowledgement email is sent to the candidate.",
+      { type: "image", src: "Projects/n8n email to hubspot automation/main workflow.jpeg", caption: "Complete n8n workflow: Outlook trigger through Mistral OCR, GPT-4.1-mini parsing, HubSpot contact creation, and Google Sheets output" },
+      "Document Processing: The workflow routes PDF attachments to Mistral AI OCR for text extraction. Non-PDF files go through a separate Mistral extraction path. Both branches merge at a central Code node that combines all document text into one consolidated block for the AI agent.",
+      "AI Candidate Profiling: GPT-4.1-mini receives the combined document text and extracts: full name, email, phone, location, LinkedIn, career summary, education, work experience, key skills, certifications, projects, hourly rate, and availability. The agent also generates HubSpot qualification tags. All data is mapped to HubSpot contact fields and a new record is created, or an existing one is updated.",
+      "The Result: The agency eliminated all manual CV data entry from the email processing workflow. Every application now creates a structured, fully tagged HubSpot record within seconds of arriving. Candidates receive a professional acknowledgement email instantly. The hiring team works from a clean, searchable database instead of an overflowing inbox.",
     ],
   },
   {
     id: 19,
-    title: "n8n Smart Amazon Order Processing & Zoho Accounting",
-    description: "Automated Amazon order-to-accounting pipeline ,new orders trigger fulfillment routing, Zoho Books invoice generation, accounting entries, and reporting ,all in seconds, without any manual input.",
+    title: "n8n Smart Amazon Order Processing and Zoho Accounting Automation",
+    description: "Two-workflow n8n automation for an Amazon seller that reads daily order export sheets from Google Drive, authenticates with Zoho Books, creates sales orders and invoices for each line item, updates inventory, and sends a processing summary. Eliminates all manual accounting work from Amazon order management.",
     categories: ["E-Commerce Automation", "AI Automation"],
     industry: "E-commerce",
     builtOn: ["n8n", "Zoho"],
-    integratedWith: ["Amazon", "Zoho Books", "Google Sheets"],
-    result: "Orders processed & invoiced in seconds",
+    integratedWith: ["Google Drive", "Google Sheets", "Zoho Books", "Gmail"],
+    result: "Amazon orders processed and invoiced in Zoho Books automatically",
     metric: "AUTO",
     youtubeUrl: "",
-    screenshots: [
-      "Ai Automation/Zoho/n8n Smart Amazon Order Processing & Accounting Automation/workflow.jpg",
-      "Ai Automation/Zoho/n8n Smart Amazon Order Processing & Accounting Automation/zoho sales order.jpg",
-    ],
+    screenshots: [],
     blogContent: [
-      "The Problem: An e-commerce business was selling on Amazon but managing their accounting in Zoho Books manually. Every Amazon order required someone to log into Zoho, create a sales order, generate an invoice, record the payment, and update the tracking sheet. During peak periods, this was hours of manual work every single day.",
-      "The Solution: I built a fully automated Amazon order processing and accounting pipeline using n8n and Zoho Books. New Amazon orders are detected automatically, fulfillment is routed, Zoho sales orders and invoices are generated, payments are recorded, and a tracking sheet is updated ,all within seconds of each order coming in, with zero manual work.",
-      "How It Works: n8n monitors Amazon for new orders via the SP-API. When an order is detected, the workflow extracts full order data ,customer details, items, quantities, pricing, and shipping. A Zoho Books sales order is created automatically, followed by an invoice with the correct line items. Payment is recorded based on the Amazon payment confirmation. The order is logged to a Google Sheets tracking dashboard with status, order ID, and financial summary. The entire process completes in under 30 seconds per order.",
-      "The Result: The client eliminated all daily manual accounting work from Amazon order processing. Financial records in Zoho Books are now always current and accurate. The tracking dashboard gives real-time visibility into sales volume and revenue without any manual updates.",
+      "The Problem: An Amazon seller was managing their accounting in Zoho Books manually. Every day, they exported an order sheet from Amazon and then manually created sales orders, generated invoices, recorded payments, and updated inventory in Zoho one order at a time. During peak periods with high order volumes, this was taking hours of daily work and errors were frequent.",
+      "The Solution: I built two n8n workflows that automate the entire order-to-accounting pipeline. The client simply uploads the Amazon order export sheet to a designated Google Drive folder. n8n detects the new file, reads every row, authenticates with Zoho Books, and processes each order automatically creating sales orders, invoices, and updating inventory without any manual input.",
+      { type: "image", src: "Projects/n8n Smart Amazon Order Processing & Accounting Automation/workflow.jpg", caption: "Workflow 1: Google Drive trigger reads the Amazon order sheet and loops over rows to create Zoho sales orders and invoices" },
+      "How the Processing Works: The workflow reads all order rows and loops over them. For each order, it first fetches the customer record from Zoho Books, creating a new record if none exists. It retrieves the product item details using the SKU, creates a sales order with the correct line items, quantities, and pricing, then generates and links an invoice immediately after. Inventory levels in Zoho are adjusted based on ordered quantities. An If node routes single-item and multi-item orders through separate processing branches to handle all line items correctly.",
+      { type: "image", src: "Projects/n8n Smart Amazon Order Processing & Accounting Automation/zoho sales order.jpg", caption: "Zoho Books sales order created automatically from Amazon order data with full line item and customer mapping" },
+      { type: "image", src: "Projects/n8n Smart Amazon Order Processing & Accounting Automation/Normal processing sheet.jpg", caption: "Google Sheets order tracker with processed rows marked and Zoho order IDs written back automatically" },
+      "The Result: The client eliminated all daily manual accounting work from Amazon order processing. Zoho Books is always current and accurate. The tracking sheet provides a real-time view of order processing status. What used to take hours of repetitive work now completes automatically the moment the order sheet is uploaded.",
     ],
   },
 ];
@@ -1768,6 +1850,10 @@ function clearAllFilters() {
   renderProjects();
 }
 
+/* ─── PAGINATION STATE ───────────────────────────────────────── */
+const PAGE_SIZE = 6;
+let currentPage = 1;
+
 /* ─── RENDER PROJECTS ────────────────────────────────────────── */
 function getFiltered() {
   return PROJECTS.filter(p => {
@@ -1782,6 +1868,7 @@ function renderProjects() {
   const grid = document.getElementById('project-grid');
   const none = document.getElementById('no-results');
   const cnt  = document.getElementById('filter-count');
+  const pg   = document.getElementById('pagination');
   const filtered = getFiltered();
 
   const hasFilter = Object.values(filterState).some(a => a.length > 0);
@@ -1790,10 +1877,18 @@ function renderProjects() {
   if (filtered.length === 0) {
     grid.innerHTML = '';
     none.style.display = '';
+    pg.innerHTML = '';
     return;
   }
   none.style.display = 'none';
-  grid.innerHTML = filtered.map((p, i) => `
+
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  if (currentPage > totalPages) currentPage = 1;
+
+  const start  = (currentPage - 1) * PAGE_SIZE;
+  const paged  = filtered.slice(start, start + PAGE_SIZE);
+
+  grid.innerHTML = paged.map((p, i) => `
     <div class="project-card" onclick="openModal(${p.id})" style="animation:fadeUp 0.4s ease ${i*0.05}s both;">
       <div class="card-top">
         <div class="card-tags">${p.categories.map(c => `<span class="tag" style="font-size:9px;padding:3px 9px;">${c}</span>`).join('')}</div>
@@ -1821,6 +1916,34 @@ function renderProjects() {
       </div>
     </div>
   `).join('');
+
+  /* render pagination controls */
+  if (totalPages <= 1) {
+    pg.innerHTML = '';
+    return;
+  }
+
+  let btns = '';
+  btns += `<button class="pg-btn" id="pg-prev" onclick="goPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>← PREV</button>`;
+
+  for (let i = 1; i <= totalPages; i++) {
+    btns += `<button class="pg-btn${i === currentPage ? ' active' : ''}" onclick="goPage(${i})">${i}</button>`;
+  }
+
+  btns += `<button class="pg-btn" id="pg-next" onclick="goPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>NEXT →</button>`;
+  btns += `<span class="pg-info">${start + 1}–${Math.min(start + PAGE_SIZE, filtered.length)} of ${filtered.length}</span>`;
+
+  pg.innerHTML = btns;
+}
+
+function goPage(n) {
+  const filtered = getFiltered();
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  if (n < 1 || n > totalPages) return;
+  currentPage = n;
+  renderProjects();
+  const sec = document.getElementById('projects');
+  if (sec) window.scrollTo({ top: sec.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
 }
 
 /* ─── MODAL ──────────────────────────────────────────────────── */
@@ -1843,9 +1966,13 @@ function openModal(id) {
       ${p.screenshots.length > 1 ? `<div class="gallery-thumbs">${p.screenshots.map((s, i) => `<div class="gallery-thumb${i===0?' active':''}" onclick="setGalleryImg('${s.replace(/'/g,"\\'")}',${i})" data-idx="${i}"><img src="${s}" alt="thumb ${i+1}" onerror="this.parentElement.style.display='none'"/></div>`).join('')}</div>` : ''}
     </div>` : '';
 
-  const blogHTML = p.blogContent.map(para => {
+  const blogHTML = p.blogContent.map(item => {
+    if (item && typeof item === 'object' && item.type === 'image') {
+      return `<figure class="modal-inline-img"><img src="${item.src}" alt="${item.caption || ''}" onerror="this.parentElement.style.display='none'"/>${item.caption ? `<figcaption>${item.caption}</figcaption>` : ''}</figure>`;
+    }
+    const para = String(item);
     const colonIdx = para.indexOf(':');
-    if (colonIdx > -1 && colonIdx < 25) {
+    if (colonIdx > -1 && colonIdx < 30) {
       return `<div class="modal-para"><p><strong>${para.substring(0, colonIdx + 1)}</strong>${para.substring(colonIdx + 1)}</p></div>`;
     }
     return `<div class="modal-para"><p>${para}</p></div>`;
